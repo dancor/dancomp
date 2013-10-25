@@ -1,0 +1,15 @@
+# why isn't this in path for this..
+mN=/usr/local/bin/mailNotify
+
+popUp="$1"
+shift
+
+A=`cat`
+echo "$A" | "$mN" "$@" | memoplex -w &
+
+#if [[ "$popUp" -ge 1 ]]
+## vacay mode
+#if [[ "$popUp" -ge 2 ]]
+#then
+#  echo >> ~/log/notifyPopup
+#fi

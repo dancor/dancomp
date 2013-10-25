@@ -1,0 +1,15 @@
+#!/bin/sh
+set -e
+while true
+do
+  PREV_SIZE=$(wc -c /var/log/key | awk '{print $1}')
+  NEW_SIZE=$(wc -c /var/log/key | awk '{print $1}')
+  echo "$PREV_SIZE":"$NEW_SIZE" >> /var/log/lol
+  if [[ "$NEW_SIZE" -ne "$PREV_SIZE" ]]
+  then
+    # escape should usually be harmless?
+    echo lol >> /var/log/lol
+    sudo -u danl ssh dan screen -S s -p 5 -X stuff ''
+  fi
+  sleep 10
+done

@@ -1,0 +1,5 @@
+#!/bin/sh
+sudo mv /usr/sbin/NetworkManager /usr/sbin/NetworkManager_wtf
+sudo killall NetworkManager
+sleep 5
+sudo killall -9 NetworkManager

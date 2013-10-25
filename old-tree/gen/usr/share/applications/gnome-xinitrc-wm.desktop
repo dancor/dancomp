@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Window Manager & Startup Programs, via ~/.xinitrc_gnome
+Exec=gnome-xinitrc-wm
+NoDisplay=true
+X-GNOME-Autostart-Phase=WindowManager
+X-GNOME-Provides=windowmanager
+X-GNOME-Autostart-Notify=true
+X-Ubuntu-Gettext-Domain=gnome-session-3.0

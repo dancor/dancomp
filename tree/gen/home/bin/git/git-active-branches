@@ -1,0 +1,3 @@
+#!/bin/sh
+# git active branches
+exec git branch "$@" | grep -v '^. arc/'

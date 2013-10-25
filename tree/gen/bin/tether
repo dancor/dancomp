@@ -1,0 +1,5 @@
+set -e
+cd ~/i/android/android-sdk-linux_x86/tools
+sudo ./adb kill-server || true
+sudo ./adb start-server
+sudo ./adb forward tcp:8080 tcp:8080

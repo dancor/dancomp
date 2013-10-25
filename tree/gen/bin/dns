@@ -1,0 +1,3 @@
+#!/bin/sh
+diff /etc/resolv.conf.orig /etc/resolv.conf
+exec sudo cp /etc/resolv.conf.orig /etc/resolv.conf

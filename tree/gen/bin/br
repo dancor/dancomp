@@ -1,0 +1,42 @@
+#!/usr/bin/python3
+# brightness change
+
+from cmd_util import cmd_output, cmd_wait
+import os
+import sys
+
+print("Use F8/F9 for now; uses a separate system?")
+sys.exit(-1)
+
+###
+###
+###
+
+br_dir = "/sys/class/backlight/intel_backlight"
+br_f  = os.path.join(br_dir, "brightness")
+max_f = os.path.join(br_dir, "max_brightness")
+
+def get_max_val():
+    return int(open(max_f, "r").readline())
+
+def get_br_percent(max_lev):
+    lev_str = open(br_f, "r").readline()
+    return round(100 * int(lev_str) / max_lev)
+
+def set_br_percent(max_lev, percent):
+    lev = max_lev * percent / 100
+    cmd_wait("so sh -c 'echo %d > %s'" % (lev, br_f))
+
+args = sys.argv[1:]
+if args:
+    s, = args
+    if s.startswith('+'):
+        max_val = get_max_val()
+        set_br_percent(max_val, get_br_percent(max_val) + int(s[1:]))
+    elif s.startswith('-'):
+        max_val = get_max_val()
+        set_br_percent(max_val, get_br_percent(max_val) - int(s[1:]))
+    else:
+        set_br_percent(get_max_val(), int(s))
+else:
+    print(get_br_percent(get_max_val()))

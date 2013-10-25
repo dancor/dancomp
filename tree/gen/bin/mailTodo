@@ -1,0 +1,26 @@
+#!/usr/bin/env python
+
+from cmd_util import cmd_wait
+import email.Parser as ep
+import os
+import sys
+
+e = ep.Parser()
+m = e.parse(sys.stdin, True)
+b = m.get_payload()
+b = b.split('\n')[:-2]
+
+# runs as root
+#home = os.getenv('HOME')
+home = '/home/danl'
+
+os.chdir(os.path.join(home, '.todo-etc'))
+cmd_wait('git pull')
+f = file('todo')
+ls = f.readlines()
+f.close()
+f2 = file('todo', 'w')
+f2.write(''.join(['- ' + l + '\n' for l in b] + ls))
+f2.close()
+cmd_wait('git commit -am cp')
+cmd_wait('git push')

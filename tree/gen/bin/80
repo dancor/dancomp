@@ -1,0 +1,11 @@
+#!/usr/bin/env python
+import sys
+args = sys.argv[1:]
+if args:
+    # secret vertical mode that has nothing to do with 80
+    l = [str(x) for x in range(2, 140 + 1)]
+    l.reverse()
+    print('\n'.join(l))
+else:
+    # double it so we can see when things are over
+    print('1234567890' * 16)

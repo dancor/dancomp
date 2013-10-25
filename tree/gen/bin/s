@@ -1,0 +1,14 @@
+#!/bin/zsh
+if [[ -n "${TMUX}" ]]
+then
+  echo 'tmux already running?'
+  exit -1
+fi
+N=${1}
+if [[ -z "${N}" ]]
+then
+  N=1
+fi
+#tmux new-window -d -t "${N}" > /dev/null 2>&1
+tmux new-window -d -t "${N}"
+exec tmux new-session -t lalala \; select-window -t "${N}"

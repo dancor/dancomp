@@ -1,0 +1,7 @@
+#!/bin/sh
+set -e
+
+# cd ~/i/briss/briss-0.9
+# exec java -jar briss-0.9.jar "$@"
+
+exec java -jar ~/i/briss/briss-0.9/briss-0.9.jar "$@"

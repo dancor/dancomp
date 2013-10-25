@@ -1,0 +1,17 @@
+#!/bin/sh
+set -e
+
+cd ~/etc/plan
+v todo
+exit 0
+
+if [ -z "$1" ]
+then
+  OFFLINE=1
+fi
+
+cd ~/etc
+[ -z "$OFFLINE" ] || git pull
+v todo || true
+git commit -a -m 'todo change' || true
+[ -z "$OFFLINE" ] || git push

@@ -1,0 +1,4 @@
+#!/bin/sh
+xset -dpms
+mplayer "$@" dvd://{1..20}
+xset +dpms

@@ -1,0 +1,7 @@
+#!/bin/bash
+# start an xt on the given screen window
+n="$1"
+shift
+t="$1"
+shift
+xt -T "$t" "$@" -e s "$n" &

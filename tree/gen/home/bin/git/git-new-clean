@@ -1,0 +1,3 @@
+#!/bin/sh
+git checkout -b "$@" "`git default-remote`"
+git per-branch &

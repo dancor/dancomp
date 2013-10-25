@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# doesn't work w/ sudo :(
+#exec $EDITOR "$@"
+
+#exec emacs -nw "$@"
+#exec emacs "$@"
+#exec emacsclient -c --alternate-editor emacs "$@"
+
+exec vim "$@"

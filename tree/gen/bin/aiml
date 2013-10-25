@@ -1,0 +1,54 @@
+#!/usr/bin/env python
+# aim link
+
+from cmd_util import args_esc, cmd_output, cmd_wait
+from optparse import OptionParser
+
+usage = 'usage'
+opt_p = OptionParser(usage)
+opt_p.add_option('-n', '--num', help='go back <n> links')
+opt_p.add_option('-s', '--show', help='show links instead of opening',
+    action='store_true')
+opt_p.add_option('-g', '--gen', help='show lines, not links',
+    action='store_true')
+opt_p.add_option('-m', '--monochrome', help='don\'t use color',
+    action='store_true')
+opt_p.add_option('-2', '--dan2', help='use dan2 host',
+    action='store_true')
+(opts, args) = opt_p.parse_args()
+nick, = args
+
+num = opts.num
+if num == None:
+    if opts.gen:
+        num = 60
+    else:
+        num = 1
+
+html_re = '[a-zA-Z0-9]+://[^ ()]+'
+
+#serv_host = 'dan2' if opts.dan2 else 'dan'
+serv_host = 'dan2' if opts.dan2 else 'localhost'
+
+def do_cmd(cmd):
+    #cmd = ['ssh', serv_host, cmd]
+    return cmd
+
+if opts.gen:
+    args_remote = args_esc([nick, str(num)])
+    cmd_remote = 'aimLog -r'
+    if not opts.monochrome:
+        cmd_remote += 'p'
+    cmd_remote += ' %s | head -n%s' % args_remote
+    cmd_wait(do_cmd(cmd_remote))
+elif opts.show:
+    args_remote = args_esc([nick, html_re, str(num)])
+    cmd_remote = 'aimLog -r %s | pcregrep -o %s | head -n%s' % args_remote
+    cmd_wait(do_cmd(cmd_remote))
+else:
+    args_remote = args_esc([nick, html_re, str(num)])
+    cmd_remote = 'aimLog -p %s | pcregrep -o %s | head -n%s | tail -n1' % \
+        args_remote
+    cmd = do_cmd(cmd_remote)
+    link = cmd_output(cmd)[0].decode()
+    cmd_wait(['ff', link])

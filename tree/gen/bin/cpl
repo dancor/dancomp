@@ -1,0 +1,3 @@
+#!/bin/sh
+L=${1-all}
+cplay -R ~/m/mus-"$L".m3u

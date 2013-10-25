@@ -1,0 +1,2 @@
+#!/bin/sh
+exec ssh -p 10170 -N -L 1081:localhost:1081 dan

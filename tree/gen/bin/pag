@@ -1,0 +1,3 @@
+#!/bin/sh
+# not sure how good this filtering is
+ps aux | grep "$@" | grep -v 'sh /usr/local/bin/pag' | grep -v 'grep '"$@"

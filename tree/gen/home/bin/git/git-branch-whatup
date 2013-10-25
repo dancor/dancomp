@@ -1,0 +1,3 @@
+#!/bin/sh
+# switch to a branch, upping and seeing what's up
+git checkout "$@" && git up && git diff-master

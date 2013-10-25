@@ -1,0 +1,1 @@
+mplayer -playlist 'http://asx.abacast.com/cool102-wm-64.asx?ref=js&emedded=false&timeout=false&uofc=false'

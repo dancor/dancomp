@@ -1,0 +1,68 @@
+#!/usr/bin/env python3
+
+# window focuser
+
+from optparse import OptionParser
+from socket import gethostname
+import cmd_util as cu
+import os
+
+usage = 'usage: ./wf [options] <window-abbr>'
+opt_p = OptionParser(usage)
+opt_p.add_option('-z', '--hide', action='store_true',
+    help='hide instead of switch-to')
+opt_p.add_option('', '--asia', action='store_true',
+    help='affect larger/foreign-character terminal')
+(opts, args) = opt_p.parse_args()
+
+if opts.hide:
+    action = '-z'
+else:
+    action = '-a'
+
+a, = args
+
+if a[0] in ('a', 'q'):
+    if a[0] == 'a':
+        pref = 'h'
+    else:
+        pref = 'l'
+    a = a[1:]
+else:
+    pref = ''
+
+#host = gethostname()
+#if host == 'hank':
+#    ff = 'Gran Paradiso'
+#elif host == 'pome':
+#    ff = 'Shiretoko'
+#    ff = 'Arora'
+#elif os.path.exists('/usr/bin/iceweasel'):
+#    ff = 'Iceweasel'
+#else:
+#    ff = 'Chromium'
+ff = 'Chromium'
+
+# this duplicates stuff in wmv_lib!
+a_map = {
+    'r': 'a1',
+    's': 'a2',
+    't': 'a3',
+    'n': 'b1',
+    'e': 'b2',
+    'i': 'b3',
+    'o': 'b4',
+    'A': 'xasia',
+    'w': 'arora',
+    'f': ff,
+    'b': 'Tor Browser',
+    'N': 'NOTIFIEROMG',
+    'p': 'pdf',  # evince doesn't put pdf or anything in title, hm
+    'k': 'Anki',
+    'Q': 'Quod Libet',
+}
+
+title = a_map[a]
+if opts.asia:
+    title = title[0] + "-asia-" + title[1:]
+cu.cmd_wait(['wmctrl', action, pref + title], can_fail=True)

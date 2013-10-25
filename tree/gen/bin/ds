@@ -1,0 +1,2 @@
+#!/bin/sh
+exec dlk s -a "$@" | le

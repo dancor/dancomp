@@ -1,0 +1,3 @@
+#!/bin/sh
+exec su danl sh -c '(echo hi; whoami; pulseaudio --start --realtime --daemonize=0) >> /home/danl/log/pulseaudio 2>&1'
+#exec sudo -u danl sh -c 'echo hi >> /home/danl/log/pulseaudio 2>&1'

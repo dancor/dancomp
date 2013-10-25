@@ -1,0 +1,3 @@
+#!/bin/sh
+# commit all changed files
+exec git commit -a "$@"

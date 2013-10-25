@@ -1,0 +1,53 @@
+#!/usr/bin/env php
+<?php
+$usage='Usage: htmail [-s "subject"] [-c cc] recipients' . "\n";
+$subject='';
+$to=array();
+$cc=array();
+
+for ($i=1; $i<$_SERVER['argc']; $i++) {
+  switch ($_SERVER['argv'][$i]) {
+    case '-s':
+      $subject=$_SERVER['argv'][++$i];
+      break;
+    case '-c';
+      $cc[]=$_SERVER['argv'][++$i];
+      break;
+    default:
+      $to[]=$_SERVER['argv'][$i];
+      break;
+  }
+}
+
+if (!count($to)) {
+  die($usage);
+}
+
+$stdin = fopen('php://stdin', 'r');
+$body='';
+if ($stdin) {
+  while (!feof($stdin))
+    $body.=fread($stdin, 4096);
+  fclose($stdin);
+} else {
+  die("Could not open stdin!\n");
+}
+
+function esc($s) {
+  return escapeshellarg($s);
+}
+
+function cesc($s) {
+  return '-c '.esc($s);
+}
+
+if (strlen($body)) {
+  $eval = 'set content_type="text/html"';
+  $cmd = 'echo '.esc($body).' | mutt -e '.esc($e_val).' -s '.esc($subject).' '.
+    implode(' ', array_map('esc', $to)).' '.
+    implode(' ', array_map('cesc', $cc));
+  echo $cmd."\n";
+  system($cmd);
+} else {
+  die("No mail sent!\n");
+}

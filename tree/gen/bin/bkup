@@ -1,0 +1,5 @@
+#!/bin/bash
+# backup current dir
+DIR=$(basename "$(pwd)")
+cd ..
+cp -rv "$DIR" "$DIR"'-bkup-'"$(mydate)"

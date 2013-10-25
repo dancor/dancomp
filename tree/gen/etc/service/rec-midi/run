@@ -1,0 +1,2 @@
+#!/bin/sh
+exec sudo -H -u danl /etc/service/rec_midi/run.danl

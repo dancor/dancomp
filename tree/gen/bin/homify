@@ -1,0 +1,15 @@
+#!/bin/bash
+echo "${1/$HOME/~}"
+
+####!/usr/bin/env python
+###
+###import sys
+###
+###d = sys.argv[1]
+###hS = '/data/users/dcorson'
+####hS = '/home/dcorson/local'
+###if d.startswith(hS):
+###  d2 = '~' + d[len(hS):]
+###else:
+###  d2 = d
+###sys.stdout.write(d2)

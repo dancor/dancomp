@@ -1,0 +1,21 @@
+#!/usr/bin/env python3
+#
+# this is like 'git bisect run' but just goes one rev at a time back
+# also it will work with local changes which can be very helpful
+#   (we should actually build a wrapper to git bisect allowing local
+#   changes too)
+
+import cmd_util as cu
+import sys
+
+args = sys.argv[1:]
+max_back, cmd = args
+max_back = int(max_back)
+
+for i in xrange(max_back):
+  if cu.cmd_run(cmd).wait() == 0:
+    print('the command just started working')
+    sys.exit(0)
+  cu.cmd_wait(['git checkout', 'HEAD~1'])
+print('the command never started working :(')
+sys.exit(-1)

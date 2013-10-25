@@ -1,0 +1,50 @@
+#!/usr/bin/env runhaskell
+
+import Control.Applicative
+import Control.Arrow
+import Data.Char
+import Data.List
+import Data.Maybe
+import Dancomp
+import FUtil
+import HSH
+import System.Console.GetOpt
+import System.IO
+import System.Posix.Process
+import System.Posix.Types
+import System.Posix.Signals
+
+data Options = Options {
+}
+
+defOpts = Options {
+}
+
+options :: [OptDescr (Options -> Options)]
+options = [
+  ]
+
+data PInfo = PInfo {
+  pPid :: ProcessID,
+  pPpid :: ProcessID,
+  pCmd :: String
+  }
+
+main = do
+  (opts, args) <- doArgs "" defOpts options
+  pInfoLs <- run $
+    ("pgrep", ["-f"] ++ args) -|-
+    ("xargs", ["ps", "--no-headers", "-o", "pid,ppid,cmd", "-p"])
+  mePid <- getProcessID
+  mePpid <- getProcessGroupID
+  let
+    pInfo :: [PInfo]
+    pInfo = fromJust $ mapM pInfoParse pInfoLs
+    pInfoParse :: String -> Maybe PInfo
+    pInfoParse l = do
+      (pid, l2) <- first read <$> breakMb isSpace (dropWhile isSpace l)
+      (ppid, cmd) <- first read <$> breakMb isSpace (dropWhile isSpace l2)
+      return $ PInfo pid ppid cmd
+    pInfo' = filter (\ p -> mePpid `notElem` [pPid p, pPpid p]) pInfo
+  putStr . unlines $ map pCmd pInfo'
+  askKill $ map pPid pInfo'

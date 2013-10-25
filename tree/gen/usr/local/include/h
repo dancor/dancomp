@@ -1,0 +1,78 @@
+{-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TemplateHaskell #-}
+import Control.Applicative hiding ((<|>))
+import qualified Control.Applicative as App
+import Control.Arrow
+import Control.Concurrent
+import Control.DeepSeq
+import Control.Monad
+import Control.Monad.Error
+import Control.Monad.Identity
+import Control.Monad.Random
+import Control.Parallel
+import Control.Parallel.Strategies
+import Control.Wire
+import Data.Binary
+import Data.Bits
+import qualified Data.ByteString as BS
+import qualified Data.ByteString.Lazy as BSL
+import qualified Data.ByteString.Lazy.Char8 as BSLC
+import qualified Data.ByteString.Char8 as BSC
+import qualified Data.ByteString.UTF8 as BSU
+import qualified Data.ByteString.Lazy.UTF8 as BSLU
+import qualified Data.Aeson as Ae
+import Data.Char
+import qualified Data.DateTime as DTi
+import Data.Either.Unwrap
+import qualified Data.Foldable as Fold
+import Data.Function hiding ((.))
+import qualified Data.IntMap as IntMap
+import Data.List
+import Data.List.Split
+import qualified Data.Map as Map
+import Data.Maybe
+import qualified Data.MemoCombinators as Memo
+import Data.Monoid
+import qualified Data.MultiSet as MS
+import Data.Ord
+import Data.Ratio
+import qualified Data.Serialize as Ser
+import Data.Serialize.Derive
+import Data.Set (Set)
+import qualified Data.Set as S
+import qualified Data.Set as Set
+import Data.String.Utils
+import qualified Data.Text as DT
+import qualified Data.Text.Encoding as DTE
+import qualified Data.Text.IO as DTI
+import qualified Data.Text.Lazy as DTL
+import qualified Data.Text.Lazy.IO as DTLI
+import Data.Time
+import Data.Time.Clock.POSIX
+import qualified Data.Traversable as Trav
+import Data.Tree
+import qualified Data.Vector as Vec
+import Debug.Trace
+import GHC.Generics
+import HSH
+import Language.Haskell.TH
+import MajMemSys
+import Network.URI
+import Numeric
+import Prelude hiding ((.), id)
+import System.Cmd
+import System.Directory
+import System.Environment
+import System.Exit
+import System.FilePath
+import System.IO
+import System.Process
+import System.Posix hiding (createDirectory)
+import System.Random
+import qualified System.Random.MWC as MWC
+import Test.QuickCheck
+import qualified Text.ParserCombinators.Parsec as Psec
+import Text.Regex.Posix
+import qualified Text.XML.Light as TXL
+import qualified Text.XHtml as TXH

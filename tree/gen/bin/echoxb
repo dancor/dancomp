@@ -1,0 +1,3 @@
+comm=~/bin/$1
+shift
+echox "$comm" "$@"

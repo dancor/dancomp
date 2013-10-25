@@ -1,0 +1,199 @@
+OnTitlebar Move1 :StartMoving
+OnLeftGrip Move1 :StartResizing bottomleft
+OnRightGrip Move1 :StartResizing bottomright
+OnWindowBorder Move1 :StartMoving
+OnTitlebar Mouse3 :WindowMenu
+
+XF86AudioRaiseVolume :Exec adjvol -r
+XF86AudioLowerVolume :Exec adjvol -l
+XF86AudioMute :Exec adjvol -m
+XF86Launch1 :Exec adjvol -s 70
+
+XF86LaunchA :Exec think-rotate
+
+Mod4 F1 :Exec rhythmbox-client --play --no-present
+Mod4 F2 :Exec rhythmbox-client --pause --no-present
+Mod4 F3 :Exec rhythmbox-client --previous --no-present
+Mod4 F4 :Exec rhythmbox-client --next --no-present
+
+None 121 :ExecCommand adjvol -m
+None 122 :ExecCommand adjvol -l
+None 123 :ExecCommand adjvol -r
+Mod4 Up :ExecCommand adjvol
+Mod4 Down :ExecCommand adjvol -d
+Mod4 F8 :ExecCommand br -10
+Mod4 F9 :ExecCommand br +10
+Mod4 Shift F8 :ExecCommand br -1
+Mod4 Shift F9 :ExecCommand br +1
+
+Mod4 1 :Exec ibus-ctl on
+Mod4 3 :Exec ibus-ctl off
+Mod4 4 :Exec ibus-ctl zhongwen
+Mod4 5 :Exec ibus-ctl esperanto
+Mod4 6 :Exec ibus-ctl rfc1345
+
+OnDesktop Mouse1 :HideMenus
+OnDesktop Mouse2 :WorkspaceMenu
+OnDesktop Mouse3 :RootMenu
+OnDesktop Mouse4 :NextWorkspace
+OnDesktop Mouse5 :PrevWorkspace
+
+Mod4 c :Reconfig
+Mod4 p :RootMenu
+
+Mod4 w :ClientMenu
+Mod1 Tab :NextWindow groups
+Mod1 Shift Tab :PrevWindow groups
+
+Mod1 F4 :Close
+
+# z is zap-it-away/out-of-sight or zoom-out
+Mod4 z r :ExecCommand wf -z r
+Mod4 z s :ExecCommand wf -z s
+Mod4 z t :ExecCommand wf -z t
+Mod4 z h :ExecCommand wf -z h
+#Mod4 z t :ExecCommand wf -z t
+Mod4 z n :ExecCommand wf -z n
+Mod4 z o :ExecCommand wf -z o
+Mod4 z a :ExecCommand wf -z a
+Mod4 z f :ExecCommand wf -z f
+Mod4 z Shift n :ExecCommand wf -z N
+Mod4 z p :ExecCommand wf -z p
+Mod4 z w :ExecCommand wf -z w
+
+#
+# s is switch-to (window-focus)
+#
+
+Mod4 s r :ExecCommand wf r
+Mod4 s s :ExecCommand wf s
+Mod4 s t :ExecCommand wf t
+Mod4 s n :ExecCommand wf n
+Mod4 s e :ExecCommand wf e
+Mod4 s i :ExecCommand wf i
+Mod4 s o :ExecCommand wf o
+Mod4 s a :ExecCommand wf a
+Mod4 s f :ExecCommand wf f
+Mod4 s b :ExecCommand wf b
+Mod4 s Shift n :ExecCommand wf N
+Mod4 s p :ExecCommand wf p
+Mod4 s w :ExecCommand wf w
+Mod4 s k :ExecCommand wf k
+
+Mod4 s z r :ExecCommand wf --asia r
+Mod4 s z s :ExecCommand wf --asia s
+Mod4 s z t :ExecCommand wf --asia t
+Mod4 s z n :ExecCommand wf --asia n
+Mod4 s z e :ExecCommand wf --asia e
+Mod4 s z i :ExecCommand wf --asia i
+Mod4 s z o :ExecCommand wf --asia o
+Mod4 s z a :ExecCommand wf --asia a
+Mod4 s z f :ExecCommand wf --asia f
+Mod4 s z Shift n :ExecCommand wf --asia N
+Mod4 s z p :ExecCommand wf --asia p
+Mod4 s z w :ExecCommand wf --asia w
+
+#
+# e is backup for switch-to (window-focus)
+#
+
+Mod4 e r :ExecCommand wf r
+Mod4 e s :ExecCommand wf s
+Mod4 e t :ExecCommand wf t
+Mod4 e n :ExecCommand wf n
+Mod4 e e :ExecCommand wf e
+Mod4 e i :ExecCommand wf i
+Mod4 e o :ExecCommand wf o
+Mod4 e a :ExecCommand wf a
+Mod4 e f :ExecCommand wf f
+Mod4 e Shift n :ExecCommand wf N
+Mod4 e p :ExecCommand wf p
+Mod4 e w :ExecCommand wf w
+Mod4 e k :ExecCommand wf k
+
+Mod4 e z r :ExecCommand wf --asia r
+Mod4 e z s :ExecCommand wf --asia s
+Mod4 e z t :ExecCommand wf --asia t
+Mod4 e z n :ExecCommand wf --asia n
+Mod4 e z e :ExecCommand wf --asia e
+Mod4 e z i :ExecCommand wf --asia i
+Mod4 e z o :ExecCommand wf --asia o
+Mod4 e z a :ExecCommand wf --asia a
+Mod4 e z f :ExecCommand wf --asia f
+Mod4 e z Shift n :ExecCommand wf --asia N
+Mod4 e z p :ExecCommand wf --asia p
+Mod4 e z w :ExecCommand wf --asia w
+
+#
+# t is "to" (window-move)
+#
+
+Mod4 t r :ExecCommand wmv r
+Mod4 t s :ExecCommand wmv s
+Mod4 t t :ExecCommand wmv t
+Mod4 t n :ExecCommand wmv n
+Mod4 t e :ExecCommand wmv e
+Mod4 t i :ExecCommand wmv i
+Mod4 t o :ExecCommand wmv o
+Mod4 t a r :ExecCommand wmv ar
+Mod4 t a s :ExecCommand wmv as
+Mod4 t a t :ExecCommand wmv at
+Mod4 t a n :ExecCommand wmv an
+Mod4 t a e :ExecCommand wmv ae
+Mod4 t a i :ExecCommand wmv ai
+Mod4 t a o :ExecCommand wmv ao
+Mod4 t q r :ExecCommand wmv qr
+Mod4 t q s :ExecCommand wmv qs
+Mod4 t q t :ExecCommand wmv qt
+Mod4 t q n :ExecCommand wmv qn
+Mod4 t q e :ExecCommand wmv qe
+Mod4 t q i :ExecCommand wmv qi
+Mod4 t q o :ExecCommand wmv qo
+
+Mod4 t Shift r :ExecCommand wmv R
+Mod4 t d :ExecCommand wmv d
+Mod4 t p :ExecCommand wmv p
+Mod4 t g :ExecCommand wmv g
+Mod4 t c :ExecCommand wmv c
+Mod4 t v :ExecCommand wmv v
+Mod4 t h :ExecCommand wmv h
+Mod4 t j :ExecCommand wmv j
+Mod4 t l :ExecCommand wmv l
+Mod4 t m :ExecCommand wmv m
+Mod4 t comma :ExecCommand wmv ,
+
+# r is "run"
+Mod4 r m r :ExecCommand xm A1
+Mod4 r m s :ExecCommand xm A2
+Mod4 r m t :ExecCommand xm A3
+Mod4 r m n :ExecCommand xm b1
+Mod4 r m e :ExecCommand xm b2
+Mod4 r m i :ExecCommand xm b3
+Mod4 r m o :ExecCommand xm b4
+
+Mod4 r z r :ExecCommand xm --asia a1
+Mod4 r z s :ExecCommand xm --asia a2
+
+Mod4 r f :ExecCommand ff
+Mod4 r Shift f :ExecCommand ff -f
+Mod4 r Mod1 f :ExecCommand ff -p s
+Mod4 r Mod1 Shift f :ExecCommand ff -f -p s
+Mod4 r x :ExecCommand xt
+Mod4 r g :ExecCommand gimp
+Mod4 r v :ExecCommand gvim
+Mod4 r b :ExecCommand b
+Mod4 r Shift m :ExecCommand mutt_pull
+Mod4 r k :ExecCommand anki
+
+Mod4 n :ExecCommand notifierHide
+Mod4 r n :ExecCommand notifierShow
+
+Mod4 F1 :ExecCommand mus n
+Mod4 F2 :ExecCommand mus p
+Mod4 F3 :ExecCommand mus R
+Mod4 F4 :ExecCommand mus x
+Mod4 F5 :ExecCommand goPGo
+
+F8 :ExecCommand b
+
+Mod4 d :ToggleDecor

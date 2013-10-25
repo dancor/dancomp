@@ -1,0 +1,14 @@
+#!/bin/sh
+# uxterm actually steals my alt keys!  wtf
+# and -geometry does not belong here, or does it..
+
+# from long ago
+#urxvt -fg orange -bg black -b 0 -w 0 -fn '8x13,xft:Biwidth' "$@" &
+
+# U2013-03-13_04.44.29-04Wed
+# switched from white bg
+#TMUX='' urxvt -fg black -bg white -b 0 -w 0 -fn '8x13' "$@" &
+
+# U2013-03-13_04.44.29-04Wed
+# switched (back) to black bg
+TMUX='' urxvt -fg orange -bg black -color4 slateblue -b 0 -w 0 -fn '8x13' "$@" &

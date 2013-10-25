@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+
+from optparse import OptionParser
+import cmd_util as cu
+import os
+import subprocess as spc
+import sys
+import wmv_lib as wmv
+
+usage = ''
+opt_p = OptionParser(usage)
+opt_p.add_option("", "--asia", action="store_true",
+    help="affect larger/foregin-character terminal")
+(opts, args) = opt_p.parse_args()
+
+argn = len(args)
+if argn > 2:
+    cu.error_out("usage")
+pos = args[0]
+if argn == 2:
+    if opts.asia:
+        title = "asia-" + args[1]
+    else:
+        title = args[1]
+else:
+    title = ":ACTIVE:"
+
+log = open(os.getenv("HOME") + "/log/wmv", "a")
+print(args, file=log)
+log.close()
+
+cmd_pre = ["wmctrl", "-r", title]
+cu.cmd_wait(cmd_pre + ["-b", "remove,maximized_vert,maximized_horz"])
+abbr = wmv.abbr(pos)
+if not abbr:
+    cu.error_out("unknown pos abbr")
+rect = wmv.rect(abbr)
+cmd_post = ["-e", ",".join([str(i) for i in [0] + list(rect)])]
+cmd = cmd_pre + cmd_post
+print(cmd)
+cu.cmd_wait(cmd)

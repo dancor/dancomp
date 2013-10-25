@@ -1,0 +1,50 @@
+#!/bin/zsh
+
+# overkill until i figure out why this doesn't run on system startup
+init-my-tmux
+
+btoff
+
+# ibus
+#export XMODIFIERS="@im=scim"
+#export GTK_IM_MODULE=scim
+#export QT_IM_MODULE=scim
+#ibus-daemon -d
+
+# gnome
+gnome-settings-daemon &
+
+# screen off after 10 minutes
+#xset dpms 600 600 600 &
+
+# keyboard
+asdf
+xset r rate 200 40
+synclient TouchpadOff=1
+
+# xscreensaver doesn't return so must be &
+xscreensaver -no-splash &
+
+# tmux stuff
+export TMUX=''
+tmux-multi-group-prune &
+
+sleep 5
+
+# internet
+sudo nm-applet &
+#wi &
+
+# other stuff
+#nautilus &
+notifier &
+sleep 1
+ff &
+sleep 1
+scrs -m h -- -z &
+sleep 1
+scrs -m h &
+
+gnome-panel &
+
+exec fluxbox

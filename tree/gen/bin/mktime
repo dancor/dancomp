@@ -1,0 +1,17 @@
+#!/usr/bin/env runhaskell
+
+import Data.Time.Clock
+import Data.Time.Clock.POSIX
+import Data.Time.LocalTime
+import System.Environment
+
+main :: IO ()
+main = do
+  args <- getArgs
+  time <- case args of
+    [timeIntStr] ->
+      return . posixSecondsToUTCTime . fromIntegral $ read timeIntStr
+    [] -> getCurrentTime
+    _ -> error "wat"
+  tz <- getCurrentTimeZone
+  print $ utcToLocalTime tz time

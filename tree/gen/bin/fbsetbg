@@ -1,0 +1,2 @@
+#!/bin/sh
+(mydate -u; echo "$@") >> /home/danl/log/fbsetbg

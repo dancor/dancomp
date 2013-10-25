@@ -1,0 +1,5 @@
+#compdef g
+
+source /usr/share/zsh/functions/Completion/Unix/_git
+
+_git-branch

@@ -1,0 +1,3 @@
+#!/bin/bash
+#exec gtypist -c 0,7 "$@"
+exec ~/p/l/dtt/dtt "$@"

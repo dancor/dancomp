@@ -1,0 +1,4 @@
+#compdef pr
+
+A=$(prd -a)
+_arguments "1: :($A)"

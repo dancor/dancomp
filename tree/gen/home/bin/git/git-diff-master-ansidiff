@@ -1,0 +1,4 @@
+#!/bin/sh
+# diff against master branch
+cd `git root-dir` && 
+exec git diff-ansidiff master "$@"

@@ -1,0 +1,2 @@
+#!/bin/sh
+exec fceux -fs 0 --opengl 0 --noframe 1 --xscale 4 --yscale 4 "$@"

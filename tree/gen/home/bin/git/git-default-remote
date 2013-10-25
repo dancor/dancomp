@@ -1,0 +1,13 @@
+#!/bin/sh
+if git branch -r | grep -q '^  trunk$'
+then
+  REMOTE=remotes/trunk
+else
+  if git branch -r | grep -q '^  git-svn'
+  then
+    REMOTE=remotes/git-svn
+  else
+    REMOTE=remotes/origin/master
+  fi
+fi
+echo "$REMOTE"

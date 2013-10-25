@@ -1,0 +1,3 @@
+#!/bin/bash
+# perl sed
+perl -e 'local $/;$a=<>;$a=~'"$@"';print $a'

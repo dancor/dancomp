@@ -1,0 +1,9 @@
+#!/bin/zsh
+set -e
+
+SRC="$1"
+DEST="$2"
+F=$(ls "$SRC" | head -n 1)
+
+mkdir -p "$DEST/$SRC"
+cp -r "$SRC/$F" "$DEST/$SRC/$F"

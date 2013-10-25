@@ -1,0 +1,15 @@
+#!/bin/bash
+# find git root dir above you
+# TODO: should this return a relative path instead?
+until [ -a .git ]
+do
+  if [ "$PWD" == "/" ]
+  then
+    # disaster!
+    echo 'COULD NOT FIND GIT ROOT, DEFAULTING TO ~/www' 1>&2
+    echo ~/www
+    exit
+  fi
+  cd ..
+done
+echo "$PWD"

@@ -1,0 +1,11 @@
+emacs.menuBar:off
+emacs.verticalScrollBars:off
+emacs.scrollBarWidth:0
+emacs.toolBar:0
+emacs.font:Monospace-10
+emacs.foreground:black
+emacs.background:lightyellow
+
+urxvt.scrollBar:false
+urxvt.inputMethod:ibus
+urxvt.preeditType:OverTheSpot

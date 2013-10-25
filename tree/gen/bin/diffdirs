@@ -1,0 +1,68 @@
+#!/usr/bin/env python3
+
+# diff all files between two directories,
+# stating added and deleted files between them too
+
+from optparse import OptionParser
+import cmd_util as cu
+import os
+import sys
+
+opt_p = OptionParser()
+opt_p.add_option('-e', '--show-empty', action='store_true', help=
+    'show diff even when one file doesn\'t exist (making a full-info patch)')
+(opts, args) = opt_p.parse_args()
+
+p1, p2 = args
+args = ['-u'] + args[2:]
+
+#def rchomp(s, c):
+#  while s and s[-1] == c:
+#    s = s[:-1]
+#  return s
+#
+#p1 = rchomp(p1, '/')
+#p2 = rchomp(p2, '/')
+#if not os.path.exists(p1) or not os.path.exists(p2):
+#  cu.error_out('paths must exist')
+
+def diff(s):
+    s1 = os.path.join(p1, s)
+    s2 = os.path.join(p2, s)
+    s1_exists = os.path.exists(s1)
+    s2_exists = os.path.exists(s2)
+    s1_dir = os.path.isdir(s1)
+    s2_dir = os.path.isdir(s2)
+    if s1_exists:
+        if s2_exists:
+            if s1_dir:
+                if s2_dir:
+                    for f in set(os.listdir(s1) + os.listdir(s2)):
+                        if f[0] == '.':
+                            continue
+                        diff(os.path.join(s, f))
+                else:
+                    print('changes %s from dir to file' % s)
+            else:
+                if s2_dir:
+                    print('changes %s from file to dir' % s)
+                else:
+                    cmd = ['diff', s1, s2] + args
+                    cu.cmd_wait(cmd, can_fail=True)
+        else:
+            if opts.show_empty:
+                cmd = ['diff', s1, '/dev/null'] + args
+                cu.cmd_wait(cmd, can_fail=True)
+            else:
+                print('deletes %s' % s)
+    else:
+        if opts.show_empty:
+            cmd = ['diff', '/dev/null', s2] + args
+            cu.cmd_wait(cmd, can_fail=True)
+        else:
+            print('creates %s' % s)
+
+for f in set(os.listdir(p1) + os.listdir(p2)):
+    if f[0] == '.':
+        continue
+    diff(f)

@@ -1,0 +1,47 @@
+#!/usr/bin/env runhaskell
+
+import Data.List
+import FUtil
+import HSH
+import System.Console.GetOpt
+
+data Options = Options {
+  optDir :: String
+}
+
+defOpts :: Options
+defOpts = Options {
+  optDir = "."
+}
+
+options :: [OptDescr (Options -> Options)]
+options = [
+  Option "d" ["dir"] (ReqArg (\ a o -> o {optDir = a}) "DIR")
+    "dir to copy from:\n~ cppath --dir=a b/c d\n# creates d/b/c (from a/b/c)",
+  Option "h" ["help"] (NoArg (\ _o -> error $ usageInfo usage options))
+    ""
+  ]
+
+usage :: [Char]
+usage =
+  "usage: cppath [options] source-paths dest-path\n\
+  \Copy but preserve stated directory structure.\n\
+  \So  ~ cp a/b/c d  # creates d/c\n\
+  \But ~ cppath a/b/c d  # creates d/a/b/c\n\
+  \Note that cppath is equivalent to cp --parents,\n\
+  \but cppath --dir provides functionality that cp does not."
+
+main :: IO ()
+main = do
+  (opts, args) <- doArgs usage defOpts options
+  let
+    dest = last args
+    srcs = init args
+  if null args
+    then error $ usageInfo usage options
+    else
+      runIO $ "(pushd " ++ shEsc (optDir opts) ++ "; tar cvf - " ++
+        intercalate " " (map shEsc srcs) ++ "; popd " ++
+        shEsc (optDir opts) ++
+        ") | (cd " ++
+        shEsc dest ++ "; tar xfp -)"

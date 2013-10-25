@@ -1,0 +1,9 @@
+#!/bin/sh
+#sudo pm-hibernate
+#sudo sh -c 'echo disk > /sys/power/state'
+adjvol -m
+#PM_DEBUG="true" PM_PROFILE="true" sudo pm-hibernate
+sudo pm-hibernate
+asdf
+adjvol -u
+#synctime > /dev/null 2>&1 &

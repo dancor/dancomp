@@ -1,0 +1,131 @@
+#!/usr/bin/env python3
+
+from cmd_util import cmd_run, PIPE, cmd_wait, arg_esc, args_esc, cmd_output
+from optparse import OptionParser
+import os
+import sys
+
+opt_p = OptionParser()
+opt_p.add_option('-a', '--add',
+    action='store_true',
+    help='make new project')
+opt_p.add_option('-c', '--connect',
+    action='store_true',
+    help='connect to created project')
+opt_p.add_option('-d', '--desc',
+    help='project one-line description')
+opt_p.add_option('-w', '--web',
+    action='store_true',
+    help='enable git-web for project')
+opt_p.add_option('-p', '--personal',
+    action='store_true',
+    help='clone from server instead of github')
+opt_p.add_option('-r', '--remote-name',
+    help='git remote branch name ("origin" by default)')
+opt_p.add_option('-L', '--direct',
+    action='store_true',
+    help='connect directly on local network')
+
+gito_dir = 'gitosis-admin'
+gito_f_n = 'gitosis.conf'
+def_owner = 'danl@alum.mit.edu'
+
+def re_esc(xs):
+    def f(x):
+        if x in ('[',']','^','$','\\','.','*','/'):
+            return '\\' + x
+        return x
+    return ''.join((f(x) for x in xs))
+
+def ed(host, file, ed_cmd):
+    print(ed_cmd)
+    cmd_remote = 'cd ~/%s && ed %s' % args_esc([gito_dir, file])
+    cmd = 'ssh %s %s' % args_esc([host, cmd_remote])
+    p = cmd_run(cmd, stdin=PIPE)
+    p.stdin.write(ed_cmd)
+    p.stdin.close()
+    return p.wait()
+
+# fixme: should we check for being one-line
+
+def add_repo_to_group(host, repo, group):
+    print(group)
+    ed(host, gito_f_n, '''/\[group %s\]/
+/^writable = /
+s/$/ %s/
+w
+''' % (re_esc(group), re_esc(repo)))
+
+def add_repo(host, repo, desc, web):
+    yn = 'yes' if web else 'no'
+    ed(host, gito_f_n, '''$a
+
+[repo %s]
+gitweb = %s
+daemon = %s
+description = %s
+owner = %s
+.
+w
+''' % (repo, yn, yn, desc, def_owner))
+
+def gitstart():
+    cmd_remote = 'cd ~/%s && git pull' % arg_esc(gito_dir)
+    cmd = 'ssh %s %s' % args_esc([host, cmd_remote])
+    cmd_wait(cmd)
+
+def commit(msg):
+    cmd_remote = 'cd ~/%s && git commit -am %s && git push' % \
+        args_esc([gito_dir, msg])
+    cmd = 'ssh %s %s' % args_esc([host, cmd_remote])
+    cmd_wait(cmd)
+
+def exposedir(dir):
+    # this is pretty retarded.  what the deal gitosis?
+    dir_e = arg_esc(dir)
+    cmd_remote = 'sudo chmod -R a+r %s && sudo chmod a+x %s' % (dir_e, dir_e)
+    cmd = 'ssh %s %s' % args_esc([host, cmd_remote])
+    cmd_wait(cmd)
+
+if __name__ == '__main__':
+    (opts, args) = opt_p.parse_args()
+    argn = len(args)
+    dest = ''
+    if argn == 1:
+        proj, = args
+    elif argn == 2:
+        proj, dest = args
+    else:
+        print('usage', file=sys.stderr)
+        sys.exit(-1)
+
+    host = 'dan' if opts.personal else 'github.com'
+    if not opts.personal and proj.find('/') == -1:
+        proj = 'dancor/' + proj
+    git_host = host
+    # fixme: escaping/checking?
+    gito = 'git@%s:%s.git' % (git_host, proj)
+    git_cmd = 'git'
+    remote_name = opts.remote_name if opts.remote_name else 'origin'
+
+    if opts.add:
+        gitstart()
+        add_repo(host, proj, opts.desc, opts.web)
+        add_repo_to_group(host, proj, 'my-team')
+        commit('adding repo %s' % proj)
+    if opts.add or opts.connect:
+        cmd_wait(['git', 'remote', 'add', remote_name, gito], can_fail=True)
+        cmd_wait(['git', 'push', remote_name, 'master'])
+        git_dir = cmd_output('git-root-dir')[0]
+        print('''[branch "master"]
+    \tremote = %s
+    \tmerge = refs/heads/master''' % remote_name,
+        file=file(git_dir.decode() + '/.git/config', 'a'))
+    if opts.web:
+        exposedir('/srv/gitosis/repositories/' + proj + '.git')
+    if not opts.add and not opts.connect and not opts.web:
+        cmd_args = [git_cmd, 'clone', gito]
+        if dest:
+            cmd_args.append(dest)
+        print(cmd_args)
+        os.execvp(git_cmd, cmd_args)

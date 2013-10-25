@@ -1,0 +1,12 @@
+SUBSYSTEM=="block", \
+  ACTION=="add", \
+  ENV{ID_BUS}=="usb", \
+  ENV{ID_FS_TYPE}=="?*", \
+  OWNER="danl", \
+  RUN+="/usr/local/sbin/dancomp-udev-automount '%k' '%E{ID_FS_TYPE}' '%E{ID_MODEL}' '%E{ID_SERIAL_SHORT}'"
+
+SUBSYSTEM=="block", \
+  ACTION=="remove", \
+  ENV{ID_BUS}=="usb", \
+  ENV{ID_FS_TYPE}=="?*", \
+  RUN+="/usr/local/sbin/dancomp-udev-automount -r '%k' '%E{ID_FS_TYPE}' '%E{ID_MODEL}' '%E{ID_SERIAL_SHORT}'"

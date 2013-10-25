@@ -1,0 +1,2 @@
+#!/bin/sh
+exec ssh -L 2379:goserver.gokgs.com:2379 ubuntu@ec2

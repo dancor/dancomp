@@ -1,0 +1,11 @@
+[GntTree::binding]
+k = move-up
+j = move-down
+
+# hm it's ok but leaves list up..
+[general]
+wm = /usr/lib/gnt/irssi.so
+
+[Finch]
+color-do-not-disturb = yellow; black
+

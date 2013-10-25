@@ -1,0 +1,51 @@
+#!/bin/sh
+#
+# "git go":
+# - take one or more checkpoint changes on branch $br (current if unspecified)
+# - squash merge them into single commit in "$br"-READY
+#   - at this time you edit the commit template with comments and test plan
+# - review the commit message and diff for mailing to reviewers
+# - optionally send the diff mail
+#
+# after review comes back, just run gsd from master and you are done
+# or, if you need to:
+# - make any local modifications, if needed
+# - gmm to add those changes to the commit and/or modify the commit message
+# - use gmd to re-{review,mail} diff, and so on
+
+GUF="`git untracked-files`"
+if [ -n "$GUF" ]
+then
+  echo $'there are untracked files (add, commit to another branch, or ignore them):\n'"$GUF" 1>&2
+  exit -1
+fi
+if [ -n "`git diff`" ]
+then
+  echo 'outstanding changes to branch, please git checkpoint first' 1>&2
+  exit -1
+fi
+
+ORIG_BR=`git say-branch`
+BR="$1"
+if [ -n "$BR" ]
+then
+  git checkout "$BR"
+else
+  BR="$ORIG_BR"
+fi
+BRN="$BR"-READY
+
+(
+  cd `git root-dir` &&
+  echo 'branch '"$BR" &&
+  git new-clean "$BRN" &&
+  git merge --squash "$BR" &&
+  rm -f .git/SQUASH_MSG &&
+  git commit &&
+  git make-diff &&
+  echo 'enter to mail to reviewers or ^C for not yet' &&
+  read &&
+  git make-diff mail
+) ||
+# in the event of failure, try to leave you where you started
+git checkout "$ORIG_BR"

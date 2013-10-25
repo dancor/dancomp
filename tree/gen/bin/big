@@ -1,0 +1,43 @@
+#!/usr/bin/env python
+
+from optparse import OptionParser
+import os
+
+opt_p = OptionParser()
+opt_p.add_option('-s', '--pixelsize')
+opt_p.add_option('-t', '--thai', action='store_true')
+opt_p.add_option('-z', '--zhongwen', action='store_true')
+opt_p.add_option('-w', '--width')
+opt_p.add_option('-H', '--height')
+(opts, args) = opt_p.parse_args()
+
+if opts.zhongwen:
+    pixelsize = 64
+    w, h = 43, 16
+else:
+    # this size is good for chia and darts and other huge things
+    #pixelsize = 80
+    pixelsize = 48
+    w, h = 18, 11
+
+if opts.pixelsize:
+    pixelsize = int(opts.pixelsize)
+if opts.width:
+    w = int(opts.width)
+if opts.height:
+    h = int(opts.height)
+
+cmd = 'urxvt'
+fonts = [
+    #'Biwidth',
+    #'Kinnari',
+    'AR PL KaitiM GB',
+    'Lucida Sans Unicode',
+]
+if opts.thai:
+    fonts = ['Kinnari'] + fonts
+cmd_args = [cmd, '-geometry', '%dx%d+0+0' % (w, h), '-fn',
+    ','.join(('xft:%s:pixelsize=%d' % (f, pixelsize) for f in fonts))]
+if args:
+    cmd_args += ['-e'] + args
+os.execvp(cmd, cmd_args)

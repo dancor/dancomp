@@ -1,0 +1,22 @@
+#!/bin/bash
+# adjust per-branch symbolic links, and update files as needed
+
+set -e
+
+cd `git root-dir`
+rm -f tags
+rm -f .tok
+
+BR=`git say-branch`
+# / -> : hack since / is unweildy.  git allows / but not :
+D=.per_branch/${BR/\//:}
+(
+  [ -d .per_branch ] || mkdir .per_branch
+)
+ln -s "$D".tags tags
+# rm first so that there are never "refuse to delete" errors from ctags
+#   on corrupt .tags file
+rm -f "$D".tags
+##(mkdir "$D".tok > /dev/null 2>&1 || true)
+##(ln -s "$D".tok .tok > /dev/null 2>&1 || true)
+##ct 2>/dev/null &

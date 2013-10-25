@@ -1,0 +1,92 @@
+set mbox_type = Maildir
+set sort = threads
+# You might want to increase this
+set pager_index_lines = 5
+set pager_context = 1
+set index_format = '%4C %Z %{%b %d} %-15.15F (%4l) %s'
+
+# Different colors for different levels of quoting
+color quoted    magenta         black
+color quoted1   blue            black
+color quoted2   red             black
+color quoted3   yellow          black
+color quoted4   cyan            black
+color quoted5   blue            black
+color quoted6   magenta         black
+color quoted7   red             black
+color quoted8   yellow          black
+color quoted9   cyan            black
+color signature blue            default
+
+set hostname = "gmail.com"
+
+auto_view text/html
+
+set noconfirmappend
+set delete = yes
+
+set mail_check = 2
+set timeout = 2
+
+set nomarkers
+
+macro index "y" "c?"
+macro index "R" "c .mairix\n"
+macro index "S" "c .maildir-sent\n"
+macro index "H" ";s=did\n"  # 'Had' or something.  that message has been had
+
+mime_lookup application/octet-stream
+
+set sendmail = /usr/local/bin/mysendmail
+set use_from = yes
+set from = "dan corson <dancor@gmail.com>"
+set envelope_from = yes
+
+## IMAPery
+#set folder = imaps://kitt.thefacebook.com/INBOX
+#set spoolfile = imaps://kitt.thefacebook.com/INBOX
+#set imap_user = dcorson
+#
+## trying to not have to retype pw
+#set certificate_file = ~/.mutt-certs
+#set imap_pass = SECRET-PASSWORD
+#
+#bind index "G" imap-fetch-mail
+
+
+
+# didn't recognize this var
+#set imap_force_ssl=yes
+
+#set folder="imap://dcorson@kitt.thefacebook.com:933"
+#set folder="imap(s)://dcorson@kitt.thefacebook.com/INBOX"
+set record="$HOME/.maildir-sent"
+#set postponed="=Drafts"
+
+## activate TLS if available on the server
+#set ssl_starttls=yes
+## always use SSL when connecting to a server
+#set ssl_force_tls=yes
+#
+#unset imap_passive        # Don't wait to enter mailbox manually
+#
+## Automatically poll subscribed mailboxes for new mail (new in 1.5.11)
+#set imap_check_subscribed
+## Reduce polling frequency to a sane level
+#set mail_check=60
+## And poll the current mailbox more often (not needed with IDLE in post 1.5.11)
+#set timeout=10
+## keep a cache of headers for faster loading (1.5.9+?)
+#set header_cache=~/.hcache
+## Display download progress every 5K
+#set net_inc=5?
+
+
+
+
+ignore headers *
+unignore headers from to subject date cc
+
+set folder = .maildir
+push "c=\n"
+set sleep_time=0

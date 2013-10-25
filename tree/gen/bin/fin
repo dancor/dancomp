@@ -1,0 +1,12 @@
+#!/bin/sh
+# finch is werid in screen-256color..
+#   even though arrow key infocmp entries are identical
+#   assholes
+case "$TERM" in
+screen-256color)
+  TERM=screen exec finch "$@"
+  ;;
+*)
+  exec finch "$@"
+  ;;
+esac

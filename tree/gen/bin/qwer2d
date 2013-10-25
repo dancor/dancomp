@@ -1,0 +1,18 @@
+#!/usr/bin/env runhaskell
+
+import Data.Char
+import FUtil
+import qualified Data.Map as M
+
+q = "qwertyuiop[]\\-=asdfghjkl;'zxcvbnm,./"
+d = "',.pyfgcrl/=\\[]aoeuidhtns-;qjkxbmwvz"
+
+changes = M.fromList $ zipWith (,) q d
+
+repls x = case M.lookup x changes of
+  Just y -> y
+  Nothing -> case M.lookup (toLower x) changes of
+    Just y -> toUpper y
+    Nothing -> x
+
+main = interact (map repls)

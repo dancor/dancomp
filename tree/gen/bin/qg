@@ -1,0 +1,2 @@
+#!/bin/sh
+qgo > ~/log/qgo 2>&1 &

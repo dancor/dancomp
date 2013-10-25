@@ -1,0 +1,11 @@
+#!/bin/sh
+# do something on a file that cannot be done in place (like sed)
+f="$1"
+shift
+tmp=`mktemp` && (
+  # can't use -a bc could be link..  -r doesn't make sense really either
+  cp -p "$f" "$tmp" &&
+  cat "$tmp" | "$@" > "$f" &&
+  diff "$tmp" "$f"
+  rm "$tmp"
+)

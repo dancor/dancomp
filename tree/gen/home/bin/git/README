@@ -1,0 +1,240 @@
+- how to set up
+
+# in .bashrc:
+# to get scripts:
+export PATH="$PATH":"$ADMIN_SCRIPTS":"$ADMIN_SCRIPTS"/git
+# to get git branch prompt displayed in bash prompt:
+#<TODO: add this>
+
+# at prompt, just need to do one-time
+#   (or repeat if there is ish that could be due to new changes):
+# to get aliases:
+cp "$ADMIN_SCRIPTS"/sample.gitconfig ~/.gitconfig
+
+
+- the sample .gitconfig is at "$ADMIN_SCRIPTS"/sample.gitconfig
+  see that for reference on the extreme-shortcut versions of these commands
+
+- example usage (this is my workflow all the time)
+
+~ # go to our repo dir
+~ cd ~/www
+
+~ # lets see what branches we have
+~ g ab
+  log_img
+* master
+  tc
+  test
+
+~ # let's go into my tc branch (traccamp) and see what's up there
+~ g b tc
+Switched to branch "tc"
+on branch tc
+# On branch tc
+nothing to commit (working directory clean)
+Switched to branch "master"
+Current branch master is up to date.
+Switched to branch "tc"
+Already up-to-date.
+diff --git a/lib/intern/traccamp.php b/lib/intern/traccamp.php
+index 97455dd..2bf32dc 100644
+--- a/lib/intern/traccamp.php
++++ b/lib/intern/traccamp.php
+@@ -541,5 +541,6 @@ function traccamp_text_snippetify($text, $snippet_length = 2
+     $text = substr($text, 0, $snippet_length - 3);
+     $text .= '...';
+   }
++  // <a new exciting comment>
+   return $text;
+ }
+
+:: press q to exit less ::
+
+~ # interesting existing changes, but i need to fix something there
+~ "$EDITOR" lib/intern/traccamp.php
+:: typetypetype and exit editor ::
+
+~ # let's see what i did in there
+~ g di
+diff --git a/lib/intern/traccamp.php b/lib/intern/traccamp.php
+index 2bf32dc..f323b11 100644
+--- a/lib/intern/traccamp.php
++++ b/lib/intern/traccamp.php
+@@ -541,6 +541,7 @@ function traccamp_text_snippetify($text, $snippet_length = 2
+     $text = substr($text, 0, $snippet_length - 3);
+     $text .= '...';
+   }
+-  // <a new exciting comment>
++  // <an extremely new exciting comment>
++  // <and another>
+   return $text;
+ }
+
+~ # let's checkpoint these new changes to the branch
+~ g cp
+Created commit f430668: cp
+ 1 files changed, 2 insertions(+), 1 deletions(-)
+
+~ # now there are no uncommited changes on the branch:
+~ g di
+
+~ # but of course it is different compared to master
+~ g dim
+diff --git a/lib/intern/traccamp.php b/lib/intern/traccamp.php
+index 97455dd..f323b11 100644
+--- a/lib/intern/traccamp.php
++++ b/lib/intern/traccamp.php
+@@ -541,5 +541,7 @@ function traccamp_text_snippetify($text, $snippet_length = 2
+     $text = substr($text, 0, $snippet_length - 3);
+     $text .= '...';
+   }
++  // <an extremely new exciting comment>
++  // <and another>
+   return $text;
+ }
+
+:: press q to exit less ::
+
+~ # let's make sure there are no syntax errors in any of my changed files:
+~ g cf
+No syntax errors detected in lib/intern/traccamp.php
+
+~ # then i go to phpsh/browser for testing, possibly do more editing / 'g cp'
+~ # i feel good now, let's send these changes to moskov and jwang
+~ g go
+branch tc
+Switched to branch "master"
+Updating 40bebd0..f430668
+Fast forward
+Squash commit -- not updating HEAD
+ lib/intern/traccamp.php |    2 ++
+ 1 files changed, 2 insertions(+), 0 deletions(-)
+:: editor starts on commit template, type title/summary/test-plan/reviewers ::
+:: exit editor ::
+".git/COMMIT_EDITMSG" 30L, 406C written
+Created commit fcc5515: test
+ 1 files changed, 2 insertions(+), 0 deletions(-)
+-----------------------------------------------------
+test
+
+Summary: this is a test!
+
+Trac Bug: #
+
+Blame Rev:
+
+Reviewed By: jwang, moskov
+
+Test Plan: i tested testing
+
+Revert Plan: ok
+
+Database Impact:
+
+Memcache Impact:
+
+Other Notes:
+
+EImportant:
+
+
+
+diff --git a/lib/intern/traccamp.php b/lib/intern/traccamp.php
+index 97455dd..f323b11 100644
+--- a/lib/intern/traccamp.php
++++ b/lib/intern/traccamp.php
+@@ -541,5 +541,7 @@ function traccamp_text_snippetify($text, $snippet_length = 2
+55)
+     $text = substr($text, 0, $snippet_length - 3);
+     $text .= '...';
+   }
++  // <an extremely new exciting comment>
++  // <and another>
+   return $text;
+ }
+enter to mail to reviewers or ^C for not yet
+:: press enter ::
+
+# now the mail has been sent to me and jwang and moskov
+# we are also in the master branch now (can verify that with 'g ab')
+# after someone approves the diff, this commits to svn:
+~ g sd
+
+# _or_,
+# if you need to make a code-or-commit-message change (in the master branch):
+:: make a change if any with your editor ::
+~ g mm
+:: editor comes up with your change. ::
+:: make change if any to commit message, then exit editor ::
+# and then you can 'g sd' as before
+
+# when we are sure we don't need our original "tc" branch anymore:
+~ g ki tc
+are you sure you want to delete branch tc?
+y
+Already on branch "master"
+Deleted branch tc.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+old doc with old short names
+(need to fix, or maybe actually make manpages etc):
+
+# frequent-use
+g   - syntax check files modified from master
+gab - show active branches (stolen from ari)
+gar - archive this/a branch
+gb  - "git branchstate": up from svn, up branch, diff branch against master
+gcp - checkpoint
+gg  - "git go": squash to master and mail to reviewer
+gki - DANGER: delete current branch
+gmm - modify message/diff of last commit to master
+gmv - rename this/a branch
+gnb - git new branch (git checkout -b)
+gnc - git new clean branch (from remotes/git-svn)
+gra - rebase active branches (stolen from ari)
+grem - re-create master (in event of disaster)
+gup - up from svn, up branch
+
+# shallow wrappers
+gbr   - git branch (does a gpb in case you created a branch)
+gca   - git commit -a
+gco   - git checkout
+gcom  - git checkout master
+gdi   - git diff
+gdim  - git diff master
+gdr   - git diff most recent change
+glo   - git log
+gpu   - git pull . master
+gsd   - git svn dcommit
+gsl   - git svn log --show-commit -r
+gst   - git status
+gvn   - git svn (from repo root)
+gpi   - git cherry-pick
+
+# infrequent-use / used by others
+ggbr  - name of current branch
+gitf  - names of files modified since checkpoint
+gitfm - names of files modified from master
+gmd   - "git mail diff" (after committed to master)
+gpb   - handle .per_branch/ hooks (per-branch copies of ctags, etc)
+grt   - "git root": give root dir of current repo
+fb-git-init   - start git repo
+fbLs          - ls on fb svn repos
+git-br-prompt - produce text segment to include in custom prompt
+git-install   - re-install or upgrade git from ~sgrimm, on like a dev machine
+git-prompt    - sgrimm's full prompt

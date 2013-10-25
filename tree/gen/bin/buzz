@@ -1,0 +1,3 @@
+#!/bin/sh
+# FIXME: use something kwlr like /dev/random?  wat does ones sound like..
+dmesg > /dev/dsp

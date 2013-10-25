@@ -1,0 +1,6 @@
+#!/bin/bash
+sudo setupcon --force -k qwerty
+if [ -n "$DISPLAY" ]
+then
+  /usr/bin/setxkbmap us -option altwin:meta_alt -option terminate:ctrl_alt_bksp
+fi

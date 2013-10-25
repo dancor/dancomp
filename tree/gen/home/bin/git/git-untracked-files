@@ -1,0 +1,3 @@
+#!/bin/sh
+# "git untracked files" (list untracked files)
+exec git ls-files -o --exclude-standard

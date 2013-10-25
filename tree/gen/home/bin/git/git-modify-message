@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# "git modify message":
+# - edit commit message for last commit
+# - any local changes when you run gmm will also be added to the commit
+
+git-reset --soft HEAD^ &&
+git-commit -c ORIG_HEAD -a

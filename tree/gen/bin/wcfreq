@@ -1,0 +1,22 @@
+#!/usr/bin/env runhaskell
+
+import Data.Char
+import Data.Function
+import Data.List
+import FUtil
+import qualified Data.Map as M
+
+wordify :: [Char] -> [[Char]]
+wordify s = let
+  (word, rest) = span isLetter $ dropWhile (not . isLetter) s
+  in if null word then [] else map toLower word:wordify rest
+
+countUp :: [[Char]] -> [([Char], Integer)]
+countUp = reverse . sortBy (compare `on` snd) . M.toList . M.fromListWith (+) .
+  map (flip (,) 1)
+
+pretty :: (Show t) => ([Char], t) -> [Char]
+pretty (word, count) = show count ++ "\t" ++ word
+
+main :: IO ()
+main = interact (toUtf . unlines . map pretty . countUp . wordify . fromUtf)

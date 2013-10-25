@@ -1,0 +1,142 @@
+#!/usr/bin/env python
+
+# Should do cache-expiration?  Or just rm if it gets to big..?
+# Is there a cool way to detect when --cached is sufficient automagically?
+
+from cmd_util import arg_esc, cmd_wait, multi_sub
+from optparse import OptionParser
+import os
+import sys
+
+usage = """usage: %prog [options] regex
+recursively grep code filetypes and open matches in editor"""
+opt_p = OptionParser(usage)
+opt_p.add_option('-R', '--read-only', action='store_true',
+    help='start editor read-only')
+opt_p.add_option('-w', '--word-regexp', action='store_true',
+    help='grep for whole-words')
+opt_p.add_option('-P', '--perl-regexp', action='store_true',
+    help='grep with perl-syntax repexp')
+opt_p.add_option('-m', '--list-matches', action='store_true',
+    help='list matches; do not $EDITOR into them')
+opt_p.add_option('-l', '--files-with-matches', action='store_true',
+    help='list files that match; do not $EDITOR into them')
+opt_p.add_option('-f', '--files', action='store_true',
+    help='user will supply list of files to consider to STDIN')
+opt_p.add_option('-c', '--cached', action='store_true',
+    help='do not re-grep')
+opt_p.add_option('-i', '--ignore-case', action='store_true',
+    help='match regex ignoring case')
+opt_p.add_option('-U', '--unicode', action='store_true',
+    help='don\'t speed up grep by ignoring locale')
+opt_p.add_option('-e', '--extensions',
+    help='specify interesting file extensions (comma-delimited)')
+opt_p.add_option('-d', '--dry-run', action='store_true',
+    help='just show the commands that would have occured')
+(opts, args) = opt_p.parse_args()
+
+if len(args) != 1:
+    print("You must specify a regex to search for.")
+    opt_p.print_help()
+    sys.exit(-1)
+
+pattern, = args
+
+home = os.getenv('HOME')
+editor = os.getenv('EDITOR', 'emacs')
+
+def cmd_args_to_str(cmd_args):
+    return ' '.join((arg_esc(w) for w in cmd_args))
+
+def cmd_cache(cmd_str, cached=False):
+    dir = home + '/.cmd-cache'
+    #path = dir + '/%s' % multi_sub({'/': '\\B', '\\': '\\\\'}, cmd_str)
+    path = dir + '/%d' % hash(cmd_str)
+    if not cached:
+        if not os.path.exists(dir):
+            os.mkdir(dir)
+        # can_fail bc
+        # xargs on greps where some find nothing has exit status 123.
+        # Might be better ways to deal with that than a can_fail here..
+        cmd = '%s > %s' % (cmd_str, arg_esc(path))
+        if opts.dry_run:
+            print(cmd)
+        else:
+            cmd_wait(cmd, can_fail=True)
+    return path
+
+def grep_esc(s, is_perl_mode):
+    special_chars = "^$.?*[]"
+    if is_perl_mode:
+        special_chars += '+(){}'
+    ret = ''
+    for c in list(s.replace('\\', '\\\\')):
+        if c in special_chars:
+            ret += '\\'
+        ret += c
+    return ret
+
+if opts.extensions:
+    extns = opts.extensions.split(',')
+else:
+    extns = ['php', 'phpt', 'js', 'py', 'h', 'cpp', 'java', 'c', 'yy', 'css',
+        'thrift', 'cs', 'hs', 'el']
+find_cmd = 'find . -type f | grep ' + arg_esc('\.\(' +
+    '$\|'.join(grep_esc(extn, opts.perl_regexp) for extn in extns) + '\)')
+
+if opts.files_with_matches:
+    opts.list_matches = True
+    grep_args = ['-l']
+else:
+    grep_args = ['-n']
+
+emacs_type = 'e'
+vim_type = 'v'
+if editor.find('emacs') != -1:
+    editor_type = emacs_type
+elif editor.find('vi') != -1:
+    editor_type = vim_type
+else:
+    editor_type = None
+editor_args = []
+
+cached = False
+if opts.read_only:
+    if editor_type == emacs_type:
+        print('sorry, i don\'t know how to do read-only with emacs.  fix me?', file=sys.stderr)
+        sys.exit(-1)
+    editor_args.append('-R')
+if opts.word_regexp:
+    grep_args.append('-w')
+if opts.ignore_case:
+    grep_args.append('-i')
+if opts.perl_regexp:
+    grep_args.append('-P')
+if opts.cached:
+    cached = True
+grep_args.append(pattern)
+
+grep_cmd = ''
+if not opts.str:
+    grep_cmd = 'LC_ALL=C '
+if not opts.files:
+    grep_cmd = find_cmd + ' | ' + grep_cmd
+grep_cmd += cmd_args_to_str(['xargs', 'grep'] + grep_args)
+print('running command: ' + grep_cmd, file=sys.stderr)
+out_filename = cmd_cache(grep_cmd)
+if opts.list_matches:
+    sys.stdout.write(''.join(file(out_filename).readlines()))
+else:
+    if editor_type == emacs_type:
+        editor_args += \
+            ['--exec', '(grep "%s")' % out_filename.replace('"', '\\"')]
+    elif editor_type == vim_type:
+        editor_args += ['-q', out_filename]
+    else:
+        print('sorry, i don\'t know how to work with your $EDITOR.  fix me?', file=sys.stderr)
+        sys.exit(-1)
+    cmd = [editor] + editor_args
+    if opts.dry_run:
+        print(cmd)
+    else:
+        cmd_wait(cmd, can_fail=True)

@@ -1,0 +1,30 @@
+#!/usr/bin/env python
+# rr: run, record
+
+#
+
+import subprocess as spc
+import sys
+import time
+import cmd_util as cu
+
+args = sys.argv[1:]
+cmd = " ".join(map(cu.arg_esc, args))
+
+start_time = time.time()
+last_l = cu.cmd_copy_last_line(cmd)
+end_time = time.time()
+run_time = int(end_time - start_time)
+
+rr_cmd = 'rr'
+desc = last_l + " (" + str(run_time) + "s; from " + str(start_time) + " to " + str(end_time) + ")"
+rec_cmd = rr_cmd + " " + args[0] + " " + cu.arg_esc(desc) + " t"
+
+print('approve:')
+print(rec_cmd)
+inp = sys.stdin.read(1).lower()
+if inp in ('n', 'q'):
+    print('did not record')
+else:
+    spc.Popen(rec_cmd, shell=True)
+    print('recorded')

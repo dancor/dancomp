@@ -1,0 +1,5 @@
+#!/bin/sh
+# mus n  # next
+# mus p  # prev
+# etc.
+exec tmux send-keys -t 20 "$@"

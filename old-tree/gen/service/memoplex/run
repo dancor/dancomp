@@ -1,0 +1,2 @@
+#!/bin/sh
+exec sudo -u danl /usr/local/bin/memoplex -s > /var/log/memoplex 2>&1

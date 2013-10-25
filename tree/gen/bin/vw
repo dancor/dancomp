@@ -1,0 +1,7 @@
+f=`which "$1"`
+if [ -z "$f" ]
+then
+  exit
+fi
+shift
+v "$f" "$@"

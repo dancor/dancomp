@@ -1,0 +1,13 @@
+remove Lock = Caps_Lock
+remove Control = Control_L
+keysym Control_L = Shift_Lock
+keysym Caps_Lock = Control_L
+keycode 37 = Shift_Lock
+add Lock = Shift_Lock
+add Control = Control_L
+add Control = Control_R
+keycode 106 = Super_L
+keycode 134 = Shift_Lock
+
+keycode 166 = Page_Up
+keycode 167 = Page_Down

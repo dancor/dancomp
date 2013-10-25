@@ -1,0 +1,3 @@
+#!/bin/sh
+# see files which are modified from master
+exec git diff "`git default-remote`" --name-status | grep -oP '(?<=^M\t).*'

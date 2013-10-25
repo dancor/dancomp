@@ -1,0 +1,3 @@
+#!/bin/sh
+cd ~/g/ch/vid
+mencoder tv:// -tv driver=v4l2:fps=1 -ovc lavc -o `mydate`.avi

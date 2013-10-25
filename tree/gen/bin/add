@@ -1,0 +1,2 @@
+#!/bin/sh
+awk '{S+=$1}END{print S}'

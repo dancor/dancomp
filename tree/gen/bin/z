@@ -1,0 +1,42 @@
+#!/usr/bin/env python3
+
+from optparse import OptionParser
+import cmd_util as cu
+import os
+
+usage = """usage"""
+opt_p = OptionParser(usage)
+opt_p.add_option('-n', '--number')
+opt_p.add_option('-w', '--word', action='store_true')
+opt_p.add_option('-v', '--verbose', action='store_true')
+opt_p.add_option('-g', '--gloss', action='store_true')
+opt_p.add_option('-e', '--exact', action='store_true')
+opt_p.add_option('-a', '--all', action='store_true')
+(opts, args) = opt_p.parse_args()
+
+num = 7
+if opts.number:
+  num = opts.number
+
+home = os.getenv('HOME')
+cmd = 'grep'
+cmdargs = [cmd, '-n']
+if not opts.all:
+    cmdargs += ['-m', str(num)]
+if opts.word:
+    cmdargs += ['-w']
+if opts.exact:
+    if opts.gloss:
+        args[0] = '^' + args[0] + '|'
+    else:
+        args[0] = '^' + args[0] + '\t'
+if opts.gloss:
+    cmdargs += args + ['%s/p/l/melang/data/cmn/gbRec/z.mem' % home]
+else:
+    cmdargs += args + ['%s/p/l/melang/data/cmn/gbRec/defs' % home]
+if opts.verbose:
+    print(cmdargs)
+# lol escaping
+grep_cmd = ' '.join(cu.args_esc(cmdargs))
+shell_cmd = grep_cmd + '|lee'
+os.execvp('sh', ['sh', '-c', shell_cmd])

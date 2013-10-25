@@ -1,0 +1,68 @@
+#!/usr/bin/env python3
+
+import cmd_util as cu
+import sys
+
+args = sys.argv[1:]
+f = args[0]
+
+def endtry(f, r, suffs):
+    for suff in suffs:
+        if f.endswith(suff):
+            r.append(f[:-len(suff)])
+            return True
+    return False
+
+def rat(f):
+    r = []
+    if f.startswith('darcs.'):
+        return rat('http://' + f)
+    elif f.startswith('http://darcs.'):
+        cmd = ['darcs', 'get', '--partial', f]
+        if f.endswith('/'):
+            f = f[:-1]
+        r.append(f[f.rfind('/') + 1:])
+    elif f.startswith('git://'):
+        cmd = ['git', 'clone']
+    elif f.startswith('http://') or f.startswith('ftp://') or \
+            f.startswith('https://'):
+        cu.cmd_wait(['wget', f])
+        if f.endswith('/'):
+            f = f[:-1]
+        f = f[f.rfind('/') + 1:]
+        i = f.find('?')
+        if i != -1:
+            f = f[:i]
+        cu.cmd_wait(['rat', f])
+        sys.exit(0)
+    elif f.endswith('.mp3'):
+        cmd = ['mp']
+    elif endtry(f, r, ['.html', '.gif', '.jpg', '.jpeg', '.png', '.tiff']):
+        cmd = ['ff']
+    elif endtry(f, r, ['.tar.bz2']):
+        cmd = ['tar', 'xjf']
+    elif endtry(f, r, ['.tar.gz', '.tgz', '.tar.Z']):
+        cmd = ['tar', 'xzf']
+    elif endtry(f, r, ['.tar', '.tar.xz']):
+        cmd = ['tar', 'xf']
+    elif endtry(f, r, ['.zip']):
+        cmd = ['unzip']
+    elif endtry(f, r, ['.bz2']):
+        cmd = ['bunzip2']
+    elif endtry(f, r, ['.gz']):
+        cmd = ['gunzip']
+    elif endtry(f, r, ['.7z']):
+        cmd = ['7zr', 'e']
+    elif endtry(f, r, ['.rar']):
+        cmd = ['unrar', 'x']
+    else:
+        print('passing on to xdg-open..')
+        cmd = ['xdg-open']
+    return (cmd, r)
+
+(cmd, r) = rat(f)
+if r:
+    print((r[0]))
+else:
+    print("")
+cu.cmd_wait(cmd + args)

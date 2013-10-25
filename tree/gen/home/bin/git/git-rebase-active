@@ -1,0 +1,42 @@
+#!/bin/bash
+# git rebase active branches
+
+if [ -e .dotest ]
+then
+  echo '.dotest exists.. aborting' 1>&2
+  exit -1
+fi
+
+currentbranch=`git branch | grep "^*" | cut -c 3-`
+if git commit -a -m "$0: tmp commit before upping"; then
+   reset=true
+fi
+for branch in "`git active-branch | cut -c 3-`"; do
+   conflicts=`git rebase "\`git default-remote\`" $branch | grep CONFLICT |
+sed "s/CONFLICT.* in //"`
+   if [[ $conflicts ]]; then
+     while [[ $conflicts ]]; do
+       vim -o $conflicts
+       while grep "^<<<<<<<" $conflicts; do
+         read -p "Conflicts do not all appear to be resolved.
+reEdit, Skip branch, or eXit? "
+         if [[ $REPLY == 's' ]] || [[ $REPLY == 'S' ]]; then
+           git rebase --abort
+           break 2
+         elif [[ $REPLY == 'x' ]] || [[ $REPLY == 'X' ]]; then
+           echo "Exiting.  You are in the middle of a rebase on
+branch $branch."
+           exit 1
+         fi
+         vim -o $conflicts
+       done
+       git add $conflicts
+       conflicts=`git rebase --continue | grep CONFLICT | sed "s/CONFLICT.* in //"`
+     done
+   fi
+done
+git checkout $currentbranch
+if [[ $reset ]]
+then
+   git reset --soft HEAD~1
+fi

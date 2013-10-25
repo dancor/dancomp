@@ -1,0 +1,5 @@
+#!/bin/sh
+adjvol -m
+sudo pm-suspend-hybrid
+asdf
+adjvol -u

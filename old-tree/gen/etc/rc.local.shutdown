@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+# /etc/rc.local.shutdown: Local shutdown script.
+#
+
+/sbin/sv down syncstuff
+/sbin/sv down idlebridge
+/sbin/sv down memoplex
+/etc/rc.d/lighttpd stop
+/etc/rc.d/privoxy stop
+/etc/rc.d/cupsd stop
+/etc/rc.d/alsa stop
+/etc/rc.d/osspd stop
+/sbin/sv down pulseaudio
+/etc/rc.d/netfs stop
+/etc/rc.d/crond stop
+/etc/rc.d/powernowd stop
+/etc/rc.d/sshd stop
+#sudo -u danl /usr/local/bin/net x
+#/etc/rc.d/postgresql stop
+killall -9 postgres

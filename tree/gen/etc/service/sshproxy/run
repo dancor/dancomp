@@ -1,0 +1,6 @@
+#!/bin/sh
+
+#exec ssh -N -D 9999 -i /home/danl/aws/keypairs/cecum.pem ubuntu@ec2
+
+exec sudo -u danl ssh -N -D 9999 -i /home/danl/aws/keypairs/cecum.pem \
+  ubuntu@ec2

@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+
+from optparse import OptionParser
+from socket import gethostname
+import cmd_util as cu
+
+loc_map = {
+    "a": "Australia/Sydney",
+    "c": "Asia/Shanghai",
+    "h": "Pacific/Honolulu",
+    "ue": "America/New_York",
+    "uw": "America/Los_Angeles"
+    }
+
+usage = "usage: %prog [options] location-abbr\n\nlocation-abbrs:"
+for k in loc_map:
+    usage += "\n" + k + "\t" + loc_map[k]
+
+opt_p = OptionParser(usage=usage)
+#opt_p.add_option()
+(opts, args) = opt_p.parse_args()
+
+if not args:
+    opt_p.print_help()
+    exit()
+(loc_str, ) = args
+
+try:
+    tz = loc_map[loc_str]
+except:
+    opt_p.print_help()
+    print()
+    raise
+
+# todo: more permanent with regard to dancomp?
+cu.cmd_wait(["sudo", "cp", "/usr/share/zoneinfo/" + tz, "/etc/localtime"])
+# no rc.conf on ubuntu.. just use tzselect?
+#cu.cmd_wait(["sudo", "sed", "-i", 's/^TIMEZONE=.*/TIMEZONE=' +
+#    str(tz).replace('/', '\\/') + '/', "/etc/rc.conf"])
+#cu.cmd_wait(["sed", "-i", 's/^TIMEZONE=.*/TIMEZONE=' +
+#    str(tz).replace('/', '\\/') + '/',
+#    "/home/danl/p/dancomp-secret/tree/" + gethostname() + "/etc/rc.conf"])
+cu.cmd_wait(["synctime"])

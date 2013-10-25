@@ -1,0 +1,11 @@
+#!/bin/bash
+if [ -z "$1" ]
+then
+  N=x
+  DISPLAY=""
+  ln -sf ~/.x-display/"$N" ~/.x-display/default
+else
+  N="$1"
+fi
+echo 'export DISPLAY='"$DISPLAY" > ~/.x-display/"$N"
+shvinc

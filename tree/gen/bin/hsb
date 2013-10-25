@@ -1,0 +1,3 @@
+#!/bin/bash
+exec ghc --make -Wall -isrc Main -o Main -odir obj -hidir obj
+#exec ghc --make -Wall -isrc Main -o Main -odir obj -hidir obj -fforce-recomp 2>&1 | less

@@ -1,0 +1,54 @@
+#!/usr/bin/env python3
+
+import cmd_util as cu
+import os
+from optparse import OptionParser
+
+p = OptionParser()
+p.add_option('-b', '--bootstrap', action='store_true')
+p.add_option('-c', '--configure', action='store_true')
+p.add_option('-m', '--make',      action='store_true')
+p.add_option('-i', '--install',   action='store_true')
+(opts, args) = p.parse_args()
+
+step_bootstrap = 'bootstrap'
+step_configure = 'configure'
+step_make = 'make'
+step_install = 'install'
+
+steps_poss = [step_bootstrap, step_configure, step_make, step_install]
+steps = []
+for step in steps_poss:
+    if getattr(opts, step):
+        steps.append(step)
+
+bs = ['./bootstrap.sh', './bootstrap']
+
+def or_seq(s):
+    for x in s:
+        if x:
+            return True
+    return False
+
+if not steps:
+    # by default, only configure if it looks like we have to
+    # this means you can just type 'cmi' for both:
+    # - initial installs, as well as
+    # - project rebuilds after small modifications, without full recompile
+    steps = [step_make, step_install]
+    if not os.path.exists('Makefile'):
+        steps = [step_configure] + steps
+        if not os.path.exists('configure'):
+            steps = [step_bootstrap] + steps
+
+if step_bootstrap in steps:
+    for b in bs:
+        if os.path.exists(b):
+            cu.cmd_wait([b])
+            break
+if step_configure in steps:
+    cu.cmd_wait(['./configure'] + args)
+if step_make in steps:
+    cu.cmd_wait(['make'])
+if step_install in steps:
+    cu.cmd_wait(['sudo', 'make', 'install'])

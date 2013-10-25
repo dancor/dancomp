@@ -1,0 +1,28 @@
+#!/usr/bin/env python3
+# say current branch
+
+import cmd_util as cu
+import os
+import sys
+
+# git symbolic-ref will jump up to /home and look for /home/.git
+# which is slow (10's of secs) on the ever-shitty home-mounts
+# so we find the git repo ourselves first
+while True:
+    if os.getcwd() in ('/home', '/'):
+        print >> sys.stderr, 'fatal: Not a git repository'
+        sys.exit(-1)
+    if os.path.exists('.git'):
+        break
+    os.chdir(os.pardir)
+
+# special case to not ever show branch for home dir git repo.
+# otherwise if you are git snapshotting your home dir then _all_ your dirs
+# (as subdirs of home) show branch and it's annoying.
+if os.getcwd() == os.getenv('HOME'):
+    sys.exit(0)
+
+o = cu.cmd_output('git symbolic-ref HEAD', can_fail=True)
+if o:
+    print(o[0].decode().replace('refs/heads/', ''))
+    #print(o[0].replace(

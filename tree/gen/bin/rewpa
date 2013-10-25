@@ -1,0 +1,2 @@
+#!/bin/sh
+sudo sh -c 'cat /etc/wpa_supplicant/aps/yes/* > /etc/wpa_supplicant/wpa_supplicant.conf'

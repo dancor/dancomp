@@ -1,0 +1,67 @@
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[alias]
+	ar = archive
+	#br = branch
+	#co = checkout
+	ci = commit
+	#di = diff
+	lo = log
+	pi = cherry-pick
+	st = status
+
+	ab   = !git-active-branches
+	arb  = !git-archive-branch
+	au   = !git-add-untracked
+	b    = !git-branch-whatup
+	ca   = !git-commit-all
+	cf   = !git-check-files
+	co   = !git-co
+	coc  = !git-checkout-clean
+	com  = !git-checkout-master
+	cp   = !git-checkpoint
+	dia  = !git-diff-ansidiff
+	dica = !git-diff-clean-ansidiff
+	dic  = !git-diff-clean
+	di   = !git-diff-wb
+	dima = !git-diff-master-ansidiff
+	dim  = !git-diff-master
+	dra  = !git-diff-rev-ansidiff
+	dr   = !git-diff-rev
+	f    = !git-files
+	fm   = !git-files-modified
+	go   = !git-go
+	iu   = !git-ignore-untracked
+	ki   = !git-kill
+	mad  = !git-mail-diff
+	mda  = !git-make-diff
+	md   = !git-make-diff
+	mm   = !git-modify-message
+	mvb  = !git-mv-branch
+	nb   = !git-new-branch
+	nc   = !git-new-clean
+	pb   = !git-per-branch
+	pu   = !git-pull-master
+	ra   = !git-rebase-active
+	rem  = !git-remaster
+	rt   = !git-root-dir
+	sbr  = !git-say-branch
+	sd   = !git-svn-dcommit
+	sl   = !git-svn-log
+	sr   = !git-svn-rev
+	uf   = !git-untracked-files
+	up   = !git-up
+	vn   = !git-vn
+[svn]
+	followparent = true
+[core]
+	excludesfile = /home/danl/.gitexclude
+[commit]
+	#template = /home/danl/admin/scripts/templates/svn-commit-template.dcorson.txt
+[user]
+	name = Daniel Corson
+	email = danl@alum.mit.edu
+[push]
+	default = current

@@ -1,0 +1,3 @@
+#!/bin/sh
+# checkpoint local changes with meaningless commit message
+exec git commit-all -m cp

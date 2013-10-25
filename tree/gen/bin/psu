@@ -1,0 +1,8 @@
+#!/bin/sh
+u="$1"
+if [ -z "$u" ]
+then
+  u="`whoami`"
+fi
+shift
+ps -U "$u" -u "$u" u "$@"

@@ -1,0 +1,5 @@
+set syntax=python
+set tabstop=4
+set shiftwidth=4
+" set foldmethod=indent
+set textwidth=100

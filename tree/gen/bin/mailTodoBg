@@ -1,0 +1,6 @@
+# why isn't this in path for this..
+mT=/usr/local/bin/mailTodo
+
+A=`cat`
+echo "$A" >> /home/danl/log/mailTodoRaw &
+echo "$A" | "$mT" "$@" >> /home/danl/log/mailTodo 2>&1 &

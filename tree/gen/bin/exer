@@ -1,0 +1,16 @@
+#!/bin/bash
+INTERVAL_MIN=${1:-5}
+shift
+DO_SOUND=${1:-y}
+shift
+for I in {0..100}
+do
+  MINS=$((INTERVAL_MIN * I))
+  echo "${MINS}" minutes "${MINS}" minutes
+  notif "${MINS}" minutes "${MINS}" minutes
+  if [[ $DO_SOUND == y ]]
+  then
+    echo "${MINS}" minutes "${MINS}" minutes | espeak -a 20
+  fi
+  sleep "$((INTERVAL_MIN * 60))"
+done

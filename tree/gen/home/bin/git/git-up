@@ -1,0 +1,24 @@
+#!/bin/sh
+# up and ctags
+set -e
+BR=`git say-branch`
+echo 'on branch '"$BR"
+git checkpoint || true
+git checkout master
+if [ `git default-remote` == 'remotes/origin/master' ]
+then
+  git pull
+else
+  if [ `git default-remote` == 'remotes/trunk' ]
+  then
+    # This can fail if you have just done a  git svn dcommit  that hasn't made
+    # it to your git mirror yet (a non-fast-forward error).  In any case, the
+    # subsequent  git svn rebase  will always do the right thing; this step is
+    # really an optional optimization.
+    git fetch || true
+  fi
+  git svn rebase
+fi
+git checkout "$BR"
+git pull-master
+git per-branch &

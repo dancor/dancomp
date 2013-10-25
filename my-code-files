@@ -1,0 +1,7 @@
+#!/bin/bash
+find * -type f -not -'(' \
+  -wholename tree/gen/etc/wayv.conf -or \
+  -wholename tree/gen/usr/share/dict/scrab.all -or \
+  -wholename tree/gen/usr/share/X11/xkb/symbols/us -or \
+  -wholename tree/gen/home/.terminfo/s/screen-it \
+  -')'

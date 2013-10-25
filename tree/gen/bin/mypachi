@@ -1,0 +1,3 @@
+#!/bin/sh
+# 0.5GB of memory
+pachi -t _10 threads=4,max_tree_size=512,maximize_score

@@ -1,0 +1,13 @@
+name:            chganal
+version:         0.1
+synopsis:        script to analyze chess games
+license:         BSD3
+license-file:    LICENSE
+author:          dan corson <danl@alum.mit.edu>
+build-depends:   FUtil, HSH, base >= 4, containers, directory, filepath,
+                 process, unix
+hs-source-dirs:  src
+build-type:      Simple
+
+executable:      chganal
+main-is:         src/Main.hs

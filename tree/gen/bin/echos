@@ -1,0 +1,6 @@
+#!/bin/zsh
+# echo to make an executable script
+F="$1"
+shift
+echo $'#!/bin/sh\n'"$@" > "$F" &&
+chmod +x "$F"

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=GNOME .xinitrc
+Comment=This session starts GNOME and runs ~/.xinitrc_gnome (which is where you should start gnome-settings-daemon, a window manager, gnome-panel if you like, etc.).
+Exec=gnome-session --session=gnome-xinitrc
+TryExec=gnome-session
+Icon=
+Type=Application
+X-Ubuntu-Gettext-Domain=gnome-session-3.0

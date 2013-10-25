@@ -1,0 +1,4 @@
+#!/bin/sh
+mkdir -p ~/aud/me
+cd ~/aud/me
+arecordmidi -p `arecordmidi -l | tail -n1 | awk '{print $1}'` `next_seq_file a .mid`

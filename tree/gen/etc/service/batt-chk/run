@@ -1,0 +1,24 @@
+#!/bin/zsh
+while true
+do
+  AC=$(cat /sys/class/power_supply/AC/online)
+  if [[ "$AC" == '0' ]]
+  then
+    if [[ -f /sys/class/power_supply/BAT0/charge_now ]]
+    then
+      BAT_NOW=$(cat /sys/class/power_supply/BAT0/charge_now)
+      BAT_FULL=$(cat /sys/class/power_supply/BAT0/charge_full)
+    else
+      BAT_NOW=$(cat /sys/class/power_supply/BAT0/energy_now)
+      BAT_FULL=$(cat /sys/class/power_supply/BAT0/energy_full)
+    fi
+    RES=$(expr "$BAT_NOW" '*' '1000' '/' "$BAT_FULL")
+    # number of failure seems to be erratic but i've seen: 7.5%, 3.1%, lower
+    # idk
+    if [[ "$RES" -le '80' ]]
+    then
+      /usr/local/bin/hib
+    fi
+  fi
+  sleep 10
+done

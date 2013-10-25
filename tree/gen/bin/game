@@ -1,0 +1,74 @@
+#!/usr/bin/env python
+
+# default: login to dev server into screen session
+# variations via options
+
+import cmd_util as cu
+import os
+import sys
+from optparse import OptionParser
+
+fb_dom = 'facebook.com'
+fb_user = 'dcorson'
+
+def n_to_dev(n, devrs):
+    return 'dev%s%03d.sctm.%s' % ('rs' if devrs else '', n, fb_dom)
+
+def mb_int(n):
+    try:
+        r = int(n)
+    except ValueError:
+        r = None
+    return r
+
+usage = """usage: game <ta|ta6|tab> [-- options]"""
+p = OptionParser(usage)
+#p.add_option('-g', '--game', type='string')
+p.add_option('-o', '--opengl', action='store_true')
+(opts, args) = p.parse_args()
+
+game = args[0]
+args = args[1:]
+
+home = os.environ.get('HOME')
+
+poss = {
+    'ta': ('ta', ''),
+    'ta6': ('ta', '66bowdog'),
+    'tab': ('ta', 'bosses'),
+    'ch': ('charism', ''),
+}
+
+def ta(opts, snapshot=''):
+    if opts.opengl:
+        cmd = 'osnes9x'
+    else:
+        cmd = 'snes9x'
+    r = [cmd, home + '/g/rom/snes/Tetris Attack.smc']
+    if snapshot:
+        r += ['-l', home + '/.snes96_snapshots/' + snapshot + '.s96']
+    return r
+
+#def charism():
+
+cmd_post = ''
+if game == 'ta':
+    cmd = ta(opts)
+elif game == 'ta6':
+    cmd = ta(opts, '66bowdog')
+elif game == 'tab':
+    cmd = ta(opts, 'bosses')
+elif game == 'ch':
+    cmd = ['charism']
+    cmd_post = ['rr', 'charism']
+else:
+    print('wat', file=sys.stderr)
+    sys.exit(1)
+
+# no interefer
+cu.cmd_wait('killall workrave', can_fail=True)
+#print cmd
+cu.cmd_wait(cmd + args, can_fail=True)
+if cmd_post:
+    cu.cmd_wait(cmd_post, can_fail=True)
+cu.cmd_wait('workrave &')

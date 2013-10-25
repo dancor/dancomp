@@ -1,0 +1,10 @@
+name:            dancomp
+version:         0.1
+synopsis:        library for my computer maintenance/use scripts
+license:         GPL
+license-file:    LICENSE
+author:          dan corson <danl@alum.mit.edu>
+build-depends:   HSH, base, unix
+exposed-modules: Dancomp
+hs-source-dirs:  src
+build-type:      Simple

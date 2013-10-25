@@ -1,0 +1,5 @@
+future
+- we don't have uninstallation / recording-what-was-installed
+- really it would be better to produce an archlinux/etc package right?
+  - but then we have to remove/reinstall everything everytime?
+- do we want sub-file deltas?  more like version control?

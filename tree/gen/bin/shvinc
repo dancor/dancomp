@@ -1,0 +1,17 @@
+#!/usr/bin/env python
+
+import os
+
+home = os.getenv('HOME')
+f_n = os.path.join(home, '.shreload', 'version')
+f = open(f_n)
+ls = f.readlines()
+print(ls[0][:-1])
+v = int(ls[0])
+print(v)
+f.close()
+f = open(f_n, 'w')
+print(f_n)
+print(str(v + 1))
+f.write(str(v + 1))
+f.close()

@@ -1,0 +1,12 @@
+#!/bin/bash
+POP_UP="$1"
+shift
+TITLE="$1"
+shift
+BODY="$1"
+shift
+echo "$@" 'aim:'"$TITLE"':'"$BODY" >> ~/log/notify
+if [[ "$POP_UP" -eq 1 ]]
+then
+  echo >> ~/log/notifyPopup
+fi

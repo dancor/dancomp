@@ -1,0 +1,2 @@
+#!/bin/sh
+exec /home/danl/i/tor/tor-browser_en-US/start-tor-browser "$@"

@@ -1,0 +1,100 @@
+#!/usr/bin/env python3
+
+# project directory shortcut expander (used by "pr" dir changer)
+
+from optparse import OptionParser
+import os
+import sys
+
+opt_p = OptionParser("usage")
+opt_p.add_option('-a', '--list-all-poss', action='store_true')
+(opts, args) = opt_p.parse_args()
+
+h = os.getenv("HOME")
+hs = os.path.join(h, "p", "hs")
+p = os.path.join(h, "p")
+pl = os.path.join(p, "l")
+
+common_dirs = [
+    p,
+    os.path.join(p, "untracked"),
+    pl,
+    hs,
+    os.path.join(h, "i", "mod"),
+    h,
+    os.path.join(p, "dancomp", "hs"),
+    os.path.join(p, "dancomp", "py"),
+    os.path.join(h, "i", "hs", "cab"),
+    os.path.join(h, "i", "hs"),
+    os.path.join(h, "i"),
+    os.path.join(p, "one-off"),
+    os.path.join(p, "one-off", "hs"),
+    os.path.join(h, "l"),
+]
+
+# we could conceivably just do word expansions and have all parent dirs
+# in the common_dirs..
+ds = {
+    "a": os.path.join(h, "admin"),
+    "as": os.path.join(h, "admin", "scripts"),
+    "bg": os.path.join(pl, "bagman"),
+    "ch": os.path.join(pl, "chia"),
+    "dc": os.path.join(p, "dancomp"),
+    "dcs": os.path.join(p, "dancomp-secret"),
+    "cu": os.path.join(p, "py/cmdutil"),
+    "fu": os.path.join(hs, "futil"),
+    "g": os.path.join(h, "admin", "scripts", "git"),
+    "gb": os.path.join(pl, "goldbug"),
+    "go": os.path.join(pl, "goa"),
+    "hs": hs,
+    "lp": os.path.join(hs, "lex-pass"),
+    "lb": os.path.join(hs, "lambdabot"),
+    "p": os.path.join(p, "phpsh"),
+    "pg": os.path.join(hs, "pangen"),
+    "tb": os.path.join(p, "TextBook"),
+}
+
+def get_all_poss():
+    dirs = []
+    dirs += ds.keys()
+    for d in common_dirs:
+        try:
+            dirs += os.listdir(d)
+        except:
+            pass
+    return dirs
+
+def do_lookup(k):
+    ret = ds.get(k)
+    if ret:
+        return ret
+    for dir in common_dirs:
+        v = os.path.join(dir, k)
+        if os.path.exists(v):
+            return v
+    return None
+
+if opts.list_all_poss:
+    for d in get_all_poss():
+        print(d)
+    sys.exit(0)
+elif args:
+    k, = args
+    ret = do_lookup(k)
+    if not ret:
+        completed_ks = [x for x in get_all_poss() if x.startswith(k)]
+        completed_ks_len = len(completed_ks)
+        if completed_ks_len == 1:
+            ret = do_lookup(completed_ks[0])
+        elif completed_ks_len > 1:
+            print("Multiple matches: " + str(completed_ks), file=sys.stderr)
+            sys.exit(-1)
+else:
+    ret = None
+
+if ret:
+    print(ret)
+else:
+    print(("\n".join(k + "\t" + v.replace(h, "~")
+        for k, v in sorted(ds.items()))))
+    sys.exit(1)

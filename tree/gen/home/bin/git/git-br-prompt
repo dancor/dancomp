@@ -1,0 +1,12 @@
+#!/bin/bash
+# generate a space-prefixed branch name if in a git branch, or generate nothing
+# use it to set $PS1
+if [ "$PWD" == "$HOME" ]
+then
+  exit
+fi
+BR=`git say-branch 2> /dev/null`
+if [ -n "$BR" ]
+then
+  echo "$BR"
+fi

@@ -1,0 +1,26 @@
+#!/usr/bin/env runhaskell
+
+import Control.Concurrent
+import FUtil
+import System.Console.GetOpt
+import System.Process
+
+data Options = Options {
+  optWait :: Float
+}
+
+defOpts = Options {
+  optWait = 20.0
+}
+
+options :: [OptDescr (Options -> Options)]
+options = [
+  Option ['t'] ["wait"] (ReqArg (\ a o -> o {optWait = read a}) "SEC")
+    "Wait for SEC seconds to kill program."
+  ]
+
+main = do
+  (opts, prog:args) <- doArgs "" defOpts options
+  pId <- runProcess prog args Nothing Nothing Nothing Nothing Nothing
+  threadDelay . floor $ optWait opts * 1000 ^ 2
+  terminateProcess pId

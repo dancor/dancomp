@@ -1,0 +1,2 @@
+#!/bin/sh
+exec /usr/local/bin/py2 ~/p/one-off/pgnanal/py/fics.py

@@ -1,0 +1,41 @@
+#!/usr/bin/env python
+#
+# sed file names
+#
+# this is like a less safe mmv (because it doesn't detect collisions at all,
+# and is probably not robust enough to failing in the middle..)
+# but you get to use sed syntax
+
+from optparse import OptionParser
+import cmd_util as cu
+import os
+
+usage = ''
+p = OptionParser(usage)
+p.add_option('-t', '--test', action='store_true')
+(opts, args) = p.parse_args()
+sed, = args
+
+# use find instead of pure python bc in future might want to allow more find
+#   args to be specified and wouldn't want to reinvent find
+fs = ''.join(cu.cmd_output(['find', '.', '-print0'])).split('\0')
+for f in fs:
+    if f == '.':
+        # it's not really ever reasonable to want to modify . via sed
+        # and allowing it could easily give a nasty surprise
+        continue
+    if f.startswith('./'):
+        # actually it always will for now, but maybe not once we allow find
+        # args.  better robust than sorry.  no one wants to deal with the './'
+        # prefix in their sed script i don't think..
+        f = f[2:]
+    p = cu.cmd_run(['sed', sed], stdin=cu.PIPE, stdout=cu.PIPE)
+    p.stdin.write(f)
+    p.stdin.close()
+    p.wait()
+    o = ''.join(p.stdout.readlines())
+    if f != o:
+        if opts.test:
+            print(o)
+        else:
+            os.rename(f, o)

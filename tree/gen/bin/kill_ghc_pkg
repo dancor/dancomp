@@ -1,0 +1,6 @@
+#!/bin/sh
+# note this kills it for all versions of ghc!
+PKG_W_VER=$1
+rm -r ~/.cabal/lib/"$PKG_W_VER"/
+rm -r ~/.cabal/share/doc/"$PKG_W_VER"/
+rm ~/.ghc/*/package.conf.d/"$PKG_W_VER"-*.conf

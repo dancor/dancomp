@@ -1,0 +1,3 @@
+#!/bin/sh
+# syntax check php{,t} files
+git diff-clean | grep '^+++ ' | sed 's/^+++ b\///' | xargs -n1 php -l

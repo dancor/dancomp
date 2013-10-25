@@ -1,0 +1,4 @@
+base=/home/danl
+maildir=.maildir:.maildir-sent
+mfolder=.mairix
+database=.mairixdb

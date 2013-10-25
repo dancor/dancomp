@@ -1,0 +1,12 @@
+#!/usr/bin/env python3
+# "git ignore untracked" (add all untracked files to (possibly new) .gitignore)
+
+import cmd_util as cu
+import sys
+
+ls = cu.cmd_output('git untracked-files')
+if not ls:
+  print('no untracked files')
+  sys.exit(0)
+
+cu.cmd_wait('cd `git root-dir` && (git untracked-files | sed \'s/\/$//\'; echo .gitignore; cat .gitignore 2>/dev/null || true) | sort | uniq > .gitignore')

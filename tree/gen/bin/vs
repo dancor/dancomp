@@ -1,0 +1,68 @@
+#!/usr/bin/env python3
+
+from optparse import OptionParser
+import cmd_util as cu
+import errno
+import os
+import socket
+
+opt_p = OptionParser()
+opt_p.add_option("-d", "--directory")
+opt_p.add_option("-f", "--what-file", action="store_true")
+opt_p.add_option("-v", "--verbose", action="store_true")
+opt_p.add_option("-r", "--remove", action="store_true")
+(opts, args) = opt_p.parse_args()
+file, = args
+dc_dir = opts.directory
+# sort of a weird legacy, but we like the bin default
+if not dc_dir:
+    dc_dir = "bin"
+
+home = os.getenv("HOME")
+host = socket.gethostname()
+ds = [host]
+if host in ("kiva", "anoa"):
+    ds.append("homeserver")
+else:
+    ds.append("sat")
+ds.append("nonwork")
+ds.append("gen")
+paths = []
+for d in ds:
+    paths.append("p/dancomp-secret/tree/%s/%s" % (d, dc_dir))
+    paths.append("p/dancomp/tree/%s/%s" % (d, dc_dir))
+
+def v(d, f):
+    if opts.what_file:
+        print(d + "/" + f)
+        return
+    os.chdir(d)
+    f_dir = os.path.dirname(f)
+    if f_dir:
+        try:
+            os.makedirs(f_dir)
+        except OSError as e:
+            if e.errno == errno.EEXIST: pass
+            else: raise
+    inst_cmd = ["daninst"]
+    if opts.remove:
+        inst_cmd.append("-r")
+    else:
+        make_f_executable = d.find("/bin") != -1
+        base_cmd = "v"
+        if make_f_executable:
+            base_cmd = "vx"
+        cu.cmd_wait([base_cmd, f], can_fail=True)
+        if make_f_executable:
+            print("Made file executable.")
+        else:
+            print("Did not make file executable.")
+    cu.cmd_wait(inst_cmd + ["-f", f])
+
+for p in paths:
+    d = os.path.join(home, p)
+    if opts.verbose:
+        print(d)
+    if os.path.exists(os.path.join(d, file)):
+        break
+v(d, file)

@@ -1,0 +1,10 @@
+#!/bin/sh
+set -e
+DIR=${1:-'/'}
+shift
+# df seems to default units of kilobytes
+MIN_SIZE=100000
+T=`mydate`
+rm -f ~/du.big
+ln -s ~/du.big."$T" ~/du.big
+sudo du "$DIR" "$@" | awk '$1 > '"$MIN_SIZE"' {print $0}' | sort -nr | tee ~/du.big."$T"

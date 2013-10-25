@@ -1,0 +1,8 @@
+#!/bin/bash
+# fixme combine with 'dan' and 'd'
+if [[ $# > 0 ]]
+then
+  ssh -t duro s -p "$@"
+else
+  ssh -t duro s
+fi

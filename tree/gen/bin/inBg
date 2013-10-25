@@ -1,0 +1,6 @@
+#!/bin/sh
+# wrapper bc procmail is shit
+INP=`cat`
+P=$1
+shift
+/bin/echo "$INP" | "$P" "$@" &

@@ -1,0 +1,13 @@
+#!/bin/bash
+D='/sys/class/power_supply/BAT0/'
+if [[ -f "$D"charge_now ]]
+then
+  BAT_NOW=`cat /sys/class/power_supply/BAT0/charge_now`
+  BAT_FULL=`cat /sys/class/power_supply/BAT0/charge_full`
+else
+  BAT_NOW=`cat /sys/class/power_supply/BAT0/energy_now`
+  BAT_FULL=`cat /sys/class/power_supply/BAT0/energy_full`
+fi
+RES=`expr "$BAT_NOW" '*' '10000' '/' "$BAT_FULL"`
+echo "$RES"
+cat /sys/class/power_supply/AC/online

@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+from cmd_util import cmd_wait
+from optparse import OptionParser
+
+usage = 'usage'
+opt_p = OptionParser(usage)
+opt_p.add_option('-2', '--dan2', help='use dan2 host',
+    action='store_true')
+(opts, args) = opt_p.parse_args()
+
+host_serv = 'dan2' if opts.dan2 else 'dan'
+
+cmd_wait(['ssh', host_serv, '-t', 'aimLog'] + args)

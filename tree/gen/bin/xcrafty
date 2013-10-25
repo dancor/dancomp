@@ -1,0 +1,29 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+from cmd_util import cmd_wait, cmd_output
+from optparse import OptionParser
+
+optp = OptionParser()
+optp.add_option("-s", "--size", type="string")
+optp.add_option("-a", "--analysis", action="store_true")
+(opts, args) = optp.parse_args()
+
+size = opts.size
+if not size:
+    size = "bulky"
+
+if len(args) == 1 and not args[0].startswith("-"):
+    args = ["-loadGameFile"] + args
+
+f = str(cmd_output("mydate s")[0])
+home = os.getenv("HOME")
+os.chdir(home + "/g/ch")
+cmd = ["xboard", "-fcp", "crafty", "-scp", "crafty"]
+if opts.analysis:
+    cmd += ["-size", size] + args
+else:
+    cmd += ["-timeControl", "0:01.01", "-sgf", f,
+        "-size", size, "-xponder", "-xponder", "-depth", "2"] + args
+cmd_wait(cmd)

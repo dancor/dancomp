@@ -1,0 +1,19 @@
+#!/bin/zsh
+unset TMUX
+unset CONSOLE_AUTO
+
+PATH=$PATH:/usr/bin
+cd
+T=`tmux list-sessions 2> /dev/null | grep -m1 "group 0" | cut -d: -f1`
+if [[ -z "$T" ]]
+then
+  T=`tmux list-sessions 2> /dev/null | grep -m1 "lalala" | cut -d: -f1`
+fi
+if [[ -z "$T" ]]
+then
+  tmux new-session -d -s lalala
+fi
+for i in {0..36}
+do
+  tmux new-window -d -t "${i}"
+done

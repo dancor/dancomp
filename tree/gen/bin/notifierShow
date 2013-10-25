@@ -1,0 +1,1 @@
+wmctrl -r NOTIFIEROMG -b add,above

@@ -1,0 +1,3 @@
+#!/bin/sh
+cd ~/g/go/goa
+mv game.sgf "$(mydate)".sgf

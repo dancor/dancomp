@@ -1,0 +1,5 @@
+#!/bin/sh
+set -e
+S=electricsheep
+mkdir -p ~/log/service/"$S"
+svlogd -tt ~/log/service/"$S"

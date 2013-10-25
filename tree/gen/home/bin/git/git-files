@@ -1,0 +1,3 @@
+#!/bin/sh
+# see modified files since last checkpoint
+exec git status | grep -oP '(?<=modified:   ).*'

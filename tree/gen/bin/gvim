@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Work-around for:
+# https://bugs.launchpad.net/ubuntu/+source/vim/+bug/987707
+#
+# Also shouldn't fg-or-not just be consistent for all programs?
+# Not sure I was into the default behavior anyway.
+exec /usr/bin/gvim -f "$@"

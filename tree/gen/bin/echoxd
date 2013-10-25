@@ -1,0 +1,3 @@
+comm=/usr/danl/$1
+shift
+echox "$comm" "$@"

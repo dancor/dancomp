@@ -1,0 +1,2 @@
+#!/bin/sh
+cd ~/i/cgoban && java -jar cgoban.jar

@@ -1,0 +1,8 @@
+#!/bin/sh
+pgrep -fx 'emacs --daemon' | while read P; do xargs kill "$P"; done
+sleep 1
+
+# need this for ibus to work.. emacs is wack?
+export LC_CTYPE="zh_CN.UTF-8"
+
+exec emacs --daemon

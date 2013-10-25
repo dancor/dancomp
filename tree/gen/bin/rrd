@@ -1,0 +1,14 @@
+#!/bin/sh
+# run, sleep, notify, record
+if [[ $# -lt 2 ]]
+then
+  echo 'usage: '"$0"' <secs> <command>';
+  exit;
+fi
+N="$1"
+shift
+C="$@"
+snt "$N" 'STOP '"$C" &
+PID=$!
+rrr "$@"
+ps "$PID" > /dev/null && kill "$PID" ;

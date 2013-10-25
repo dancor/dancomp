@@ -1,0 +1,3 @@
+#!/bin/sh
+title=NOTIFIEROMG
+exec xtl ta2 -title "$title" -bg brown4 "$@" -e bash -c 'screen -x -S notifier -c ~/.screenrc.notifier || screen -S notifier -c ~/.screenrc.notifier' &

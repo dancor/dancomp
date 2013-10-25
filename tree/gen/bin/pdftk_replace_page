@@ -1,0 +1,55 @@
+import cmd_util
+import shutil
+import sys
+import tempfile
+
+[orig_pdf, n_str, repl_pdf, new_pdf] = sys.args
+# use '4end' for n_str if you want to replace page 4 of orig_pdf and orig_pdf
+# is exactly 4 pages.  sorry for the hack, idk a good way to count pages.
+
+def tmp_nam():
+  # best way?
+  f = tempfile.NamedTemporaryFile(delete=False)
+  name = f.name
+  f.close()
+  return name
+
+def do_cmd(cmd):
+  print cmd
+
+is_last_page = False
+if n_str.endswith('end'):
+  n_str = n_str[:-3]
+  last_page = True
+n = int(n_str)
+is_first_page = n == 1
+
+tmp_dir = tempfile.mkdtemp()
+
+to_join = []
+if not is_first_page:
+  do_cmd(['pdftk', orig, 'cat', '1-' + str(n - 1), 'output', tmp_start])
+  to_join.append(tmp_start)
+to_join.append(repl)
+if not is_last_page:
+  do_cmd(['pdftk', orig, 'cat', str(n + 1) + '-end', 'output', tmp_end])
+  to_join.append(tmp_end)
+
+do_cmd(['pdftk'] + [ for x in to_join]
+
+os.rmtree(tmp_dir)
+
+  do_cmd(['pdftk', 'A=' + repl, 'B=' + tmp_end, 'output', new])
+  print 'hm'
+else:
+  if n == 1:
+    print 'hm'
+    do_cmd(['pdftk', orig, 'cat', str(n + 1) + '-end', 'output', tmp_end])
+    do_cmd(['pdftk', 'A=' + repl, 'B=' + tmp_end, 'output', new])
+  else:
+    tmp_start = 'tmp_start.pdf'
+    tmp_end = 'tmp_end.pdf'
+    do_cmd(['pdftk', orig, 'cat', '1-' + str(n - 1), 'output', tmp_start])
+    do_cmd(['pdftk', orig, 'cat', str(n + 1) + '-end', 'output', tmp_end])
+    do_cmd(['pdftk', 'A=' + tmp_start, 'B=' + repl, 'C=' + tmp_end, 'output',
+      new])

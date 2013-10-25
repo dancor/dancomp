@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+
+from cmd_util import cmd_wait
+from optparse import OptionParser
+import sys
+
+opt_p = OptionParser()
+#opt_p.add_option()
+(opts, args) = opt_p.parse_args()
+
+if not args:
+    lang = 'z'
+else:
+    [lang] = args
+
+if lang == 'thai':
+    cmd = ['urxvt', '-geometry', '46x16+0+0', '-fn',
+        'xft:TlwgMono:pixelsize=36,xft:Biwidth:pixelsize=36']
+    cmd_wait(cmd)
+elif lang == 'z':
+    cmd = ['urxvt', '-geometry', '30x17+0+0', '-fn',
+        'xft:Biwidth:pixelsize=26']
+    cmd_wait(cmd)
+else:
+    print('wat', file=sys.stderr)

@@ -1,0 +1,2 @@
+#!/bin/sh
+exec mplayer ~/p/sleep/40.mp3

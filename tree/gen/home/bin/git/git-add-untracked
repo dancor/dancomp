@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+# "git add untracked" (add all untracked files)
+
+import cmd_util as cu
+import os
+import sys
+
+os.chdir(cu.cmd_output('git root-dir')[0])
+
+ls = cu.cmd_output('git untracked-files')
+if not ls:
+  print('no untracked files')
+  sys.exit(0)
+
+cu.cmd_wait(['git', 'add'] + [l.decode() for l in ls])
+#cu.cmd_wait(['git checkpoint'])

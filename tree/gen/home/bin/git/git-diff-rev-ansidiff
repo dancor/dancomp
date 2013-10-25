@@ -1,0 +1,15 @@
+#!/bin/bash
+# see diff for rev
+# pass git rev, or svn rev with r prefix
+REV="$1"
+shift
+if [ "${REV:0:1}" == 'r' ]
+then
+  REV=`git svn-rev "${REV:1}"`
+  if [ -z "$REV" ]
+  then
+    echo 'unknown svn rev' >&2
+    exit -1
+  fi
+fi
+exec git diff-ansidiff "$REV"{~1,} "$@"

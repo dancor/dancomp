@@ -1,0 +1,5 @@
+#!/bin/sh
+# "remaster": make a clean master branch
+# warning you lose any changes in master (why do you have changes in master)
+git branch -D master
+git branch master "`git default-remote`" && echo 'Re-created master.' || echo 'Could not re-create master.'

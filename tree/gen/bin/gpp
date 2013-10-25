@@ -1,0 +1,13 @@
+#!/bin/sh
+set -e
+
+git pull origin master
+git push origin
+
+git remote | grep -q '^github$'
+if [[ "$?" -eq 0 ]]
+then
+  git pull github master
+  git push github
+fi
+

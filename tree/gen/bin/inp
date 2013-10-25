@@ -1,0 +1,6 @@
+#!/bin/sh
+# later do non-hs projects as well?
+D=$1
+shift
+exec runghc ~/p/"$D"/src/Main.hs "$@"
+

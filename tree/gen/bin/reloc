@@ -1,0 +1,12 @@
+#!/bin/sh
+if [ -z "$1" ]
+then
+  echo 'to where (h/w)' 1>&2
+  exit -1
+fi
+if [ "$1" == "x" ]
+then
+  xre && sleep 16 && sle
+  exit 0
+fi
+xre && sleep 16 && sle && sleep 16 && xre "$@"

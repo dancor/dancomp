@@ -1,0 +1,4 @@
+#!/bin/sh
+sudo /sbin/sv up pulseaudio
+sudo /etc/rc.d/osspd restart
+sudo /etc/rc.d/alsa restart

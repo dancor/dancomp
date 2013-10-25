@@ -1,0 +1,11 @@
+name:           adjvol
+version:        0.1
+license:        BSD3
+author:         danl@alum.mit.edu
+synopsis:       adjust volume
+build-depends:  base, directory, filepath, polyopt, process
+build-type:     Simple
+
+executable:     adjvol
+hs-source-dirs: src
+main-is:        MainPA.hs

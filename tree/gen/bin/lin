@@ -1,0 +1,6 @@
+#!/usr/bin/env python
+import cmd_util as cu
+import sys
+args = sys.argv[1:]
+cu.cmd_wait(['links', 'http://localhost:5001/' + ' '.join(args)])
+#cu.cmd_wait(['links', 'http://dan:5001/' + ' '.join(args)])

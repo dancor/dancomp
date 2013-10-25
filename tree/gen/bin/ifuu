@@ -1,0 +1,12 @@
+#!/bin/sh
+IF="$1"
+shift
+if [ -z "$IF" ]
+then
+  IF=eth0
+fi
+so ifdown "$IF"
+so ifup "$IF"
+fbre
+sleep 2
+redan -c

@@ -1,0 +1,5 @@
+#!/bin/sh
+cd ~sgrimm/git &&
+# info installation not working currently, not essential
+#sudo make prefix=/usr/local install{,-{doc,info}}
+sudo make prefix=/usr/local install{,-doc}

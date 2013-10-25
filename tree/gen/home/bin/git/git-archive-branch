@@ -1,0 +1,7 @@
+#!/bin/sh
+BR="$1"
+if [ -z "$BR" ]
+then
+  BR=`git say-branch`
+fi
+exec git mv-branch {,arc/}"$BR"

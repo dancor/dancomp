@@ -1,0 +1,55 @@
+#!/usr/bin/env runhaskell
+
+import Control.Arrow
+import Data.Char
+import Data.Function
+import Data.List
+import FUtil
+import qualified Data.Map as M
+
+wordify :: [Char] -> [[Char]]
+wordify s = let
+  (word, rest) = span isLetter $ dropWhile (not . isLetter) s
+  in if null word then [] else map toLower word:wordify rest
+
+countUp :: [[Char]] -> [([Char], (Integer, [[Char]]))]
+countUp =
+  sortBy (combineCmp (compare `on` negate . fst) (compare `on` snd) `on` snd) .
+  M.toList .
+  M.map (second . sortBy $ combineCmp (compare `on` length) compare) .
+  M.mapKeysWith (\ (c, ws) (c', ws') -> (c + c', ws ++ ws')) eoNormalize .
+  M.mapWithKey (\ k v -> (v, [k])) . M.fromListWith (+) . map (flip (,) 1) .
+  -- lol roman numerals annoying me
+  filter (not . null . filter (`notElem` "ivx"))
+
+pretty :: (Show t1) => (t, (t1, [[Char]])) -> [Char]
+pretty (_, (count, ws)) = show count ++ "\t" ++ intercalate "," ws
+
+combineCmp :: (t -> t1 -> Ordering)
+              -> (t -> t1 -> Ordering)
+              -> t
+              -> t1
+              -> Ordering
+combineCmp c1 c2 x y = if c == EQ then c2 x y else c where c = c1 x y
+
+eoNormalize :: [Char] -> [Char]
+eoNormalize = reverse . tryChangePrefix (map reverse wordSuffixesLikeI) "" .
+  dropWhile (`elem` "j") . reverse .
+  tryChangePrefix ["ek", "el", "mal", "kon", "preter"] ""
+
+tryChangePrefix :: (Eq a) => [[a]] -> [a] -> [a] -> [a]
+tryChangePrefix [] _ s = s
+tryChangePrefix (from:froms) to s = if from `isPrefixOf` s then
+  to ++ drop (length from) s else tryChangePrefix froms to s
+
+wordSuffixesLikeI :: [[Char]]
+wordSuffixesLikeI = ["antis"] ++ lol where
+  lol =
+    concatMap (\ x -> [x ++ "n", x]) .
+    concatMap (\ x -> [x ++ "j", x]) $
+    map concat (sequence [["i", "a", "o", "e"],
+    ["s", "nta", "nte", "nto", "na", "no", "nis", "ta", "te"]]) ++
+    ["u", "us"] ++ ["ia", "una"] ++ ["a", "o", "i", "e"]
+
+main :: IO ()
+main = interact (toUtf . unlines . map pretty . countUp . wordify . fromUtf)

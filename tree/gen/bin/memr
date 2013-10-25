@@ -1,0 +1,3 @@
+#!/bin/sh
+# kind of silly.. better system?
+[ "$#" -eq 2 ] && mem "$1"/"$2" && rr "$2" || echo 'wat' 2>&1

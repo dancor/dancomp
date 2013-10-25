@@ -1,0 +1,4 @@
+#!/bin/sh
+sudo sv force-stop wpa_supplicant
+sudo mv /usr/sbin/NetworkManager_wtf /usr/sbin/NetworkManager
+sudo NetworkManager

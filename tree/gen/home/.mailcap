@@ -1,0 +1,23 @@
+text/html;                      firefox %s; nametemplate=%s.html
+image/gif; display %s
+image/jpeg; display %s
+image/tiff; display %s
+image/x-portable-anymap; display %s
+image/x-portable-bitmap; display %s
+image/x-portable-graymap; display %s
+image/x-portable-pixmap; display %s
+image/x-rgb; display %s
+image/rgb; display %s
+image/x-xbitmap; display %s
+image/x-xpixmap; display %s
+image/xwd; display %s
+image/x-xwd; display %s
+image/x-xwindowdump; display %s
+audio/*; sfplay %s
+video/mpeg; mpeg_play %s
+video/*; animate %s
+application/postscript; ghostview %s
+application/x-dvi; xdvi %s
+application/pdf; evince %s
+application/acrobat; evince %s
+application/x-msexcel; ooffice %s

@@ -1,0 +1,5 @@
+#!/bin/sh
+date
+sudo ntpdate pool.ntp.org
+date
+sudo hwclock --systohc

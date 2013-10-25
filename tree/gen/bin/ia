@@ -1,0 +1,11 @@
+#!/bin/sh
+
+#DNS=4.2.2.2
+DNS=8.8.8.8
+
+HOST=google.com
+#HOST=baidu.com
+
+ping "$@" -c 1 "$DNS"
+
+ping "$@" "$HOST"

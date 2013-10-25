@@ -1,0 +1,6 @@
+#!/bin/sh
+F=`which "$@"`
+if [ $? -eq 0 ]
+then
+  lee "$F"
+fi

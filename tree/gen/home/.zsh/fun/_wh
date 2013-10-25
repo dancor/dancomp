@@ -1,0 +1,29 @@
+#compdef cw wh vw
+
+local farg aarg cargs args state line curcontext="$curcontext" ret=1
+
+cargs=( \
+  '(-v -c)-w[print command type]' \
+  '-p[always do a path search]' \
+  '-m[treat the arguments as patterns]' \
+  '-s[print symlink free path as well]' \
+  '*:commands:->command' )
+farg='-f[output contents of functions]'
+aarg='-a[print all occurrences in path]'
+
+_arguments -C -s -A "-*" -S "${cargs[@]}" "$aarg" && ret=0
+
+if [[ "$state" = command ]]; then
+
+  args=( "$@" )
+
+  _alternative -O args \
+    'commands:external command:_path_commands' \
+    'builtins:builtin command:compadd -k builtins' \
+    'functions:shell function:compadd -k functions' \
+    'aliases:alias:compadd -k aliases' \
+    'reserved-words:reserved word:compadd -k reswords' && ret=0
+
+fi
+
+return ret

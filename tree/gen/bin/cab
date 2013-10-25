@@ -1,0 +1,13 @@
+#!/bin/sh
+set -e
+
+export TMPDIR=/home/danl/tmp
+
+MY_OPTS='--enable-documentation -pO --haddock-hoogle --haddock-html --haddock-hyperlink-source'
+
+rnr 1d cabal update
+exec cabal install $MY_OPTS "$@"
+
+# -O2 is still "_unlikely_ to produced better code than -O"
+#exec cabal install --global --root-cmd=sudo --enable-documentation -pO "$@"
+#exec cabal install "$@"

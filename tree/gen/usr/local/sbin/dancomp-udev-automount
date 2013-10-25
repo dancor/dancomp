@@ -1,0 +1,60 @@
+#!/usr/bin/env python3
+import os
+import sys
+from optparse import OptionParser
+from subprocess import Popen, PIPE
+
+#opt_p = OptionParser()
+#opt_p.add_option('-r', '--remove', action='store_true')
+#(opts, args) = opt_p.parse_args()
+#
+#assert len(args) == 4
+#dev = "/dev/" + args[0]
+#fs_type = args[1]
+#model = args[2].lower()
+#serial = args[3]
+#assert model != ""
+#
+## the LED's unequal position is an easy inicator that works w/ light off too
+#if serial == "09081551181234":
+#    model += "_uneq"
+#
+#dir = "/media/" + model
+#
+#if opts.remove:
+#    if os.path.isdir(dir):
+#        #os.rmdir(dir)
+#        Popen(["sudo", "rmdir", dir])
+#else:
+#    if not os.path.isdir(dir):
+#        #os.mkdir(dir)
+#        Popen(["sudo", "mkdir", dir])
+#        #if model == "nook_simpletouch":
+#        Popen(["sudo", "chown", "danl:danl", dir])
+#    # don't needlessly waste time/ssd-lifespan
+#    # note that sync slows copying 10x (ext) to 100x (ntfs) and may not even
+#    # give much extra pull-out safety given journaling already?
+#    mount_opts = "noatime,nodiratime"
+#    # allow umounting
+#    mount_opts += ",users"
+#    if fs_type in ("ntfs", "vfat"):
+#        mount_opts += ",uid=1000"
+#    #Popen(["sudo", "mount", "-o", mount_opts, dev, dir])
+#    #Popen(["pmount", dev, dir])
+#    Popen(["sudo", "-u", "danl", "pmount", dev, dir])
+#
+##if serial == 'BD30B318':
+##    model += '_green'
+##elif serial == '09081551181234':
+##    model += '_red'
+##ls = Popen(
+##    ["sudo", "blkid", "-o", "export", dev],
+##    stdout=PIPE).stdout.readlines()
+##for l in ls:
+##    if l.startswith(b'UUID='):
+##       dev_uuid = l[5:-1]
+##dir = b"/media/" + dev_uuid
+##  vfat)  sudo mount -t vfat -o sync,noatime,uid=1000 "/dev/${DEVICE}" "${DIR}"
+##         ;;
+##  ntfs)  sudo mount -t auto -o sync,noatime,uid=1000,locale=en_US.UTF-8 "/dev/#${DEVICE}" "${DIR}"
+##  *)     sudo mount -t auto -o sync,noatime "/dev/${DEVICE}" "${DIR}"

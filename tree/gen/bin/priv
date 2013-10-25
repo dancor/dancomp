@@ -1,0 +1,2 @@
+#!/bin/sh
+vs -d etc privoxy/config

@@ -1,0 +1,4 @@
+comm=$1
+shift
+echo "$@">"$comm"
+chmod +x "$comm"

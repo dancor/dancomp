@@ -1,0 +1,8 @@
+/tags
+/.tok
+/cscope.out
+/cscope.files
+/_hbuild
+/dist
+*.pyc
+*.swp

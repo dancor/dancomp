@@ -1,0 +1,4 @@
+#!/bin/sh
+set -e
+cd /home/danl/comp/vpncerts/strongvpn
+exec openvpn ovpn168.ovpn

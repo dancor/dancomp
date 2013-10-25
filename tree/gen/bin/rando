@@ -1,0 +1,20 @@
+#!/usr/bin/perl
+my $argn = $#ARGV + 1;
+my @flag;
+for (my $remn = $argn; $remn > 0; $remn--) {
+	my $rawpick = int(rand $remn);
+	# take rawpick-th untaken we find
+	for ($pick = 0; $pick < $argn; $pick++) {
+		if ($flag[$pick] != 1) {
+			if ($rawpick == 0) {
+				last;
+			}
+			$rawpick--;
+		}
+	}
+	#print "$pick: ";
+	$cur = $ARGV[$pick];
+	#$cur =~ s/([\|&;\(\)<> \t\'])/\\\1/g;
+	print "$cur ";
+	$flag[$pick] = 1;
+}

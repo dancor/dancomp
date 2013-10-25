@@ -1,0 +1,97 @@
+#!/usr/bin/env python3
+# {apt-{get,cache,file},dpkg} wrapper
+
+from optparse import OptionParser
+import sys
+import cmd_util as cu
+
+usage = """usage: ag <options> command
+
+Commands:
+  ar - autoremove old dependencies
+  b - build-dep
+  c - source
+  f - files (file list for installed pack
+  fl - file list for even uninstalled package
+  fs - file search
+  fu - update the file database
+  i - install
+  I - reinstall
+  l - list
+  P - purge
+  r - reconfigure
+  R - remove
+  s - search
+  S - show
+  u - update
+  U - upgrade all"""
+p = OptionParser(usage)
+p.add_option('-u', '--unstable', action='store_true')
+p.add_option('-b', '--backports', action='store_true')
+p.add_option('-c', '--no-update', action='store_true')
+#p.add_option('-P', '--purge', action='store_true')
+(opts, args) = p.parse_args()
+
+if not args:
+    p.print_help()
+    sys.exit(-1)
+
+a = args[0]
+args = args[1:]
+
+do_update = False
+
+if a == 'ar':
+    cs = 'sudo apt-get autoremove'
+elif a == 'b':
+    cs = 'sudo apt-get build-dep'
+elif a == 'c':
+    cs = 'apt-get source'
+elif a == 'f':
+    cs = 'dpkg -L'
+elif a == 'fl':
+    cs = 'apt-file list'
+elif a == 'fs':
+    cs = 'apt-file search'
+elif a == 'fu':
+    cs = 'sudo apt-file update'
+elif a in ('i', 'I'):
+    optstr = ''
+    if a == 'I':
+        optstr += ' --reinstall'
+    if opts.unstable:
+        optstr += ' -t unstable'
+    if opts.backports:
+        optstr += ' -t lenny-backports'
+    do_update = True
+    cs = 'sudo apt-get%s install -y' % optstr
+elif a == 'l':
+    cs = 'dpkg -l'
+elif a == 'P':
+    cs = 'sudo apt-get purge'
+elif a == 'R':
+    cs = 'sudo apt-get remove'
+elif a == 'r':
+    cs = 'sudo dpkg-reconfigure'
+elif a == 's':
+    cs = 'apt-cache search'
+elif a == 'S':
+    optstr = ''
+    if opts.unstable:
+        optstr += ' -t unstable'
+    cs = 'apt-cache show' + optstr
+elif a == 'u':
+    cs = 'rnr 0s sudo apt-get update'
+elif a == 'U':
+    do_update = True
+    cs = 'sudo apt-get upgrade'
+else:
+    raise Exception('unknown command')
+
+# temp for China
+#do_update = False
+
+if do_update and not opts.no_update:
+    cu.cmd_wait('rnr 1d sudo apt-get update')
+
+cu.cmd_wait(cs.split() + args)

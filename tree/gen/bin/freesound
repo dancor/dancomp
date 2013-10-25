@@ -1,0 +1,17 @@
+#!/usr/bin/env runhaskell
+
+import Dancomp
+import Data.List
+import HSH
+
+main = do
+  fuserO <- runSL "sudo fuser -m /dev/dsp 2>&1"
+  let
+    psStr = intercalate "," . map init . filter ((== 'm') . last) $
+      words fuserO
+  psO <- run $ "ps -o comm= -o pid= -o cmd= -p " ++ psStr
+  let
+    psToKillStrs = filter (not . ("Xorg" `isPrefixOf`)) psO
+    psToKill = map (read . head . drop 1 . words) psToKillStrs
+  putStr $ unlines psToKillStrs
+  askKill psToKill

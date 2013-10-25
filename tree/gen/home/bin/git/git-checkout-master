@@ -1,0 +1,3 @@
+#!/bin/sh
+# checkout master
+exec git-co master "$@"

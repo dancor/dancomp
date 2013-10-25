@@ -1,0 +1,53 @@
+#!/usr/bin/python3
+import cmd_util as cu
+import subprocess as spc
+import sys
+
+args = sys.argv[1:]
+
+if not args:
+    print('''\
+a  - add
+c  - record
+cp - checkpoint
+d  - diff
+g  - get
+s  - status
+l  - changes
+h  - help
+p  - pull
+r  - rollback
+v  - revert\
+''', file=sys.stderr)
+    sys.exit(-1)
+
+c = args[0]
+as_ = args[1:]
+if c == 'a':
+    c2 = 'add --case-ok'
+elif c == 'c':
+    c2 = 'record'
+elif c == 'cp':
+    c2 = 'record -a -m cp'
+elif c == 'd':
+    c2 = 'diff'
+elif c == 'g':
+    c2 = 'get'
+elif c == 's':
+    c2 = 'whatsnew -l'
+elif c == 'l':
+    c2 = 'changes'
+elif c == 'h':
+    c2 = 'help'
+elif c == 'p':
+    c2 = 'pull'
+elif c == 'r':
+    c2 = 'rollback'
+elif c == 'v':
+    c2 = 'revert'
+else:
+    print('unknown command', file=sys.stderr)
+    sys.exit(-1)
+
+cmd = ['darcs'] + c2.split(' ') + as_
+cu.cmd_wait(cmd)

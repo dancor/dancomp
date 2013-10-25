@@ -1,0 +1,22 @@
+#!/bin/bash
+# DANGER: kill current branch
+BR="$1"
+shift
+if [[ -z "$BR" ]]
+then
+  BR=`git say-branch`
+fi
+echo 'are you sure you want to delete branch '"$BR"'?' &&
+read Y &&
+if [[ "$Y" == 'y' ]]
+then
+  if [[ "`git say-branch`" == "$BR" ]]
+  then
+    git checkout-master
+  fi
+  git branch -D "$BR" "$@" &&
+  cd `git root-dir` &&
+  rm -f .per_branch/"$BR".tags
+else
+  echo 'delete canceled'
+fi

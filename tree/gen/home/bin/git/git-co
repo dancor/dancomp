@@ -1,0 +1,4 @@
+#!/bin/sh
+# switch to a branch and update ctags link
+git checkout "$@" &&
+exec git per-branch

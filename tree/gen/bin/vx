@@ -1,0 +1,5 @@
+#!/bin/sh
+set -e
+F="$1"
+v "$@"
+chmod +x "$F"

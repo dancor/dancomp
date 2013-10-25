@@ -1,0 +1,6 @@
+#!/bin/sh
+
+source ~/.x.display
+
+screen -S z -x ||
+screen -S z

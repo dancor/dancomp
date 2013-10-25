@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+import email.Parser as ep
+import sys
+(folder,) = sys.argv[1:]
+e = ep.Parser()
+m = e.parse(sys.stdin, True)
+l = m.get('From').split('@', 1)[0]
+if not l:
+  l = ""
+s = m.get('Subject')
+if not s:
+  s = ""
+print('Mail:'+folder+':'+l+':'+s)

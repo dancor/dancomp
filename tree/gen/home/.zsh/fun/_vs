@@ -1,0 +1,29 @@
+#compdef vs
+
+typeset -A opt_args
+local context state line ret=1
+
+arguments=(
+  '-r[remove]'
+  '-d+:dir:->directories'
+  '*:files:->files'
+)
+_arguments -s -S $arguments
+
+case $state in
+(files)
+  dir=$words[3]
+  if [ -z "$dir" ]
+  then
+    dir=bin
+  fi
+  l=( ~/p/dancomp{,-secret}/tree/*/"$dir" )
+  _files -W l -g '.*' && ret=0
+  ;;
+(directories)
+  l=( ~/p/dancomp{,-secret}/tree/* )
+  _directories -W l && ret=0
+  ;;
+esac
+
+return ret

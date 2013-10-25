@@ -1,0 +1,33 @@
+#!/bin/bash
+#
+# Git-aware prompt generator. This will output a prompt that indicates
+# the current branch name as well as the current directory relative to the
+# root of the current repository. If you're not in a repository, it will
+# echo its arguments.
+#
+# To use from zsh:
+#   setopt PROMPT_SUBST
+#   export PROMPT='`git PROMPT "$USER@%m:%~%% "`'
+# To use from bash:
+#   export PS1='$(git PROMPT "\u@\h:\W\$ ")'
+#
+
+# Figure out the branch name for the current HEAD (this returns an error
+# if we're not in a repo)
+BR=$(git symbolic-ref HEAD 2>/dev/null) || { echo "$@" ; exit ; }
+BR=${BR#refs/heads/}
+
+# Figure out where we are relative to the top of the repo
+REL=$(git rev-parse --show-prefix)
+REL="${REL//%\/}"
+LOC="${PWD%/$REL}"
+
+# Now output an appropriate prompt.
+case "$SHELL" in
+	*/bash)
+		echo "$USER@$HOSTNAME:[$BR]${LOC/*\/}${REL:+/$REL}% "
+		;;
+	*/zsh)
+		echo "$USER@%m:[$BR]${LOC/*\/}${REL:+/$REL}%% "
+		;;
+esac

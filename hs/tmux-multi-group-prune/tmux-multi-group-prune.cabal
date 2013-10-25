@@ -1,0 +1,15 @@
+name:            tmux-multi-group-prune
+version:         0.1
+license:         BSD3
+license-file:    LICENSE
+author:          dan corson <danl@alum.mit.edu>
+synopsis:        <syn>
+build-type:      Simple
+build-depends:   base, process
+
+executable:      tmux-multi-group-prune
+main-is:         Main.hs
+hs-source-dirs:  src
+
+exposed-modules: tmux-multi-group-prune
+hs-source-dirs:  src

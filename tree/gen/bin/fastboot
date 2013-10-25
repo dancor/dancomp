@@ -1,0 +1,2 @@
+#!/bin/sh
+exec sudo /home/danl/i/android/android-sdk-linux/platform-tools/fastboot "$@"

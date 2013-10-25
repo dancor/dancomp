@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e
+S=${1:-astrillvpn}
+#S=${1:-strongvpn}
+echo "$S"
+sudo sv u "$S"
+exec tail -f /var/log/service/"$S"/current

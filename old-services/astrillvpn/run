@@ -1,0 +1,4 @@
+#!/bin/sh
+set -e
+cd /home/danl/comp/vpncerts/astrill/all
+exec openvpn 14-USA-Los-Angeles-10.ovpn

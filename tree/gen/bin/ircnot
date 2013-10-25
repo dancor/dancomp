@@ -1,0 +1,9 @@
+#!/usr/bin/env python
+
+import os
+from cmd_util import cmd_run
+
+# hack..
+os.environ['HOME'] = '/home/danl'
+
+p = cmd_run("ssh dan 'tail -n2 -f .irssi/fnotify' | while read a; do notif \"$a\"; done")

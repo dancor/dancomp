@@ -1,0 +1,2 @@
+#!/bin/sh
+exec ~/p/super-gen-pass/hs/pw "$@"
