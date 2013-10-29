@@ -171,8 +171,8 @@ Mod4 r m e :ExecCommand xm b2
 Mod4 r m i :ExecCommand xm b3
 Mod4 r m o :ExecCommand xm b4
 
-Mod4 r z r :ExecCommand xm --asia a1
-Mod4 r z s :ExecCommand xm --asia a2
+Mod4 r z r :ExecCommand xm --asia A1
+Mod4 r z s :ExecCommand xm --asia A2
 
 Mod4 r f :ExecCommand ff
 Mod4 r Shift f :ExecCommand ff -f

@@ -22,6 +22,8 @@ asdf
 xset r rate 200 40
 synclient TouchpadOff=1
 
+think-touch off
+
 # xscreensaver doesn't return so must be &
 xscreensaver -no-splash &
 
@@ -41,7 +43,7 @@ notifier &
 sleep 1
 ff &
 sleep 1
-scrs -m h -- -z &
+scrs -m h -- --asia &
 sleep 1
 scrs -m h &
 
