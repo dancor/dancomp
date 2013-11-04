@@ -30,6 +30,8 @@ common_dirs = [
     os.path.join(p, "one-off"),
     os.path.join(p, "one-off", "hs"),
     os.path.join(h, "l"),
+    os.path.join(h, "l", "l"),
+    os.path.join(h, "l", "l", "mandarin"),
 ]
 
 # we could conceivably just do word expansions and have all parent dirs

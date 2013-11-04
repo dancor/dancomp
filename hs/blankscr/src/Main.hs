@@ -16,32 +16,43 @@ filterCommand outF errF cmd = do
     waitForProcess pId
     return ()
 
+--ssName = "xscreensaver"
+ssName = "gnome-screensaver"
+
 ignAlrRun :: String -> String
+ignAlrRun = id
+{-
 ignAlrRun = unlines . ignL . lines
   where
     ignL all@(a:b:x) =
-        if a =~ ("^xscreensaver: [0-9][0-9]:[0-9][0-9]:[0-9][0-9]: " ++
+        if a =~ ("^" ++ ssName ++ ": [0-9][0-9]:[0-9][0-9]:[0-9][0-9]: " ++
                  "already running on display ") &&
            b =~ "^ from process "
         then x else all
     ignL x = x
+-}
+
 
 ignActLock :: String -> String
+ignActLock = id
+{-
 ignActLock = unlines . ignL . lines
   where
-    ignL ("xscreensaver-command: activating and locking.":"":x) = x
+    ignL (ssName ++ "-command: activating and locking.":"":x) = x
     ignL x = x
+-}
 
 main :: IO ()
 main = do
-    forkIO . forever $
-        runCommand "xset dpms force off" >> threadDelay 10000000
-    filterCommand id ignAlrRun "xscreensaver -no-splash"
-    filterCommand ignActLock id "xscreensaver-command -lock"
-    (_pIn, pOut, pErr, pId) <-
-        runInteractiveCommand "xscreensaver-command -watch"
-    forkIO $ hGetContents pErr >>= hPutStr stderr
+    -- forkIO . forever $
+    runCommand "xset dpms force off" -- >> threadDelay 10000000
+    -- filterCommand id ignAlrRun ssName
+    filterCommand ignActLock id $ ssName ++ "-command --lock"
+    {-
     let waitForUnblank = do
+            (_pIn, pOut, pErr, pId) <-
+                runInteractiveCommand $ ssName ++ "-command"
+            forkIO $ hGetContents pErr >>= hPutStr stderr
             l <- hGetLine pOut
             let ws = words l
             unless (null ws) $
@@ -50,3 +61,4 @@ main = do
                 "LOCK" -> waitForUnblank
                 _ -> hPutStrLn stderr l >> waitForUnblank
     waitForUnblank
+    -}

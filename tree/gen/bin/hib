@@ -6,4 +6,6 @@ adjvol -m
 sudo pm-hibernate
 asdf
 adjvol -u
+sleep 3
+think-touch off
 #synctime > /dev/null 2>&1 &

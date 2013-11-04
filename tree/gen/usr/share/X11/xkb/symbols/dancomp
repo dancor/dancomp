@@ -1,6 +1,6 @@
 partial alphanumeric_keys
 xkb_symbols "dancomp" {
-    name[Group1]= "Dancomp";
+    name[Group1]= "dancomp";
 
     // Alphanumeric section
     key <TLDE> { [        grave,   asciitilde,      dead_tilde,       asciitilde ] };
