@@ -1,8 +1,7 @@
 #!/bin/sh
-adjvol -m
-#net x
+#adjvol -m
 sudo pm-suspend
-asdf
-#net W
-adjvol -u
+#asdf
+#adjvol -u
+sleep 3
 think-touch off

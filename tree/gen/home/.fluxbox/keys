@@ -181,7 +181,7 @@ Mod4 r Mod1 Shift f :ExecCommand ff -f -p s
 Mod4 r x :ExecCommand xt
 Mod4 r g :ExecCommand gimp
 Mod4 r v :ExecCommand gvim
-Mod4 r b :ExecCommand b
+Mod4 r b :ExecCommand ff -f -N
 Mod4 r Shift m :ExecCommand mutt_pull
 Mod4 r k :ExecCommand anki
 
