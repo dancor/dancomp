@@ -25,7 +25,7 @@ synclient TouchpadOff=1
 think-touch off
 
 # xscreensaver doesn't return so must be &
-xscreensaver -no-splash &
+#xscreensaver -no-splash &
 
 # tmux stuff
 export TMUX=''

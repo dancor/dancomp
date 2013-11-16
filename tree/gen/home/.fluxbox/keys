@@ -128,27 +128,35 @@ Mod4 e z w :ExecCommand wf --asia w
 # t is "to" (window-move)
 #
 
-Mod4 t r :ExecCommand wmv r
-Mod4 t s :ExecCommand wmv s
-Mod4 t t :ExecCommand wmv t
-Mod4 t n :ExecCommand wmv n
-Mod4 t e :ExecCommand wmv e
-Mod4 t i :ExecCommand wmv i
-Mod4 t o :ExecCommand wmv o
-Mod4 t a r :ExecCommand wmv ar
-Mod4 t a s :ExecCommand wmv as
-Mod4 t a t :ExecCommand wmv at
-Mod4 t a n :ExecCommand wmv an
-Mod4 t a e :ExecCommand wmv ae
-Mod4 t a i :ExecCommand wmv ai
-Mod4 t a o :ExecCommand wmv ao
-Mod4 t q r :ExecCommand wmv qr
-Mod4 t q s :ExecCommand wmv qs
-Mod4 t q t :ExecCommand wmv qt
-Mod4 t q n :ExecCommand wmv qn
-Mod4 t q e :ExecCommand wmv qe
-Mod4 t q i :ExecCommand wmv qi
-Mod4 t q o :ExecCommand wmv qo
+Mod4 t a :ExecCommand wmv 0
+Mod4 t r :ExecCommand wmv 0
+Mod4 t s :ExecCommand wmv 1
+Mod4 t t :ExecCommand wmv 2
+Mod4 t d :ExecCommand wmv 0+
+Mod4 t x :ExecCommand wmv 0+2
+Mod4 t c :ExecCommand wmv 1+
+Mod4 t v :ExecCommand wmv 0+1.4
+Mod4 t b :ExecCommand wmv 1.4+
+Mod4 t n :ExecCommand wmv s2 0
+Mod4 t e :ExecCommand wmv s2 1
+Mod4 t i :ExecCommand wmv s2 2
+Mod4 t o :ExecCommand wmv s2 3
+Mod4 t q a :ExecCommand wmv 0 +.5
+Mod4 t q r :ExecCommand wmv 0 +.5
+Mod4 t q s :ExecCommand wmv 1 +.5
+Mod4 t q t :ExecCommand wmv 2 +.5
+Mod4 t q n :ExecCommand wmv s2 0 +.5
+Mod4 t q e :ExecCommand wmv s2 1 +.5
+Mod4 t q i :ExecCommand wmv s2 2 +.5
+Mod4 t q o :ExecCommand wmv s2 3 +.5
+Mod4 t z a :ExecCommand wmv 0 .5+
+Mod4 t z r :ExecCommand wmv 0 .5+
+Mod4 t z s :ExecCommand wmv 1 .5+
+Mod4 t z t :ExecCommand wmv 2 .5+
+Mod4 t z n :ExecCommand wmv s2 0 .5+
+Mod4 t z e :ExecCommand wmv s2 1 .5+
+Mod4 t z i :ExecCommand wmv s2 2 .5+
+Mod4 t z o :ExecCommand wmv s2 3 .5+
 
 Mod4 t Shift r :ExecCommand wmv R
 Mod4 t d :ExecCommand wmv d

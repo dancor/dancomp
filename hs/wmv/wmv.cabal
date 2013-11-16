@@ -1,0 +1,12 @@
+name:            wmv
+version:         0.1
+license:         GPL
+license-file:    LICENSE
+author:          Daniel P Corson <danl@alum.mit.edu>
+synopsis:        my crazy window management
+build-type:      Simple
+
+executable:      wmv
+main-is:         Wmv.hs
+hs-source-dirs:  src
+build-depends:   base, process

@@ -55,7 +55,8 @@ a_map = {
     'A': 'xasia',
     'w': 'arora',
     'f': ff,
-    'b': 'Tor Browser',
+    #'b': 'Tor Browser',
+    'b': 'firefox',
     'N': 'NOTIFIEROMG',
     'p': 'pdf',  # evince doesn't put pdf or anything in title, hm
     'k': 'Anki',
