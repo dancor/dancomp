@@ -24,6 +24,8 @@ synclient TouchpadOff=1
 
 think-touch off
 
+fbsetroot -gradient elliptical -from black -to darkblue
+
 # xscreensaver doesn't return so must be &
 #xscreensaver -no-splash &
 

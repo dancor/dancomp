@@ -18,6 +18,7 @@ Commands:
   i - install
   I - reinstall
   l - list
+  p - policy
   P - purge
   r - reconfigure
   R - remove
@@ -67,6 +68,8 @@ elif a in ('i', 'I'):
     cs = 'sudo apt-get%s install -y' % optstr
 elif a == 'l':
     cs = 'dpkg -l'
+elif a == 'p':
+    cs = 'apt-cache policy'
 elif a == 'P':
     cs = 'sudo apt-get purge'
 elif a == 'R':

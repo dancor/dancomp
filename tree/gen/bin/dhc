@@ -1,10 +1,3 @@
 #!/bin/sh
-
 sudo killall dhclient
-#sudo killall dhcpcd
-
-#exec sudo /usr/sbin/dhclient "$@"
-#exec sudo /sbin/dhcpcd "$@"
 exec sudo dhclient "$@"
-
-#sudo cp /etc/resolv.conf.orig /etc/resolv.conf

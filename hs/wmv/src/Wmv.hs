@@ -62,7 +62,7 @@ procArgs = procScr wInit
     readCoord maxVal arg =
         let (rat1, rest) = readRat arg
         in case rest of
-          "" -> P2 rat1 1
+          "" -> P2 rat1 $ min 1 (maxVal - rat1)
           "+" -> P2 rat1 (maxVal - rat1)
           '+':rest2 -> case readRat rest2 of
             (rat2, "") -> P2 rat1 rat2

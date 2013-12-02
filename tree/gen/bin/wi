@@ -1,7 +1,0 @@
-#!/bin/sh
-
-#exec sudo netcfg 'Apple Network ae7b78'
-#net w
-
-sudo sv force-restart wpa-supplicant
-dhc wlan0

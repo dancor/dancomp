@@ -1,2 +1,2 @@
 #!/bin/sh
-exec ssh ubuntu@ec2 "$@"
+TERM=linux exec ssh ubuntu@ec2 "$@"
