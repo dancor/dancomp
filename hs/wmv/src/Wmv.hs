@@ -1,5 +1,6 @@
 {-# LANGUAGE PatternGuards #-}
 
+import Control.Concurrent
 import Data.List
 import Numeric
 import System.Environment
@@ -79,6 +80,7 @@ doWmv :: Wmv -> IO ()
 doWmv w = do
     rawSystem "wmctrl"
         ["-r", wTitle w, "-b", "remove,maximized_vert,maximized_horz"]
+    {-
     print
         [ "-r", wTitle w, "-e"
         , intercalate "," . map show $ map floor
@@ -88,15 +90,20 @@ doWmv w = do
           , s1UnitH * p2 (wY w)
           ]
         ]
-    rawSystem "wmctrl"
-        [ "-r", wTitle w, "-e"
-        , intercalate "," . ("0":) . map show $ map floor
-          [ s1UnitW * p1 (wX w)
-          , s1UnitH * p1 (wY w)
-          , s1UnitW * p2 (wX w)
-          , s1UnitH * p2 (wY w)
-          ]
-        ]
+    -}
+    let doMv = rawSystem "wmctrl"
+            [ "-r", wTitle w, "-e"
+            , intercalate "," . ("0":) . map show $ map floor
+              [ s1UnitW * p1 (wX w)
+              , s1UnitH * p1 (wY w)
+              , s1UnitW * p2 (wX w)
+              , s1UnitH * p2 (wY w)
+              ]
+            ]
+    doMv
+    -- gnome-terminal needs a second move, so again after 0.2 s:
+    threadDelay 200000
+    doMv
     return ()
 
 main :: IO ()

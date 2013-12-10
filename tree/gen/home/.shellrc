@@ -4,13 +4,13 @@ setterm -blength 0
 
 export LANG='en_US.UTF-8'
 
-export XMODIFIERS="@im=ibus"
-export GTK_IM_MODULE=ibus
-export QT_IM_MODULE=ibus
+#export XMODIFIERS="@im=ibus"
+#export GTK_IM_MODULE=ibus
+#export QT_IM_MODULE=ibus
 
-#export XMODIFIERS="@im=scim"
-#export GTK_IM_MODULE=scim
-#export QT_IM_MODULE=scim
+#export XMODIFIERS="@im=fcitx"
+#export GTK_IM_MODULE=fcitx
+#export QT_IM_MODULE=fcitx
 
 # Hack so that GNOME lets me run Fluxbox without a startup delay and an
 # error about Fluxbox not "registering", whatever that means.

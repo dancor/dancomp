@@ -1,11 +1,14 @@
 #!/bin/sh
 set -e
 
-export TMPDIR=/home/danl/tmp
+if [ "x$1" = "x-u" ]
+then
+  rnr 1d cabal update
+  shift
+fi
 
 MY_OPTS='--enable-documentation -pO --haddock-hoogle --haddock-html --haddock-hyperlink-source'
 
-rnr 1d cabal update || true
 exec cabal install $MY_OPTS "$@"
 
 # -O2 is still "_unlikely_ to produced better code than -O"

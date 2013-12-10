@@ -68,6 +68,7 @@ if template == 'hs':
         name_no_underscores = name.replace('_', '-')
     else:
         name_no_underscores = name
+    cmd_wait(['sed', '-i', 's/<name>/%s/' % name, 'Makefile'])
     cmd_wait(['sed', '-i', 's/<name>/%s/' % name, 'name.cabal'])
     cmd_wait(['sed', '-i',
         's/<name_no_underscores>/%s/' % name_no_underscores, 'name.cabal'])

@@ -1,2 +1,2 @@
 #!/bin/sh
-ghc-pkg list|prange 1 0|tr , "\n"|grep -v '^$'|grep -v '('|grep -v '{'|awk '{print $1}'
+ghc-pkg list|prange 1 0|tr , "\n"|grep -v '^$'|grep -v '('|grep -v '{'|awk '{print $1}' | sort
