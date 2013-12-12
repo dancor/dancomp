@@ -1,7 +1,9 @@
 {-# LANGUAGE PatternGuards #-}
 
+import Control.Arrow
 import Control.Concurrent
 import Data.List
+import Data.Ratio
 import Numeric
 import System.Environment
 import System.Process
@@ -10,6 +12,7 @@ data P2 a = P2
     { p1 :: !a
     , p2 :: !a
     }
+    deriving Show
 
 data Wmv = Wmv
     { wScr :: !Int
@@ -17,6 +20,7 @@ data Wmv = Wmv
     , wY :: !(P2 Rational)
     , wTitle :: !String
     }
+    deriving Show
 
 charW, charH :: Rational
 charW = 8
@@ -45,32 +49,43 @@ pInit = P2 0 1
 wInit :: Wmv
 wInit = Wmv 1 pInit pInit ""
 
+readCoord :: Rational -> ReadS (P2 Rational)
+readCoord _ arg@('+':y)
+  | [(rat2, rest)] <- readRat y = [(P2 0 rat2, rest)]
+  | otherwise = []
+readCoord maxVal arg
+  | [(rat1, rest)] <- readRat arg =
+    case rest of
+      '+':y -> case readRat y of
+        (rat2, rest2):_ -> [(P2 rat1 rat2, rest2)]
+        _ -> [(P2 rat1 (maxVal - rat1), rest)]
+      _ -> [(P2 rat1 $ min 1 (maxVal - rat1), rest)]
+  | otherwise = []
+
+-- | Numeric's readFloat almost works, but we also want to allow
+-- numbers starting directly with "." instead of "0.".
+readRat :: ReadS Rational
+readRat x@('.':y)
+  | [(dec, rest)] <- readDec y = [(dec % 10 ^ length (show dec), rest)]
+  | otherwise = []
+readRat x = readFloat x
+
 procArgs :: [String] -> Wmv
 procArgs = procScr wInit
   where
     procScr w (('s':nStr):rest) = procX (w {wScr = read nStr}) rest
     procScr w rest = procX w rest
 
-    procX w (arg:rest) = procY (w {wX = readCoord s1WUnits arg}) rest
+    procX w (arg:rest) =
+        procY (w {wX = coord1}) rest
+      where
+        [(coord1, "")] = readCoord s1WUnits arg
 
-    procY w [] = procTitle w []
-    procY w [title] = procTitle w [title]
-    procY w (arg:rest) = procTitle (w {wY = readCoord s1HUnits arg}) rest
-
-    readCoord maxVal arg@('+':rest)
-      | (rat2, "") <- readRat rest = P2 0 rat2
-      | otherwise = error $ "Could not read coordinates: " ++ arg
-    readCoord maxVal arg =
-        let (rat1, rest) = readRat arg
-        in case rest of
-          "" -> P2 rat1 $ min 1 (maxVal - rat1)
-          "+" -> P2 rat1 (maxVal - rat1)
-          '+':rest2 -> case readRat rest2 of
-            (rat2, "") -> P2 rat1 rat2
-            _ -> error $ "Could not read coordinates: " ++ arg
-          _ -> error $ "Could not read coordinates: " ++ arg
-
-    readRat = head . readFloat
+    procY w args
+      | arg:restArgs <- args,
+        [(coord2, "")] <- readCoord s1HUnits arg =
+        procTitle (w {wY = coord2}) restArgs
+      | otherwise = procTitle w args
 
     procTitle w [] = procTitle w [":ACTIVE:"]
     procTitle w [arg] = w {wTitle = arg}
@@ -109,4 +124,5 @@ doWmv w = do
 main :: IO ()
 main = do
     args <- getArgs
+    --print $ procArgs args
     doWmv $ procArgs args
