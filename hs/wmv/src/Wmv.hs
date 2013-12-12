@@ -58,7 +58,7 @@ readCoord maxVal arg
     case rest of
       '+':y -> case readRat y of
         (rat2, rest2):_ -> [(P2 rat1 rat2, rest2)]
-        _ -> [(P2 rat1 (maxVal - rat1), rest)]
+        _ -> [(P2 rat1 (maxVal - rat1), y)]
       _ -> [(P2 rat1 $ min 1 (maxVal - rat1), rest)]
   | otherwise = []
 
