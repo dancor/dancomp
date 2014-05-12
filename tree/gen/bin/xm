@@ -11,7 +11,6 @@ usage = ''
 opt_p = OptionParser(usage)
 opt_p.add_option("-a", "--adjust-only", action="store_true")
 opt_p.add_option("-r", "--run-only", action="store_true")
-opt_p.add_option("-z", "--asia", action="store_true")
 opt_p.add_option("-v", "--verbose", action="store_true")
 (opts, args) = opt_p.parse_args()
 pos = args[0]
@@ -54,28 +53,16 @@ def coord(n):
         return str(n)
 
 x, y, w, h = wmv.rect_chars(pos)
-if opts.asia:
-    title = pos[0] + "-asia-" + pos[1:]
-    s += 10
-else:
-    title = pos
+title = pos
 if not opts.adjust_only:
-    if opts.asia:
-        if gray:
-            col_args = "--tab-with-profile asia_gray"
-        else:
-            col_args = "--tab-with-profile asia"
-        cmd = "gnome-terminal -t " + cu.arg_esc(title) + " " + col_args + \
-            " -e /usr/local/bin/s\ " + cu.arg_esc(str(s)) + " &"
+    if gray:
+        #col_args = ["-bg", "gray%s" % gray]
+        col_args = ["-bg", "gray5"]
     else:
-        if gray:
-            #col_args = ["-bg", "gray%s" % gray]
-            col_args = ["-bg", "gray5"]
-        else:
-            col_args = []
-        geom_arg = "%dx%d%s%s" % (w, h, coord(x), coord(y))
-        cmd = ["xtsp", str(s), title, "-geometry", geom_arg] + col_args + \
-            extra_args
+        col_args = []
+    geom_arg = "%dx%d%s%s" % (w, h, coord(x), coord(y))
+    cmd = ["xtsp", str(s), title, "-geometry", geom_arg] + col_args + \
+        extra_args
     if opts.verbose:
         print(cmd)
     env_mod = os.environ
@@ -90,7 +77,3 @@ if not opts.run_only:
     sleep(1.5)
     # Why does wmctrl return 1 all the time?
     cu.cmd_wait(cmd, can_fail=True)
-    if opts.asia:
-        # Must run twice for "asia" mode since gnome-terminal is weird now.
-        sleep(0.5)
-        cu.cmd_wait(cmd, can_fail=True)
