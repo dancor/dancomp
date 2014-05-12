@@ -4,12 +4,13 @@ import os
 # base params
 
 w_chars = 80
-h_chars = 40
+h_chars = 48
 
 scr_num = 2
 scrs = range(scr_num)
 
-w1, h1 = 1366, 768
+#w1, h1 = 1366, 768
+w1, h1 = 1280, 768
 w2, h2 = 1920, 1080
 
 wc, hc = 8, 13

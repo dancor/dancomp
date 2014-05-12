@@ -16,9 +16,9 @@ def concat(lol):
 def scr_split(scrs):
     return concat(['h' + s, 'l' + s] for s in scrs)
 
-home = scrange("A", wmv_lib.scr_full_term_num[0])
-work_l = scrange("a", wmv_lib.scr_full_term_num[0])
-work_r = scrange("b", wmv_lib.scr_full_term_num[1])
+home = scrange("A", wmv_lib.scr_term_num[0])
+work_l = scrange("a", wmv_lib.scr_term_num[0])
+work_r = scrange("b", wmv_lib.scr_term_num[1])
 work = work_l + work_r
 a_map = {
   "h": home,

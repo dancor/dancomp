@@ -4,4 +4,4 @@ n="$1"
 shift
 t="$1"
 shift
-xt -T "$t" "$@" -e s "$n" &
+exec xt -T "$t" "$@" -e s "$n" &

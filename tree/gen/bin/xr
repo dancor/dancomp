@@ -3,4 +3,5 @@ xset -dpms
 # florida projector maybe?
 #xrandr --output VGA1 --right-of LVDS1 --mode 848x480
 # hilo tv
-xrandr --output VGA1 --right-of LVDS1 --mode 1920x1080
+#xrandr --output VGA1 --right-of LVDS1 --mode 1920x1080
+xrandr --output HDMI1 --right-of LVDS1 --mode 1920x1080

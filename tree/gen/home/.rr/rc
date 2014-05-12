@@ -1,18 +1,20 @@
 <1/daily>
-1 - anki - 5 PM
-1 - chinese - newspaper, lyrics, or chinesepod 2200s up
-1 - exer - arm swings, cat-cows, crunches (30, 30 lateral, 20 low, repeat)
+1 - anki - 5 AM
+#1 - chinese - newspaper, lyrics, or chinesepod 2200s up
+1 - exer - arm swings, cat-cows, crunch (30,30lat,20low,rep), long stretches
 1 - fish
 1 - nap
-1 - read
+1 - read - - rat ~/'Books/games/go/Elements-Of-Go/3-Tesuji/Go_ Elem Go 3 Tesuji (Clean) - James Davies.pdf'
 
 <1/weekly>
 1 - apod - - ff apod.nasa.gov
 1 - arabic - write out alphabet
-1 - backup - ~/bkup-critical
-1 - chess - 1x "getgame f" (blitz) - eboard
-1 - piano
+1 - backup - do ~/bkup-critical
+1 - chess - - eboard
+1 - news - - ff https://news.google.com/news?ned=us
+#1 - piano
 1 - prog - melang see readme
 1 - juggle
 1 - uke
-1 - go - 1x automatch ("fast", not "lightning") - go
+#1 - go - 1x automatch ("fast", not "lightning") - go
+1 - go - - go

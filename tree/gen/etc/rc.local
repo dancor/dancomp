@@ -14,6 +14,8 @@
 rfkill block bluetooth
 /sbin/alsactl restore
 su -c /usr/local/bin/init-my-tmux danl
+#/usr/bin/tpb -d --config=/etc/tbprc
+cp /sys/devices/platform/thinkpad_acpi/hotkey_all_mask /sys/devices/platform/thinkpad_acpi/hotkey_mask
 
 # powertop recommendations:
 echo 1500 > /proc/sys/vm/dirty_writeback_centisecs

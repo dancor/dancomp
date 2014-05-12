@@ -9,4 +9,7 @@ build-type:      Simple
 executable:      wmv
 main-is:         Wmv.hs
 hs-source-dirs:  src
-build-depends:   base, process
+build-depends:
+    base
+  , MissingH
+  , process

@@ -1,2 +1,2 @@
 #!/bin/sh
-exec sudo -u danl /usr/local/bin/memoplex -s -p dan2 > /var/log/memoplex 2>&1
+exec sudo -u danl memoplex -s

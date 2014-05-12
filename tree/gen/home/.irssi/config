@@ -2,7 +2,8 @@ servers = (
   {
     address = "irc.freenode.net";
     chatnet = "n";
-    port = "7000";
+    port = "6667";
+    #port = "7000";
     autoconnect = "Yes";
     password = "SECRET-PASSWORD";
   },

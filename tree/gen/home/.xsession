@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# hack but doesn't persist?
-sudo rfkill block bluetooth
-
 xrdb -load ~/.Xresources
 
 SCRS_MODE=h
@@ -39,8 +36,5 @@ nm-applet &
 gnome-settings-daemon &
 gnome-volume-manager &
 conky &
-
-# why doesn't something else start this?
-#dropbox start &
 
 startfluxbox

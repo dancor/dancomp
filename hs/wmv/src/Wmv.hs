@@ -1,8 +1,10 @@
 {-# LANGUAGE PatternGuards #-}
 
+import Control.Applicative
 import Control.Arrow
 import Control.Concurrent
 import Data.List
+import Data.List.Utils
 import Data.Ratio
 import Numeric
 import System.Environment
@@ -30,19 +32,6 @@ s1UnitChW, s1UnitChH :: Rational
 s1UnitChW = 80
 s1UnitChH = 40
 
-s1UnitW, s1UnitH :: Rational
-s1UnitW = charW * s1UnitChW
--- s1UnitH = charH * s1UnitChH
-s1UnitH = s1H
-
-s1W, s1H :: Rational
-s1W = 1366
-s1H = 768
-
-s1WUnits, s1HUnits :: Rational
-s1WUnits = s1W / s1UnitW
-s1HUnits = s1H / s1UnitH
-
 pInit :: P2 Rational
 pInit = P2 0 1
 
@@ -65,13 +54,13 @@ readCoord maxVal arg
 -- | Numeric's readFloat almost works, but we also want to allow
 -- numbers starting directly with "." instead of "0.".
 readRat :: ReadS Rational
-readRat x@('.':y)
+readRat ('.':y)
   | [(dec, rest)] <- readDec y = [(dec % 10 ^ length (show dec), rest)]
   | otherwise = []
 readRat x = readFloat x
 
-procArgs :: [String] -> Wmv
-procArgs = procScr wInit
+procArgs :: Rational -> Rational -> [String] -> Wmv
+procArgs s1WUnits s1HUnits = procScr wInit
   where
     procScr w (('s':nStr):rest) = procX (w {wScr = read nStr}) rest
     procScr w rest = procX w rest
@@ -91,21 +80,10 @@ procArgs = procScr wInit
     procTitle w [arg] = w {wTitle = arg}
     procTitle _ args = error $ "Multiple arguments for title: " ++ show args
 
-doWmv :: Wmv -> IO ()
-doWmv w = do
+doWmv :: Rational -> Rational -> Wmv -> IO ()
+doWmv s1UnitW s1UnitH w = do
     rawSystem "wmctrl"
         ["-r", wTitle w, "-b", "remove,maximized_vert,maximized_horz"]
-    {-
-    print
-        [ "-r", wTitle w, "-e"
-        , intercalate "," . map show $ map floor
-          [ s1UnitW * p1 (wX w)
-          , s1UnitH * p1 (wY w)
-          , s1UnitW * p2 (wX w)
-          , s1UnitH * p2 (wY w)
-          ]
-        ]
-    -}
     let doMv = rawSystem "wmctrl"
             [ "-r", wTitle w, "-e"
             , intercalate "," . ("0":) . map show $ map floor
@@ -123,6 +101,16 @@ doWmv w = do
 
 main :: IO ()
 main = do
+    s1PixelWStr:s1PixelHStr:_ <- words . replace "x" " " .  head . words .
+        head . filter ("*" `isInfixOf`) . lines <$> readProcess "xrandr" [] ""
+    print s1PixelWStr
+    print s1PixelHStr
+    let s1PixelW = fromIntegral (read s1PixelWStr :: Int)
+        s1PixelH = fromIntegral (read s1PixelHStr :: Int)
+        -- A unit is a place on the screen for a normal size text terminal.
+        s1UnitW = charW * s1UnitChW
+        s1UnitH = s1PixelH
+        s1WUnits = s1PixelW / s1UnitW
+        s1HUnits = s1PixelH / s1UnitH
     args <- getArgs
-    --print $ procArgs args
-    doWmv $ procArgs args
+    doWmv s1UnitW s1UnitH $ procArgs s1WUnits s1HUnits args

@@ -11,14 +11,14 @@ usage = 'usage: ./wf [options] <window-abbr>'
 opt_p = OptionParser(usage)
 opt_p.add_option('-z', '--hide', action='store_true',
     help='hide instead of switch-to')
-opt_p.add_option('', '--asia', action='store_true',
-    help='affect larger/foreign-character terminal')
+opt_p.add_option('-v', '--verbose', action='store_true',
+    help='display the underlying wmctrl commands')
 (opts, args) = opt_p.parse_args()
 
 if opts.hide:
-    action = '-z'
+    wmctrl_action = '-z'
 else:
-    action = '-a'
+    wmctrl_action = '-a'
 
 a, = args
 
@@ -52,10 +52,9 @@ a_map = {
     'e': 'b2',
     'i': 'b3',
     'o': 'b4',
-    'A': 'xasia',
     'w': 'arora',
     'f': ff,
-    #'b': 'Tor Browser',
+    'T': 'Tor Browser',
     'b': 'firefox',
     'N': 'NOTIFIEROMG',
     'p': 'pdf',  # evince doesn't put pdf or anything in title, hm
@@ -63,7 +62,22 @@ a_map = {
     'Q': 'Quod Libet',
 }
 
-title = a_map[a]
-if opts.asia:
-    title = title[0] + "-asia-" + title[1:]
-cu.cmd_wait(['wmctrl', action, pref + title], can_fail=True)
+title = pref + a_map[a]
+
+def wf(args):
+    cmd = ['wmctrl'] + args
+    if opts.verbose:
+        print("Running: " + cu.cmd_str(cmd))
+    cu.cmd_wait(cmd, can_fail=True)
+
+# hack to keep tiny window aligned with last full window
+if a == 's':
+    wf(["-r", a_map['t'], "-b", "add,above"])
+#if a != 'r' and a != 's':
+    wf(["-r", a_map['t'], "-b", "remove,above"])
+
+if a == 'N':
+    # notifier window can have this set
+    wf(["-r", title, "-b", "remove,below"])
+
+wf([wmctrl_action, title])

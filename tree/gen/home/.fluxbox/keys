@@ -4,10 +4,10 @@ OnRightGrip Move1 :StartResizing bottomright
 OnWindowBorder Move1 :StartMoving
 OnTitlebar Mouse3 :WindowMenu
 
-XF86AudioRaiseVolume :Exec adjvol -r
-XF86AudioLowerVolume :Exec adjvol -l
-XF86AudioMute :Exec adjvol -m
-XF86Launch1 :Exec adjvol -s 70
+#XF86AudioRaiseVolume :Exec adjvol -r
+#XF86AudioLowerVolume :Exec adjvol -l
+#XF86AudioMute :Exec adjvol -m
+#XF86Launch1 :Exec adjvol -s 70
 
 XF86LaunchA :Exec think-rotate
 
@@ -57,7 +57,6 @@ Mod4 z n :ExecCommand wf -z n
 Mod4 z o :ExecCommand wf -z o
 Mod4 z a :ExecCommand wf -z a
 Mod4 z f :ExecCommand wf -z f
-Mod4 z Shift n :ExecCommand wf -z N
 Mod4 z p :ExecCommand wf -z p
 Mod4 z w :ExecCommand wf -z w
 
@@ -75,23 +74,10 @@ Mod4 s o :ExecCommand wf o
 Mod4 s a :ExecCommand wf a
 Mod4 s f :ExecCommand wf f
 Mod4 s b :ExecCommand wf b
-Mod4 s Shift n :ExecCommand wf N
 Mod4 s p :ExecCommand wf p
 Mod4 s w :ExecCommand wf w
 Mod4 s k :ExecCommand wf k
-
-Mod4 s z r :ExecCommand wf --asia r
-Mod4 s z s :ExecCommand wf --asia s
-Mod4 s z t :ExecCommand wf --asia t
-Mod4 s z n :ExecCommand wf --asia n
-Mod4 s z e :ExecCommand wf --asia e
-Mod4 s z i :ExecCommand wf --asia i
-Mod4 s z o :ExecCommand wf --asia o
-Mod4 s z a :ExecCommand wf --asia a
-Mod4 s z f :ExecCommand wf --asia f
-Mod4 s z Shift n :ExecCommand wf --asia N
-Mod4 s z p :ExecCommand wf --asia p
-Mod4 s z w :ExecCommand wf --asia w
+Mod4 s T :ExecCommand wf T
 
 #
 # e is backup for switch-to (window-focus)
@@ -106,23 +92,9 @@ Mod4 e i :ExecCommand wf i
 Mod4 e o :ExecCommand wf o
 Mod4 e a :ExecCommand wf a
 Mod4 e f :ExecCommand wf f
-Mod4 e Shift n :ExecCommand wf N
 Mod4 e p :ExecCommand wf p
 Mod4 e w :ExecCommand wf w
 Mod4 e k :ExecCommand wf k
-
-Mod4 e z r :ExecCommand wf --asia r
-Mod4 e z s :ExecCommand wf --asia s
-Mod4 e z t :ExecCommand wf --asia t
-Mod4 e z n :ExecCommand wf --asia n
-Mod4 e z e :ExecCommand wf --asia e
-Mod4 e z i :ExecCommand wf --asia i
-Mod4 e z o :ExecCommand wf --asia o
-Mod4 e z a :ExecCommand wf --asia a
-Mod4 e z f :ExecCommand wf --asia f
-Mod4 e z Shift n :ExecCommand wf --asia N
-Mod4 e z p :ExecCommand wf --asia p
-Mod4 e z w :ExecCommand wf --asia w
 
 #
 # t is "to" (window-move)
@@ -178,9 +150,6 @@ Mod4 r m n :ExecCommand xm b1
 Mod4 r m e :ExecCommand xm b2
 Mod4 r m i :ExecCommand xm b3
 Mod4 r m o :ExecCommand xm b4
-
-Mod4 r z r :ExecCommand xm --asia A1
-Mod4 r z s :ExecCommand xm --asia A2
 
 Mod4 r f :ExecCommand ff
 Mod4 r Shift f :ExecCommand ff -f

@@ -18,8 +18,8 @@ if lang == 'thai':
         'xft:TlwgMono:pixelsize=36,xft:Biwidth:pixelsize=36']
     cmd_wait(cmd)
 elif lang == 'z':
-    cmd = ['urxvt', '-geometry', '30x17+0+0', '-fn',
-        'xft:Biwidth:pixelsize=26']
+    cmd = ['urxvt', '-geometry', '80x55+0+0', '-fn',
+        'xft:AR PL UMing CN:pixelsize=13']
     cmd_wait(cmd)
 else:
     print('wat', file=sys.stderr)

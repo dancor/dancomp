@@ -13,7 +13,7 @@ import Control.Monad.Identity
 import Control.Monad.Random
 import Control.Parallel
 import Control.Parallel.Strategies
-import Control.Wire
+import qualified Control.Wire as Wire
 import qualified Data.Aeson as Ae
 import Data.Binary
 import Data.Bits
@@ -56,6 +56,7 @@ import qualified Data.Text.Lazy as DTL
 import qualified Data.Text.Lazy.IO as DTLI
 import Data.Time
 import Data.Time.Clock.POSIX
+import Data.Time.Clock.TAI
 import qualified Data.Traversable as Trav
 import Data.Tree
 import qualified Data.Vector as Vec
@@ -66,7 +67,6 @@ import Language.Haskell.TH
 import MajMemSys
 import Network.URI
 import Numeric
-import Prelude hiding ((.), id)
 import System.Cmd
 import System.Directory
 import System.Environment
@@ -79,6 +79,7 @@ import System.Random
 import qualified System.Random.MWC as MWC
 import Test.QuickCheck
 import qualified Text.ParserCombinators.Parsec as Psec
+import Text.HTML.TagSoup
 import Text.Regex.Posix
 import qualified Text.XML.Light as TXL
 import qualified Text.XHtml as TXH

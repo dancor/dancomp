@@ -1,6 +1,7 @@
 import Control.Concurrent
 import Control.Monad
 import Data.List
+import System.Environment
 import System.IO
 import System.Process
 import Text.Regex.Posix
@@ -44,10 +45,17 @@ ignActLock = unlines . ignL . lines
 
 main :: IO ()
 main = do
+    args <- getArgs
+    case args of
+      [] -> do
+        runCommand "xset dpms 10"
+        runCommand "xset dpms force off"
+      ["-k"] -> runCommand "xset dpms 0"
+      _ -> error "usage: ./blankscr (-k)"
+    return ()
     -- forkIO . forever $
-    runCommand "xset dpms force off" -- >> threadDelay 10000000
     -- filterCommand id ignAlrRun ssName
-    filterCommand ignActLock id $ ssName ++ "-command --lock"
+    -- filterCommand ignActLock id $ ssName ++ "-command --lock"
     {-
     let waitForUnblank = do
             (_pIn, pOut, pErr, pId) <-

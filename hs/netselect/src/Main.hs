@@ -15,8 +15,13 @@ main :: IO ()
 main = do
     args <- getArgs
     case args of
-      ["wi"] -> sv ["force-restart", "wpa-supplicant"] >> sys "dhc" ["wlan0"]
-      ["eth"] -> eth ["up"] >> sys "dhc" ["eth0"]
+      ["dhcp-debug"] -> sys "dhc" ["-v", "wlan0"]
       ["down"] -> wi ["down"] >> eth ["down"]
+      ["eth"] -> eth ["up"] >> sys "dhc" ["eth0"]
       ["tun"] -> sudo ["sv", "restart", "sshproxy"]
-      _ -> error "usage: nets <down|eth|wi|tun>"
+      ["wi"] -> sv ["force-restart", "wpa-supplicant"] >> sys "dhc" ["wlan0"]
+      ["wi-debug"] -> do
+        sv ["force-stop", "wpa-supplicant"]
+        sudo ["wpa_supplicant", "-d", "-Dwext", "-iwlan0", 
+            "-c/etc/wpa_supplicant.conf"]
+      _ -> error "usage: nets <dhcp-debug | down | eth | tun | wi | wi-debug>"

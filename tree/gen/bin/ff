@@ -10,13 +10,14 @@ opt_p.add_option('-p', '--profile')
 opt_p.add_option('-P', '--proxy', action='store_true')
 opt_p.add_option('-N', '--no-proxy', action='store_true')
 opt_p.add_option('-f', '--firefox', action='store_true')
+opt_p.add_option('-c', '--chromium', action='store_true')
 opt_p.add_option('-d', '--debug', action='store_true')
 (opts, args) = opt_p.parse_args()
 host = socket.gethostname()
 
 # default changes depending on location etc.
-#proxy = False
-proxy = True
+proxy = False
+#proxy = True
 if opts.proxy:
     proxy = True
 elif opts.no_proxy:
@@ -24,27 +25,12 @@ elif opts.no_proxy:
 
 profile = ''
 browser_type = 'ff'
-if opts.firefox:
-    cmd = ['firefox']
-    profile = 'default'
-elif os.path.exists('/usr/bin/chromium'):
-    cmd = ['/usr/bin/chromium']
+if opts.chromium:
+    cmd = ['chromium-browser']
     browser_type = 'goog'
-elif os.path.exists('/usr/bin/chromium-browser'):
-    cmd = ['/usr/bin/chromium-browser']
-    browser_type = 'goog'
-elif os.path.exists('/opt/firefox/bin/firefox'):
-    cmd = ['/opt/firefox/bin/firefox']
-    profile = 'default'
-elif os.path.exists('/opt/firefox/firefox'):
-    cmd = ['/opt/firefox/firefox']
-    profile = 'default'
-elif host in ('hank',):
-    cmd = ['arora']
-elif os.path.exists('/usr/bin/iceweasel'):
-    cmd = ['iceweasel']
 else:
     cmd = ['firefox']
+    profile = 'default'
 
 if opts.profile:
     profile = opts.profile
@@ -52,7 +38,9 @@ if browser_type == 'goog':
     home = os.getenv('HOME')
     cmd += ['--user-data-dir=%s/.config/chromium/%s' % (home, profile)]
 elif browser_type == 'ff':
-    cmd += ['-no-remote', '-P', profile]
+    if profile != 'default':
+        cmd += ['-new-instance']
+    cmd += ['-P', profile]
 else:
     cmd.error_out("don't know about profile support for browser type")
 

@@ -24,7 +24,7 @@ synclient TouchpadOff=1
 
 think-touch off
 
-fbsetroot -gradient elliptical -from black -to darkblue
+#fbsetroot -gradient elliptical -from black -to darkblue
 
 # xscreensaver doesn't return so must be &
 #xscreensaver -no-splash &
@@ -33,22 +33,21 @@ fbsetroot -gradient elliptical -from black -to darkblue
 export TMUX=''
 tmux-multi-group-prune &
 
-sleep 5
+nets wi &
 
-# internet
-sudo nm-applet &
-#wi &
+sleep 5
 
 # other stuff
 #nautilus &
-notifier &
 sleep 1
 ff &
 sleep 1
-scrs -m h -- --asia &
-sleep 1
-scrs -m h &
+scrs &
 
 gnome-panel &
+
+# why is notifier so wack?
+#sleep 1
+#notifier &
 
 exec fluxbox
