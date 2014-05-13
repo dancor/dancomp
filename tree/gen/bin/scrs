@@ -4,68 +4,20 @@ from optparse import OptionParser
 import cmd_util as cu
 import sys
 import time
-import wmv_lib
 
 def scrange(pref, n):
-    return [pref + str(i) for i in range(1, n + 1)]
-def concat(lol):
-    r = []
-    for l in lol:
-        r += l
-    return r
-def scr_split(scrs):
-    return concat(['h' + s, 'l' + s] for s in scrs)
+    return [(pref + str(i), str(i - 1), str(i)) for i in range(1, n + 1)]
 
-home = scrange("A", wmv_lib.scr_term_num[0])
-work_l = scrange("a", wmv_lib.scr_term_num[0])
-work_r = scrange("b", wmv_lib.scr_term_num[1])
-work = work_l + work_r
-a_map = {
-  "h": home,
-  "w": work,
-  "wl": work_l,
-  "wr": work_r,
-  "wl2r": work_l + scr_split(work_r),
-  "w2lr": scr_split(work_l) + work_r,
-  "h2": scr_split(home),
-  "w2": scr_split(work),
-  "w2l": scr_split(work_l),
-  "w2r": scr_split(work_r),
-}
+# duplicates wmv stuff?
+scrs = scrange("a", 3)
 
-abbr_lines = []
-for k, v in sorted(a_map.items()):
-    k = str(k)
-    abbr_lines.append("  " + k + " " * (4 - len(k)) + str(v))
-usage = "\n".join(
-    ["usage: scrs [options] -- [extra-agrs-to-xm]",
-     "",
-     "Modes:",
-    ] + abbr_lines)
+usage = "usage: scrs [options] -- [extra-agrs-to-xm]"
 opt_p = OptionParser(usage)
-opt_p.add_option("-m", "--mode", help="mode to use")
 opt_p.add_option("-v", "--verbose", action="store_true", help="show commands")
-opt_p.add_option("-z", "--asia", action="store_true")
 (opts, args) = opt_p.parse_args()
 
-def usage_die():
-    opt_p.print_help()
-    sys.exit(-1)
-
-a = opts.mode
-if a is None:
-    a = "h"
-if a in a_map:
-    scrs = a_map[a]
-else:
-    usage_die()
-
-if opts.asia:
-    args = ["--asia"] + args
-
-for s in scrs:
-    #cmd = " ".join(["xm", s] + list(cu.args_esc(args))) + " &"
-    cmd = " ".join(["xm", s] + list(cu.args_esc(args))) + " >> /home/danl/log/xm_wtf 2>&1 &"
+for title, pos, tmux in scrs:
+    cmd = " ".join(["xm", title, pos, tmux] + list(cu.args_esc(args))) + " >> /home/danl/log/xm_wtf 2>&1 &"
     if opts.verbose:
         print(cmd)
     cu.cmd_wait(cmd)
