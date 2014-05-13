@@ -4,7 +4,6 @@ from optparse import OptionParser
 from time import sleep
 import cmd_util as cu
 import sys
-import wmv_lib as wmv
 import os
 
 usage = ''
@@ -13,38 +12,10 @@ opt_p.add_option("-a", "--adjust-only", action="store_true")
 opt_p.add_option("-r", "--run-only", action="store_true")
 opt_p.add_option("-v", "--verbose", action="store_true")
 (opts, args) = opt_p.parse_args()
-pos = args[0]
-extra_args = args[1:]
-
-s_map = {
-    "b1": (1, 0),
-    "b2": (2, 10),
-    "b3": (3, 0),
-    "b4": (4, 10),
-    "a1": (11, 0),
-    "a2": (12, 5),
-    "a3": (13, 0),
-    "lb1": (21, 0),
-    "lb2": (22, 0),
-    "lb3": (23, 0),
-    "lb4": (24, 0),
-    "la1": (7, 0),
-    "la2": (8, 0),
-    "la3": (9, 0),
-    "A1": (1, 0),
-    "A2": (2, 5),
-    "A3": (3, 0),
-    "lA1": (7, 0),
-    "lA2": (8, 0),
-    "lA3": (9, 0),
-}
-
-if pos[0] == "h":
-    (s, gray) = s_map[pos[1:]]
-else:
-    (s, gray) = s_map[pos]
-
-pos = pos.lower()
+term_title = args[0]
+wmv_arg = args[1]
+tmux_num = args[2]
+term_extra_args = args[3:]
 
 def coord(n):
     if n >= 0:
@@ -52,28 +23,30 @@ def coord(n):
     else:
         return str(n)
 
-x, y, w, h = wmv.rect_chars(pos)
-title = pos
 if not opts.adjust_only:
+    xS, yS, wS, hS = \
+        cu.cmd_output(["wmv", wmv_arg, "--terminal-xywh"])[0].split()
+    x, y, w, h = int(xS), int(yS), int(wS), int(hS)
+    if wmv_arg.isdigit() and int(wmv_arg) % 2 == 1:
+        gray = True
+    else:
+        gray = False
     if gray:
-        #col_args = ["-bg", "gray%s" % gray]
         col_args = ["-bg", "gray5"]
     else:
         col_args = []
     geom_arg = "%dx%d%s%s" % (w, h, coord(x), coord(y))
-    cmd = ["xtsp", str(s), title, "-geometry", geom_arg] + col_args + \
-        extra_args
+    cmd = ["xtsp", tmux_num, term_title, "-geometry", geom_arg] + col_args + \
+        term_extra_args
     if opts.verbose:
         print(cmd)
     env_mod = os.environ
     env_mod["TMUX"] = ""
     cu.cmd_wait(cmd, env=env_mod)
 if not opts.run_only:
-    rect = wmv.rect(pos)
-    cmd = " ".join(cu.args_esc(["wmctrl", "-r", title, "-e",
-        ",".join([str(i) for i in [0] + list(rect)])])) + " &"
+    if not opts.adjust_only:
+        sleep(1.5)
+    cmd = ["wmv", wmv_arg, term_title]
     if opts.verbose:
         print(cmd)
-    sleep(1.5)
-    # Why does wmctrl return 1 all the time?
-    cu.cmd_wait(cmd, can_fail=True)
+    cu.cmd_wait(cmd)

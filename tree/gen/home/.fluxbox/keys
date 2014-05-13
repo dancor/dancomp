@@ -143,13 +143,9 @@ Mod4 t m :ExecCommand wmv m
 Mod4 t comma :ExecCommand wmv ,
 
 # r is "run"
-Mod4 r m r :ExecCommand xm A1
-Mod4 r m s :ExecCommand xm A2
-Mod4 r m t :ExecCommand xm A3
-Mod4 r m n :ExecCommand xm b1
-Mod4 r m e :ExecCommand xm b2
-Mod4 r m i :ExecCommand xm b3
-Mod4 r m o :ExecCommand xm b4
+Mod4 r m r :ExecCommand xm a1 0 1
+Mod4 r m s :ExecCommand xm a2 1 2
+Mod4 r m t :ExecCommand xm a3 2 3
 
 Mod4 r f :ExecCommand ff
 Mod4 r Shift f :ExecCommand ff -f

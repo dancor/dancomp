@@ -81,30 +81,34 @@ procArgs s1WUnits s1HUnits = procScr wInit
     procTitle _ args = error $ "Multiple arguments for title: " ++ show args
 
 doWmv :: Rational -> Rational -> Wmv -> IO ()
-doWmv s1UnitW s1UnitH w = do
-    rawSystem "wmctrl"
-        ["-r", wTitle w, "-b", "remove,maximized_vert,maximized_horz"]
-    let doMv = rawSystem "wmctrl"
-            [ "-r", wTitle w, "-e"
-            , intercalate "," . ("0":) . map show $ map floor
-              [ s1UnitW * p1 (wX w)
-              , s1UnitH * p1 (wY w)
-              , s1UnitW * p2 (wX w)
-              , s1UnitH * p2 (wY w)
-              ]
-            ]
-    doMv
-    -- gnome-terminal needs a second move, so again after 0.2 s:
-    threadDelay 200000
-    doMv
-    return ()
+doWmv s1UnitW s1UnitH w =
+    let [gX, gY] = map (show . floor)
+            [s1UnitW * p1 (wX w), s1UnitH * p1 (wY w)]
+        [gW, gH] = map (show . floor)
+            [s1UnitW * p2 (wX w), s1UnitH * p2 (wY w)]
+        [tW, tH] = map (show . floor)
+            [s1UnitW * p2 (wX w) / charW, s1UnitH * p2 (wY w) / charH]
+        doMv = rawSystem "wmctrl"
+            ["-r", wTitle w, "-e", intercalate "," ["0", gX, gY, gW, gH]]
+    in case wTitle w of
+      "--xywh" -> putStrLn $ intercalate " " [gX, gY, gW, gH]
+      "--terminal-xywh" -> putStrLn $ intercalate " " [gX, gY, tW, tH]
+      "--geometry" -> putStrLn $ concat [gW, "x", gH, "+", gX, "+", gY]
+      "--terminal-geometry" ->
+        putStrLn $ concat [tW, "x", tH, "+", gX, "+", gY]
+      _ -> do
+        rawSystem "wmctrl"
+            ["-r", wTitle w, "-b", "remove,maximized_vert,maximized_horz"]
+        doMv
+        -- gnome-terminal needs a second move, so again after 0.2 s:
+        threadDelay 200000
+        doMv
+        return ()
 
 main :: IO ()
 main = do
     s1PixelWStr:s1PixelHStr:_ <- words . replace "x" " " .  head . words .
         head . filter ("*" `isInfixOf`) . lines <$> readProcess "xrandr" [] ""
-    print s1PixelWStr
-    print s1PixelHStr
     let s1PixelW = fromIntegral (read s1PixelWStr :: Int)
         s1PixelH = fromIntegral (read s1PixelHStr :: Int)
         -- A unit is a place on the screen for a normal size text terminal.
