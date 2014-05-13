@@ -1,0 +1,2 @@
+#!/bin/sh
+exec ssh -L 6667:irc.freenode.net:6667 ubuntu@ec2
