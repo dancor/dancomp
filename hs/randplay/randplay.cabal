@@ -1,0 +1,16 @@
+name:            randplay
+version:         0.1
+license:         BSD3
+license-file:    LICENSE
+author:          dan corson <danl@alum.mit.edu>
+synopsis:        play files randomly from a directory
+build-type:      Simple
+build-depends:
+    base
+  , process
+  , random-fu
+  , unix
+
+executable:      randplay
+main-is:         Main.hs
+hs-source-dirs:  src

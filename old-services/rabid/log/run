@@ -1,7 +1,0 @@
-#!/bin/sh
-set -e
-S=rabid
-mkdir -p /var/log/service
-chown syslog:syslog /var/log/service
-/usr/bin/chpst -u syslog mkdir -p /var/log/service/"$S"
-exec /usr/bin/chpst -u syslog /usr/bin/svlogd -tt /var/log/service/"$S"

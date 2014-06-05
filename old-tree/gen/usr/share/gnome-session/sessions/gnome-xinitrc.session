@@ -1,8 +1,0 @@
-[GNOME Session]
-Name=GNOME .xinitrc
-RequiredProviders=windowmanager;
-DefaultProvider-windowmanager=gnome-xinitrc-wm
-DefaultProvider-notifications=notify-osd
-IsRunnableHelper=/usr/lib/gnome-session/gnome-session-check-accelerated
-FallbackSession=gnome-fallback
-DesktopName=GNOME

@@ -1,0 +1,24 @@
+#!/bin/sh
+set -e
+
+case "$1" in
+'')
+  echo lol >> /home/danl/log/resound
+  HDMI_STATUS=`cat /sys/class/drm/card0/card0-HDMI-A-1/status`;
+  if [ "$HDMI_STATUS" = "connected" ]
+  then
+    WHERE=hdmi
+  else
+    WHERE=analog
+  fi
+  ;;
+analog|hdmi)
+  WHERE="$1"
+  ;;
+*)
+  echo "usage: sound-from (analog|hdmi)" > /dev/stderr
+  exit 1
+  ;;
+esac
+
+exec pactl set-card-profile 0 output:"$WHERE"-stereo+input:analog-stereo

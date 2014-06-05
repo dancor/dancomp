@@ -1,4 +1,0 @@
-#!/bin/bash
-export TERM=screen
-#exec ssh dancor@gbs.tv
-exec ssh dancor@mantup.com

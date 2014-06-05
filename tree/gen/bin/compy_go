@@ -1,4 +1,0 @@
-#!/bin/sh
-set -e
-cd ~/i/gogui/gogui-1.4.6/lib
-java -jar gogui.jar -komi 0.5 -time 100

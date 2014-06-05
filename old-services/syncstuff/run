@@ -1,4 +1,0 @@
-#!/bin/sh
-exec sudo -u danl forever '
-  /usr/local/bin/syncstuff
-  sleep 600'
