@@ -31,17 +31,15 @@ if a[0] in ('a', 'q'):
 else:
     pref = ''
 
-ff = 'Chromium'
-
 # duplicates wmv stuff?
 a_map = {
     'r': 'a1',
     's': 'a2',
     't': 'a3',
     'w': 'arora',
-    'f': ff,
+    'f': 'firefox',
     'T': 'Tor Browser',
-    'b': 'firefox',
+    'c': 'chromium',
     'N': 'NOTIFIEROMG',
     'p': 'pdf',  # evince doesn't put pdf or anything in title, hm
     'k': 'Anki',

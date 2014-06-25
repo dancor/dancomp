@@ -3,7 +3,7 @@
 # overkill until i figure out why this doesn't run on system startup
 init-my-tmux
 
-btoff
+#btoff
 
 # ibus
 #export XMODIFIERS="@im=scim"

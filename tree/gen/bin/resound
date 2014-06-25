@@ -3,7 +3,6 @@ set -e
 
 case "$1" in
 '')
-  echo lol >> /home/danl/log/resound
   HDMI_STATUS=`cat /sys/class/drm/card0/card0-HDMI-A-1/status`;
   if [ "$HDMI_STATUS" = "connected" ]
   then

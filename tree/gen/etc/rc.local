@@ -11,7 +11,7 @@
 #
 # By default this script does nothing.
 
-rfkill block bluetooth
+#rfkill block bluetooth
 /sbin/alsactl restore
 su -c /usr/local/bin/init-my-tmux danl
 #/usr/bin/tpb -d --config=/etc/tbprc

@@ -1,3 +1,4 @@
+{-# LANGUAGE BangPatterns #-}
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TemplateHaskell #-}
@@ -10,6 +11,7 @@ import qualified Control.Foldl as Fdl
 import Control.Monad
 import Control.Monad.Error
 import Control.Monad.Identity
+import Control.Monad.Memo
 import Control.Monad.Random
 import Control.Parallel
 import Control.Parallel.Strategies
@@ -41,7 +43,8 @@ import qualified Data.Map.Strict as SMap
 import Data.Maybe
 import qualified Data.MemoCombinators as Memo
 import Data.Monoid
-import qualified Data.MultiSet as MS
+import qualified Data.MultiSet as MSet
+import Data.Numbers.Primes
 import Data.Ord
 import Data.Ratio
 import qualified Data.Serialize as Ser
@@ -65,6 +68,7 @@ import GHC.Generics
 import HSH
 import Language.Haskell.TH
 import MajMemSys
+import qualified Math.Combinatorics.Binomial as Binom
 import Network.URI
 import Numeric
 import System.Cmd
@@ -77,7 +81,7 @@ import System.Process
 import System.Posix hiding (createDirectory)
 import System.Random
 import qualified System.Random.MWC as MWC
-import Test.QuickCheck
+import qualified Test.QuickCheck as QC
 import qualified Text.ParserCombinators.Parsec as Psec
 import Text.HTML.TagSoup
 import Text.Regex.Posix

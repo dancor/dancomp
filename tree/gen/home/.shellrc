@@ -22,6 +22,8 @@ PATH="$PATH":/opt/java/bin
 PATH="$PATH":~/bin:~/bin/git:~/.cabal/bin
 export PATH
 
+#export PYTHONPATH=/home/danl/p/peoplesounds:"$PYTHONPATH"
+
 mkdir -p ~/.shreload
 [[ -f ~/.shreload/version ]] || echo 1 > ~/.shreload/version
 export SHRELOAD_VERSION="`cat ~/.shreload/version`"

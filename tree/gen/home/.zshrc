@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
@@ -98,15 +100,19 @@ function precmd() {
 
   HOST_PART='%{[00;'"$HOST_COL"'m%}%m:'
   GIT_PART=''
-  if [[ "$PWD" != /home/danl/n(|/*) ]]
+  GIT_BR="$(git-br-prompt)"
+  if [[ -n "$GIT_BR" ]]
   then
-    GIT_BR="$(git-br-prompt)"
-    if [[ -n "$GIT_BR" ]]
-    then
-      GIT_PART='%{[00;'"$GIT_COL"'m%}'"$GIT_BR"':'
-    fi
+    GIT_PART='%{[00;'"$GIT_COL"'m%}'"$GIT_BR"':'
   fi
-  PS1="$HOST_PART$GIT_PART"'%{[00;36m%}%~%{[00m%}> '
+  PWD_PART_PRE=''
+  PWD_PART="${PWD/#\/home\/danl/~}"
+  if [[ ${#PWD_PART} -gt 40 ]]
+  then
+    PWD_PART_PRE='..'
+    PWD_PART=${PWD_PART:${#PWD_PART} - 38}
+  fi
+  PS1="$HOST_PART$GIT_PART$PWD_PART_PRE"'%{[00;36m%}'"$PWD_PART"'%{[00m%}> '
   # clear last executed command name from screen title
   case "$TERM" in
   screen*)
