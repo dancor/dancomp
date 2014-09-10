@@ -24,4 +24,6 @@ main = do
         sv ["force-stop", "wpa-supplicant"]
         sudo ["wpa_supplicant", "-d", "-Dwext", "-iwlan0", 
             "-c/etc/wpa_supplicant.conf"]
+      ["select"] -> do
+        run "iwlist" ["wlan0", "scan"]
       _ -> error "usage: nets <dhcp-debug | down | eth | tun | wi | wi-debug>"

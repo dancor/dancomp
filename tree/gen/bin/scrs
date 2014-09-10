@@ -5,11 +5,17 @@ import cmd_util as cu
 import sys
 import time
 
-def scrange(pref, n):
-    return [(pref + str(i), str(i - 1), str(i)) for i in range(1, n + 1)]
+def scr_info(n):
+    if n == 2:
+        scr_title = "NOTIFIEROMG"
+        scr_tmux = n + 11
+    else:
+        scr_title = "a" + str(n + 1)
+        scr_tmux = n + 1
+    return (scr_title, str(n), str(scr_tmux))
 
 # duplicates wmv stuff?
-scrs = scrange("a", 3)
+scrs = [scr_info(n) for n in range(3)]
 
 usage = "usage: scrs [options] -- [extra-agrs-to-xm]"
 opt_p = OptionParser(usage)

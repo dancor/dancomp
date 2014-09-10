@@ -38,7 +38,7 @@ a_map = {
     't': 'a3',
     'w': 'arora',
     'f': 'firefox',
-    'T': 'Tor Browser',
+    'b': 'Tor Browser',
     'c': 'chromium',
     'N': 'NOTIFIEROMG',
     'p': 'pdf',  # evince doesn't put pdf or anything in title, hm
@@ -55,8 +55,8 @@ def wf(args):
     cu.cmd_wait(cmd, can_fail=True)
 
 # hack to keep tiny window aligned with last full window
-if a == 's':
-    wf(["-r", a_map['t'], "-b", "add,above"])
+#if a == 's':
+#    wf(["-r", a_map['t'], "-b", "add,above"])
 #if a != 'r' and a != 's':
     wf(["-r", a_map['t'], "-b", "remove,above"])
 

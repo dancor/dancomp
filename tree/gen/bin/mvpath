@@ -3,14 +3,18 @@
 # move but preserve stated directory structure
 # e.g.   mv a/b/c d   creates d/c  but   mvpath a/b/c d   creates d/a/b/c
 
+import os
 import sys
-import string
 from subprocess import Popen, PIPE
 
-for arg in sys.argv[1:len(sys.argv)-1]:
-    p = string.rfind(arg, '/')
-    path = arg[0:p+1]
-    print('mkdir -p '+sys.argv[-1]+path)
-    Popen('mkdir -p '+sys.argv[-1]+path, shell=True)
-    print('mv '+arg+' '+sys.argv[-1]+path)
-    Popen('mv '+arg+' '+sys.argv[-1]+path, shell=True)
+def run(cmd):
+    #print(cmd)
+    Popen(cmd)
+
+target_top_dir = sys.argv[-1]
+
+for arg in sys.argv[1:-1]:
+    (arg_dirname, arg_basename) = os.path.split(arg.rstrip(os.sep))
+    target_dir = os.path.join(target_top_dir, arg_dirname)
+    run(['mkdir', '-p', target_dir])
+    run(['mv', arg, target_dir])

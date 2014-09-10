@@ -11,7 +11,7 @@ import qualified Control.Foldl as Fdl
 import Control.Monad
 import Control.Monad.Error
 import Control.Monad.Identity
-import Control.Monad.Memo
+import qualified Control.Monad.Memo as MMemo
 import Control.Monad.Random
 import Control.Parallel
 import Control.Parallel.Strategies
@@ -35,6 +35,8 @@ import qualified Data.DateTime as DTi
 import Data.Either.Unwrap
 import qualified Data.Foldable as Fold
 import Data.Function hiding ((.))
+import qualified Data.HashMap.Strict as HMS
+import Data.Int
 import qualified Data.IntMap as IntMap
 import Data.List
 import Data.List.Split
@@ -63,6 +65,10 @@ import Data.Time.Clock.TAI
 import qualified Data.Traversable as Trav
 import Data.Tree
 import qualified Data.Vector as Vec
+import qualified Data.Vector.Storable as SVec
+import qualified Data.Vector.Storable.Mutable as SVecM
+import qualified Data.Vector.Unboxed as UVec
+import qualified Data.Vector.Unboxed.Mutable as UVecM
 import Debug.Trace
 import GHC.Generics
 import HSH
@@ -84,6 +90,7 @@ import qualified System.Random.MWC as MWC
 import qualified Test.QuickCheck as QC
 import qualified Text.ParserCombinators.Parsec as Psec
 import Text.HTML.TagSoup
+import Text.Printf
 import Text.Regex.Posix
 import qualified Text.XML.Light as TXL
 import qualified Text.XHtml as TXH

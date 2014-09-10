@@ -1,5 +1,7 @@
 set nocompatible
 
+set iskeyword=a-z,A-Z,_,.,39
+
 " this is required for vundle; why?
 filetype off
 

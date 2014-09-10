@@ -3,5 +3,6 @@ sudo setupcon --force -k
 
 if [[ -n "$DISPLAY" ]]
 then
-  xkbcomp ~/.x.xkb "$DISPLAY"
+  setxkbmap dancomp -option -option
+  #xkbcomp ~/.x.xkb "$DISPLAY"
 fi

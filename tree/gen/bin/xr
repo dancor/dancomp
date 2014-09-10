@@ -6,3 +6,4 @@ xrandr --auto
 xrandr --output HDMI1 --right-of LVDS1 --mode 1920x1080
 # florida projector maybe?
 #xrandr --output VGA1 --right-of LVDS1 --mode 848x480
+resound
