@@ -7,6 +7,7 @@ import qualified Control.Applicative as App
 import Control.Arrow
 import Control.Concurrent
 import Control.DeepSeq
+import Control.Exception
 import qualified Control.Foldl as Fdl
 import Control.Monad
 import Control.Monad.Error
@@ -75,7 +76,7 @@ import HSH
 import Language.Haskell.TH
 import MajMemSys
 import qualified Math.Combinatorics.Binomial as Binom
-import Network.URI
+import Network.HTTP.Conduit
 import Numeric
 import System.Cmd
 import System.Directory

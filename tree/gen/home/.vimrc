@@ -94,7 +94,7 @@ autocmd BufNewFile *.xml source ~/.vim-files/xml.vim
 " bash-like tab completion
 set wildmode=list:longest
 
-set viminfo='10,\"100,:20,%,n~/.viminfo
+set viminfo='1000,\"1000000
 autocmd BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|
   \execute("norm '\"")|else|execute("norm $")|endif|endif
 
