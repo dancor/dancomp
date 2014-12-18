@@ -22,6 +22,7 @@ Commands:
   P - purge
   r - reconfigure
   R - remove
+  rd - reverse depends
   s - search
   S - show
   u - update
@@ -76,6 +77,8 @@ elif a == 'R':
     cs = 'sudo apt-get remove'
 elif a == 'r':
     cs = 'sudo dpkg-reconfigure'
+elif a == 'rd':
+    cs = 'apt-cache rdepends'
 elif a == 's':
     cs = 'apt-cache search'
 elif a == 'S':

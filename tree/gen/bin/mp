@@ -3,4 +3,8 @@
 #xset dpms 0 0 0
 #xset s noblank
 #xset s off
-exec mplayer -nolirc "$@"
+
+#exec mplayer -nolirc "$@"
+
+# pulse is wack lately (gives no sound)..
+exec mplayer -ao alsa -nolirc "$@"

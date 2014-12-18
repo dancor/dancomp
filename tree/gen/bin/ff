@@ -25,12 +25,12 @@ elif opts.no_proxy:
 
 profile = ''
 browser_type = 'ff'
-if opts.chromium:
-    cmd = ['chromium-browser']
-    browser_type = 'goog'
-else:
+if opts.firefox:
     cmd = ['firefox']
     profile = 'default'
+else:
+    cmd = ['chromium-browser']
+    browser_type = 'goog'
 
 if opts.profile:
     profile = opts.profile

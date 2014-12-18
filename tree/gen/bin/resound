@@ -21,3 +21,4 @@ analog|hdmi)
 esac
 
 exec pactl set-card-profile 0 output:"$WHERE"-stereo+input:analog-stereo
+#exec pactl set-card-profile 0 output:"$WHERE"-stereo

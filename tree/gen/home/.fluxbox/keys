@@ -16,11 +16,12 @@ Mod4 F2 :Exec rhythmbox-client --pause --no-present
 Mod4 F3 :Exec rhythmbox-client --previous --no-present
 Mod4 F4 :Exec rhythmbox-client --next --no-present
 
-None 121 :ExecCommand adjvol -m
+#None 121 :ExecCommand adjvol -m
 None 122 :ExecCommand adjvol -l
 None 123 :ExecCommand adjvol -r
-Mod4 Up :ExecCommand adjvol
-Mod4 Down :ExecCommand adjvol -d
+Mod4 Up :ExecCommand adjvol -r
+Mod4 Down :ExecCommand adjvol -l
+Mod4 l :ExecCommand adjvol -l > /home/danl/wat 2>&1
 Mod4 F8 :ExecCommand br -10
 Mod4 F9 :ExecCommand br +10
 Mod4 Shift F8 :ExecCommand br -1
@@ -57,6 +58,7 @@ Mod4 z n :ExecCommand wf -z n
 Mod4 z o :ExecCommand wf -z o
 Mod4 z a :ExecCommand wf -z a
 Mod4 z f :ExecCommand wf -z f
+Mod4 z c :ExecCommand wf -z c
 Mod4 z p :ExecCommand wf -z p
 Mod4 z w :ExecCommand wf -z w
 
@@ -73,6 +75,7 @@ Mod4 s i :ExecCommand wf i
 Mod4 s o :ExecCommand wf o
 Mod4 s a :ExecCommand wf a
 Mod4 s f :ExecCommand wf f
+Mod4 s c :ExecCommand wf c
 Mod4 s b :ExecCommand wf b
 Mod4 s p :ExecCommand wf p
 Mod4 s w :ExecCommand wf w
@@ -147,14 +150,15 @@ Mod4 r m r :ExecCommand xm a1 0 1
 Mod4 r m s :ExecCommand xm a2 1 2
 Mod4 r m t :ExecCommand xm a3 2 3
 
-Mod4 r f :ExecCommand ff
+Mod4 r f :ExecCommand ff -f
+Mod4 r c :ExecCommand ff -c
 Mod4 r Shift f :ExecCommand ff -f
-Mod4 r Mod1 f :ExecCommand ff -p s
+Mod4 r Mod1 f :ExecCommand ff -f -p s
 Mod4 r Mod1 Shift f :ExecCommand ff -f -p s
 Mod4 r x :ExecCommand xt
 Mod4 r g :ExecCommand gimp
 Mod4 r v :ExecCommand gvim
-Mod4 r b :ExecCommand ff -f -N
+Mod4 r b :ExecCommand torb
 Mod4 r Shift m :ExecCommand mutt_pull
 Mod4 r k :ExecCommand anki
 

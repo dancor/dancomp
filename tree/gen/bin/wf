@@ -39,7 +39,7 @@ a_map = {
     'w': 'arora',
     'f': 'firefox',
     'b': 'Tor Browser',
-    'c': 'chromium',
+    'c': 'Chromium',
     'N': 'NOTIFIEROMG',
     'p': 'pdf',  # evince doesn't put pdf or anything in title, hm
     'k': 'Anki',
@@ -58,7 +58,7 @@ def wf(args):
 #if a == 's':
 #    wf(["-r", a_map['t'], "-b", "add,above"])
 #if a != 'r' and a != 's':
-    wf(["-r", a_map['t'], "-b", "remove,above"])
+#   wf(["-r", a_map['t'], "-b", "remove,above"])
 
 if a == 'N':
     # notifier window can have this set

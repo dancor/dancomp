@@ -1,53 +1,22 @@
 #!/bin/zsh
 
-# overkill until i figure out why this doesn't run on system startup
-init-my-tmux
+# not needed in 14.10?
+#unity-settings-daemon &
 
-#btoff
-
-# ibus
-#export XMODIFIERS="@im=scim"
-#export GTK_IM_MODULE=scim
-#export QT_IM_MODULE=scim
-#ibus-daemon -d
-
-# gnome
-gnome-settings-daemon &
-
-# screen off after 10 minutes
-#xset dpms 600 600 600 &
-
-# keyboard
-asdf
-xset r rate 200 40
-synclient TouchpadOff=1
-
-think-touch off
-
-#fbsetroot -gradient elliptical -from black -to darkblue
-
-# xscreensaver doesn't return so must be &
-#xscreensaver -no-splash &
+input-devices-fixes
 
 # tmux stuff
 export TMUX=''
 tmux-multi-group-prune &
 
-nets wi &
-
-sleep 5
-
 # other stuff
-#nautilus &
-sleep 1
-ff &
 sleep 1
 scrs &
-
 gnome-panel &
+sleep 1
+think-touch off &
 
-# why is notifier so wack?
-#sleep 1
-#notifier &
+#sleep 5
+#pulse-restart
 
 exec fluxbox

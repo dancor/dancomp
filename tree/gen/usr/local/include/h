@@ -8,11 +8,11 @@ import Control.Arrow
 import Control.Concurrent
 import Control.DeepSeq
 import Control.Exception
-import qualified Control.Foldl as Fdl
+--import qualified Control.Foldl as Fdl
 import Control.Monad
 import Control.Monad.Error
 import Control.Monad.Identity
-import qualified Control.Monad.Memo as MMemo
+--import qualified Control.Monad.Memo as MMemo
 import Control.Monad.Random
 import Control.Parallel
 import Control.Parallel.Strategies
@@ -31,9 +31,9 @@ import Data.Conduit
 import qualified Data.Conduit.Binary as CB
 import qualified Data.Conduit.List as CL
 import qualified Data.Conduit.Text as CT
-import qualified Data.Conduit.Util as CU
+--import qualified Data.Conduit.Util as CU
 import qualified Data.DateTime as DTi
-import Data.Either.Unwrap
+--import Data.Either.Unwrap
 import qualified Data.Foldable as Fold
 import Data.Function hiding ((.))
 import qualified Data.HashMap.Strict as HMS
@@ -66,10 +66,11 @@ import Data.Time.Clock.TAI
 import qualified Data.Traversable as Trav
 import Data.Tree
 import qualified Data.Vector as Vec
+import qualified Data.Vector.Mutable as MVec
 import qualified Data.Vector.Storable as SVec
-import qualified Data.Vector.Storable.Mutable as SVecM
+import qualified Data.Vector.Storable.Mutable as MSVec
 import qualified Data.Vector.Unboxed as UVec
-import qualified Data.Vector.Unboxed.Mutable as UVecM
+import qualified Data.Vector.Unboxed.Mutable as MUVec
 import Debug.Trace
 import GHC.Generics
 import HSH
