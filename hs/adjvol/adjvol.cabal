@@ -14,4 +14,4 @@ build-type:     Simple
 
 executable:     adjvol
 hs-source-dirs: src
-main-is:        MainPA.hs
+main-is:        Main.hs

@@ -1,0 +1,2 @@
+#!/bin/sh
+exec lk -d "$@" | lee
