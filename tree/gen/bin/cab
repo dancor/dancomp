@@ -1,11 +1,11 @@
 #!/bin/sh
 set -e
 
-if [ "x$1" = "x-u" ]
-then
-  rnr 1d cabal update
-  shift
-fi
+#if [ "x$1" = "x-u" ]
+#then
+  rnr 7d cabal update
+#  shift
+#fi
 
 MY_OPTS='--enable-documentation -pO --haddock-hoogle --haddock-html --haddock-hyperlink-source'
 

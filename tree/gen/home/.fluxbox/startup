@@ -16,7 +16,4 @@ gnome-panel &
 sleep 1
 think-touch off &
 
-#sleep 5
-#pulse-restart
-
 exec fluxbox
