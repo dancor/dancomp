@@ -1,2 +1,3 @@
 #!/bin/sh
-exec dlk d "$@"
+#exec dlk d "$@"
+exec lk -d "$@"

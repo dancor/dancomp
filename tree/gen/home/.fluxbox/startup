@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+nets wi &
+
 # not needed in 14.10?
 #unity-settings-daemon &
 

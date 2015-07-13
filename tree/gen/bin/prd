@@ -33,6 +33,7 @@ common_dirs = [
     os.path.join(h, "l", "l"),
     os.path.join(h, "l", "l", "mandarin"),
     os.path.join(h, "l", "l", "mandarin", "chinese-pod"),
+    os.path.join(h, "l", "l", "de", "audio", "book"),
     os.path.join(h, "etc"),
 ]
 

@@ -25,8 +25,11 @@ pacmd args = do
     setEnv "PULSE_RUNTIME_PATH" "/home/danl/.config/pulse/" False
     readProcessWithExitCode "pacmd" args ""
     -}
+    {-
     (ec, out, err) <- readProcessWithExitCode "sudo" (["-u", "pulse",
         "PULSE_RUNTIME_PATH=/var/run/pulse", "--", "pacmd"] ++ args) ""
+    -}
+    (ec, out, err) <- readProcessWithExitCode "pacmd" args ""
     case (ec, err) of
       (ExitSuccess, "") -> return out
       _ -> error $ show ec ++ "\nstdout:\n" ++ out ++ "\nstderr:\n" ++ err
@@ -41,8 +44,10 @@ getVol :: IO Int
 getVol = do
     -- todo: handle error if missing in out
     out <- pacmd ["dump"]
-    return . read . (!! 2) . words . head .
-        filter ("set-sink-volume" `isPrefixOf`) $ lines out
+    let wds = words . head .
+            filter ("set-sink-volume" `isPrefixOf`) $ lines out
+    print wds
+    return $ read (wds !! 2)
 
 muteOn :: IO ()
 muteOn = do
@@ -82,9 +87,7 @@ pcntToInt x = round $ x * 65536 / 100
 
 main :: IO ()
 main = do
-    putStrLn "hi"
     homeDir <- getHomeDirectory
-    putStrLn homeDir
     (opts, tasks) <- Opt.getOpts (homeDir </> ".adjvol" </> "config") usage
     -- way for polyopt to help with exclusive args?  hm
     {-
@@ -109,8 +112,10 @@ main = do
         --setVol (pcntToInt v) >> muteOff
         muteOff >> setVol (pcntToInt v)
         --setVol (pcntToInt v) >> muteOff >> lowerVol >> raiseVol
-      Opt.Opts False False False False Nothing True False ->
-        getVol >>= print . intToPcnt
+      Opt.Opts False False False False Nothing True False -> do
+        v <- getVol
+        print v
+        print $ intToPcnt v
       Opt.Opts False False False False Nothing False True ->
         getMute >>= print
       _ -> error "You must specify exactly one operation."

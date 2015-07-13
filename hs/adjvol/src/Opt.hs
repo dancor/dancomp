@@ -18,7 +18,7 @@ $(polyOpt [
     "set volume to given PERCENT (0..100)",
   noArg ["get"] "g"
     "get the volume percent",
-  noArg ["getmute"] "M"
+  noArg ["get-mute"] "M"
     "get the mute state"
   ])
 

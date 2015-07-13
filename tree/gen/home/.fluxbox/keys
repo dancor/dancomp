@@ -24,6 +24,7 @@ None 123 :ExecCommand adjvol -r
 Mod4 Up :ExecCommand adjvol -r
 Mod4 Down :ExecCommand adjvol -l
 XF86Launch1 :Exec adjvol -s 70
+XF86AudioMute :Exec adjvol -m
 
 OnDesktop Mouse1 :HideMenus
 OnDesktop Mouse2 :WorkspaceMenu

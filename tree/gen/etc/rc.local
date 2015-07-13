@@ -11,11 +11,7 @@
 #
 # By default this script does nothing.
 
-#rfkill block bluetooth
-/sbin/alsactl restore
 su -c /usr/local/bin/init-my-tmux danl
-#/usr/bin/tpb -d --config=/etc/tbprc
-cp /sys/devices/platform/thinkpad_acpi/hotkey_all_mask /sys/devices/platform/thinkpad_acpi/hotkey_mask
 
 # powertop recommendations:
 echo 1500 > /proc/sys/vm/dirty_writeback_centisecs
@@ -41,5 +37,14 @@ echo auto > /sys/bus/pci/devices/0000:00:1c.1/power/control
 echo auto > /sys/bus/pci/devices/0000:00:1a.0/power/control
 echo auto > /sys/bus/pci/devices/0000:00:16.3/power/control
 ethtool -s eth0 wol d
+
+# i decided to stop doing this?
+#rfkill block bluetooth
+
+# not needed anymore?
+#/sbin/alsactl restore
+
+# wtf?
+#cp /sys/devices/platform/thinkpad_acpi/hotkey_all_mask /sys/devices/platform/thinkpad_acpi/hotkey_mask
 
 exit 0

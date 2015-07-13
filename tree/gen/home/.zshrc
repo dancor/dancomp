@@ -82,14 +82,6 @@ sz() {
   source ~/.zshrc
 }
 
-_shreload() {
-  if [[ "$SHRELOAD_VERSION" -lt "$(cat ~/.shreload/version 2>/dev/null)" ]]
-  then
-    #sz
-    xdr
-  fi
-}
-
 function precmd() {
   HOST_COL=32
   if [[ x"$(whoami)" == xroot ]]
@@ -118,7 +110,6 @@ function precmd() {
   screen*)
     print -n '\ek '"$@"' '"$(homify "$(pwd)")"'\e\134'
   esac
-  _shreload
 }
 
 if [[ $- != *i* ]]; then
@@ -131,12 +122,6 @@ screen*)
     shift
     shift
     print -n '\ek '"$@"' '"$(homify "$(pwd)")"'\e\134'
-    _shreload
-  }
-;;
-*)
-  preexec() {
-    _shreload
   }
 ;;
 esac

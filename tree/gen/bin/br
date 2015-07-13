@@ -5,8 +5,8 @@ from cmd_util import cmd_output, cmd_wait
 import os
 import sys
 
-print("Use F8/F9 for now; uses a separate system?")
-sys.exit(-1)
+#print("Use F8/F9 for now; uses a separate system?")
+#sys.exit(-1)
 
 ###
 ###
