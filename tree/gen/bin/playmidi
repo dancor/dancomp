@@ -1,0 +1,3 @@
+#!/bin/sh
+#exec aplaymidi -p129 "$@"
+exec timidity -A150 --output-24bit "$@"

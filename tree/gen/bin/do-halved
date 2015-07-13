@@ -1,0 +1,7 @@
+#!/bin/zsh
+cd ~/sheet-music
+for f in reg/Scott-Joplin/**/*.pdf
+do
+    echo "${f}"
+    halve-sheet-music.py "${f}" "${f/reg/halved}"
+done
