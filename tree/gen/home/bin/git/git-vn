@@ -1,4 +1,0 @@
-#!/bin/sh
-# svn commands must be run at top of repo (unlike normal git commands)
-cd `git root-dir` &&
-exec git svn "$@"

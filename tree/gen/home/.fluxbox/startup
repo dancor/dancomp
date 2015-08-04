@@ -8,6 +8,7 @@ nets wi &
 input-devices-fixes
 
 # tmux stuff
+notif-up &
 export TMUX=''
 tmux-multi-group-prune &
 
@@ -17,5 +18,8 @@ scrs &
 gnome-panel &
 sleep 1
 think-touch off &
+think-touchpad off &
+
+redshift -O 3700K
 
 exec fluxbox

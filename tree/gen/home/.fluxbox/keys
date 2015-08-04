@@ -109,6 +109,7 @@ Mod4 t n :ExecCommand wmv s2 0
 Mod4 t e :ExecCommand wmv s2 1
 Mod4 t i :ExecCommand wmv s2 2
 Mod4 t o :ExecCommand wmv s2 3
+Mod4 t h :ExecCommand wmv s2 0+
 Mod4 t q a :ExecCommand wmv 0 +.5
 Mod4 t q r :ExecCommand wmv 0 +.5
 Mod4 t q s :ExecCommand wmv 1 +.5
@@ -126,22 +127,25 @@ Mod4 t z e :ExecCommand wmv s2 1 .5+
 Mod4 t z i :ExecCommand wmv s2 2 .5+
 Mod4 t z o :ExecCommand wmv s2 3 .5+
 
-Mod4 t Shift r :ExecCommand wmv R
-Mod4 t d :ExecCommand wmv d
-Mod4 t p :ExecCommand wmv p
-Mod4 t g :ExecCommand wmv g
-Mod4 t c :ExecCommand wmv c
-Mod4 t v :ExecCommand wmv v
-Mod4 t h :ExecCommand wmv h
-Mod4 t j :ExecCommand wmv j
-Mod4 t l :ExecCommand wmv l
-Mod4 t m :ExecCommand wmv m
-Mod4 t comma :ExecCommand wmv ,
+#Mod4 t Shift r :ExecCommand wmv R
+#Mod4 t d :ExecCommand wmv d
+#Mod4 t p :ExecCommand wmv p
+#Mod4 t g :ExecCommand wmv g
+#Mod4 t c :ExecCommand wmv c
+#Mod4 t v :ExecCommand wmv v
+#Mod4 t h :ExecCommand wmv h
+#Mod4 t j :ExecCommand wmv j
+#Mod4 t l :ExecCommand wmv l
+#Mod4 t m :ExecCommand wmv m
+#Mod4 t comma :ExecCommand wmv ,
 
 # r is "run"
 Mod4 r m r :ExecCommand xm a1 0 1
 Mod4 r m s :ExecCommand xm a2 1 2
 Mod4 r m t :ExecCommand xm a3 2 3
+Mod4 r m r :ExecCommand xm b1 0 1
+Mod4 r m s :ExecCommand xm b2 1 2
+Mod4 r m t :ExecCommand xm b3 2 3
 
 Mod4 r f :ExecCommand ff -f
 Mod4 r c :ExecCommand ff -c

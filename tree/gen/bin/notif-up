@@ -1,0 +1,2 @@
+#!/bin/zsh
+exec tmux send-keys -t lalala:13 $'\nmemoplex --notifieromg\n'

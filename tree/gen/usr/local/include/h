@@ -39,7 +39,9 @@ import qualified Data.DateTime as DTi
 --import Data.Either.Unwrap
 import qualified Data.Foldable as Fold
 import Data.Function hiding ((.), id)
+import qualified Data.HashMap.Lazy as HML
 import qualified Data.HashMap.Strict as HMS
+import qualified Data.HashSet as HSet
 import Data.Int
 import qualified Data.IntMap as IntMap
 import Data.List
@@ -82,10 +84,11 @@ import qualified Data.Vector.Unboxed as UVec
 import qualified Data.Vector.Unboxed.Mutable as MUVec
 import Debug.Trace
 import GHC.Generics
-import Haskore.Basic.Duration
-import Haskore.Melody.Standard
-import Haskore.Music.GeneralMIDI as MidiMus
-import Haskore.Music hiding (take, filter)
+import qualified Haskore.Basic.Pitch as HBP
+import Haskore.Basic.Duration hiding (Ratio)
+import Haskore.Melody.Standard hiding (f)
+import Haskore.Music.GeneralMIDI as MidiMus hiding (transpose)
+import Haskore.Music hiding (take, filter, repeat, transpose)
 import Haskore.Interface.MIDI.Render
 import HSH
 import Language.Haskell.TH
@@ -94,6 +97,7 @@ import qualified Math.Combinatorics.Binomial as Binom
 import Network.HTTP.Conduit
 import Numeric
 import Prelude hiding ((.), id)
+import Safe
 import System.Cmd
 import System.Directory
 import System.Environment

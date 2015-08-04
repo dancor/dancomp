@@ -1,5 +1,0 @@
-#!/bin/sh
-# "git svn rev": converts svn rev number to git rev hash prefix
-REV="$1"
-shift
-exec git svn log -r"$REV" --show-commit --oneline "$@" | awk '{print $3}'
