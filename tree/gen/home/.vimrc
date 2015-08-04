@@ -1,3 +1,16 @@
+" Basics and Vundle.
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'morhetz/gruvbox'
+Plugin 'junegunn/seoul256.vim'
+call vundle#end()
+filetype plugin indent on
+
+colorscheme seoul256
+colorscheme gruvbox
+
 map <F4> :w<CR>
 imap <F4> <ESC><F4>
 

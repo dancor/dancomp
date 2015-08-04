@@ -110,6 +110,10 @@ Mod4 t e :ExecCommand wmv s2 1
 Mod4 t i :ExecCommand wmv s2 2
 Mod4 t o :ExecCommand wmv s2 3
 Mod4 t h :ExecCommand wmv s2 0+
+Mod4 t m :ExecCommand wmv s2 0+2
+Mod4 t comma :ExecCommand wmv s2 1+
+Mod4 t period :ExecCommand wmv s2 0+1.4
+Mod4 t slash :ExecCommand wmv s2 1.4+
 Mod4 t q a :ExecCommand wmv 0 +.5
 Mod4 t q r :ExecCommand wmv 0 +.5
 Mod4 t q s :ExecCommand wmv 1 +.5
@@ -143,9 +147,9 @@ Mod4 t z o :ExecCommand wmv s2 3 .5+
 Mod4 r m r :ExecCommand xm a1 0 1
 Mod4 r m s :ExecCommand xm a2 1 2
 Mod4 r m t :ExecCommand xm a3 2 3
-Mod4 r m r :ExecCommand xm b1 0 1
-Mod4 r m s :ExecCommand xm b2 1 2
-Mod4 r m t :ExecCommand xm b3 2 3
+Mod4 r m n :ExecCommand xm -s 2 b1 0 7
+Mod4 r m e :ExecCommand xm -s 2 b2 1 8
+Mod4 r m i :ExecCommand xm -s 2 b3 2 9
 
 Mod4 r f :ExecCommand ff -f
 Mod4 r c :ExecCommand ff -c
