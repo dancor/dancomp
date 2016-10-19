@@ -8,4 +8,5 @@ if args:
     print('\n'.join(l))
 else:
     # double it so we can see when things are over
-    print('1234567890' * 16)
+    # triple for huge monitor..
+    print('1234567890' * 24)

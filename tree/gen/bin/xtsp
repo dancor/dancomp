@@ -1,7 +1,12 @@
 #!/bin/bash
 # start an xt on the given screen window
 n="$1"
-shift
-t="$1"
-shift
-exec xt -T "$t" "$@" -e s "$n" &
+t="$2"
+shift 2
+if [ "x$1" = "x--alternate" ]
+then
+    shift
+    exec xt --alternate -T "$t" "$@" -e s "$n" &
+else
+    exec xt -T "$t" "$@" -e s "$n" &
+fi

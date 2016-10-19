@@ -38,6 +38,10 @@ echo auto > /sys/bus/pci/devices/0000:00:1a.0/power/control
 echo auto > /sys/bus/pci/devices/0000:00:16.3/power/control
 ethtool -s eth0 wol d
 
+# ALSA loopback device; I use this to make ALSA & jackd work together well.
+# actually using different approach now
+#modprobe snd-aloop index=0 pcm_substreams=2
+
 # i decided to stop doing this?
 #rfkill block bluetooth
 

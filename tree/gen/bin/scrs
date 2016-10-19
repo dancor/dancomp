@@ -6,7 +6,7 @@ import sys
 import time
 
 def scr_info(n):
-    if n == 2:
+    if False and n == 2:
         scr_title = "NOTIFIEROMG"
         scr_tmux = n + 11
     else:
@@ -15,7 +15,8 @@ def scr_info(n):
     return (scr_title, str(n), str(scr_tmux))
 
 # duplicates wmv stuff?
-scrs = [scr_info(n) for n in range(3)]
+#scrs = [scr_info(n) for n in range(3)]
+scrs = [scr_info(n) for n in range(2)]
 
 usage = "usage: scrs [options] -- [extra-agrs-to-xm]"
 opt_p = OptionParser(usage)

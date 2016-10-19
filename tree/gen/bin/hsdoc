@@ -5,6 +5,11 @@ then
   exec ff /usr/share/doc/ghc-doc/html/index.html
 fi
 
+if [[ "$1" == "lib" ]]
+then
+  exec ff /usr/share/doc/ghc-doc/html/libraries/index.html
+fi
+
 if [[ "$1" == "cab" ]]
 then
   if [[ "$2" == "" ]]

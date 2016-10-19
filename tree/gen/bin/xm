@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# ~ xm title pos tmux-num -- [term-extra-args]
+
 from optparse import OptionParser
 from time import sleep
 import cmd_util as cu
@@ -11,15 +13,12 @@ opt_p = OptionParser(usage)
 opt_p.add_option("-a", "--adjust-only", action="store_true")
 opt_p.add_option("-r", "--run-only", action="store_true")
 opt_p.add_option("-v", "--verbose", action="store_true")
-opt_p.add_option("-s", "--screen")
 (opts, args) = opt_p.parse_args()
 term_title = args[0]
 wmv_arg = args[1]
 tmux_num = args[2]
 term_extra_args = args[3:]
 wmv_bin = "/home/danl/.cabal/bin/wmv"
-
-wmv_scr_args = ["s" + opts.screen] if opts.screen else []
 
 def coord(n):
     if n >= 0:
@@ -28,20 +27,16 @@ def coord(n):
         return str(n)
 
 if not opts.adjust_only:
-    cmd = [wmv_bin] + wmv_scr_args + [wmv_arg, "--terminal-xywh"]
+    cmd = [wmv_bin] + wmv_arg.split(' ') + ["--terminal-xywh"]
     xS, yS, wS, hS = cu.cmd_output(cmd)[0].split()
     x, y, w, h = int(xS), int(yS), int(wS), int(hS)
     if wmv_arg.isdigit() and int(wmv_arg) % 2 == 1:
-        gray = True
-    else:
-        gray = False
-    if gray:
-        col_args = ["-bg", "gray5"]
+        col_args = ["--alternate"]
     else:
         col_args = []
     geom_arg = "%dx%d%s%s" % (w, h, coord(x), coord(y))
-    cmd = ["xtsp", tmux_num, term_title, "-geometry", geom_arg] + col_args + \
-        term_extra_args
+    cmd = ["xtsp", tmux_num, term_title] + col_args + \
+        ["-geometry", geom_arg] + term_extra_args
     if opts.verbose:
         print(cmd)
     env_mod = os.environ
@@ -50,7 +45,7 @@ if not opts.adjust_only:
 if not opts.run_only:
     if not opts.adjust_only:
         sleep(1.5)
-    cmd = [wmv_bin] + wmv_scr_args + [wmv_arg, term_title]
+    cmd = [wmv_bin] + wmv_arg.split(' ') + [term_title]
     if opts.verbose:
         print(cmd)
     cu.cmd_wait(cmd)

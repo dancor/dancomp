@@ -28,6 +28,8 @@ data Wmv = Wmv
 
 charWAndH :: P2 Rational
 charWAndH = P2 8 13
+-- For 2160p:
+--charWAndH = P2 16 28
 
 scrsUnitChWAndH :: [P2 Rational]
 scrsUnitChWAndH = [P2 80 40, P2 80 40]

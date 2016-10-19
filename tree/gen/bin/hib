@@ -1,7 +1,5 @@
 #!/bin/sh
-#adjvol -m
-sudo pm-hibernate
-#asdf
-#adjvol -u
-sleep 3
-think-touch off
+sudo swapon /swap
+sudo s2disk
+sudo swapoff /swap
+(sleep 1; think-touchpad off; sleep 2; think-touchpad off) &

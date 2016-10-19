@@ -1,6 +1,6 @@
 #!/bin/sh
 #adjvol -m
-sudo pm-suspend
+sudo s2ram
 #asdf
 #adjvol -u
 sleep 3

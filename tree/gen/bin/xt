@@ -1,5 +1,16 @@
 #!/bin/sh
-TMUX='' exec urxvt -fg orange -bg black -color4 slateblue \
+BG_COLOR='white'
+if [ "x$1" = "x--alternate" ]
+then
+    BG_COLOR='gray95'
+    shift
+fi
+# Use pixelsize=24 for 2160p
+TMUX='' exec urxvt -fg black -bg "$BG_COLOR" \
   -b 0 -w 0 -fn \
-  'xft:Terminus:pixelsize=15,xft:AR PL UMing CN:pixelsize=13' \
+  'xft:Monospace:pixelsize=11' \
   "$@" &
+#TMUX='' exec urxvt -fg orange -bg black -color4 slateblue \
+#  -b 0 -w 0 -fn \
+#  'xft:Terminus:pixelsize=15,xft:AR PL UMing CN:pixelsize=13' \
+#  "$@" &

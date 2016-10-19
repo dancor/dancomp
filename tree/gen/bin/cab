@@ -1,16 +1,12 @@
 #!/bin/sh
 set -e
 
-#if [ "x$1" = "x-u" ]
-#then
+if [ "x$1" = "x-u" ]
+then
   rnr 7d cabal update
-#  shift
-#fi
+  shift
+fi
 
 MY_OPTS='--enable-documentation -pO --haddock-hoogle --haddock-html --haddock-hyperlink-source'
 
 exec cabal install $MY_OPTS "$@"
-
-# -O2 is still "_unlikely_ to produced better code than -O"
-#exec cabal install --global --root-cmd=sudo --enable-documentation -pO "$@"
-#exec cabal install "$@"

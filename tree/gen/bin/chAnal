@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from cmd_util import arg_esc, cmd_output, cmd_wait, error_out
 from optparse import OptionParser

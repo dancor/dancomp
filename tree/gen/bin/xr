@@ -1,9 +1,12 @@
-xset -dpms
-
-xrandr --auto
-#xrandr --output LVDS1
-# most new TVs
-xrandr --output HDMI1 --right-of LVDS1 --mode 1920x1080
-# florida projector maybe?
-#xrandr --output VGA1 --right-of LVDS1 --mode 848x480
+#!/bin/sh
+xrandr --output LVDS1 --off
+xrandr --output HDMI1 --mode 1920x1080
 resound
+fix-input-devices
+
+#xrandr --output LVDS1 --mode 864x486
+#xrandr --output LVDS1 --mode 1280x720
+#xrandr --output HDMI1 --right-of LVDS1 --mode 1920x1080
+#xrandr --auto
+#xrandr --output LVDS1
+#xrandr --output HDMI1 --right-of LVDS1 --mode 1280x720

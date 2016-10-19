@@ -4,4 +4,5 @@ set -e
 # cd ~/i/briss/briss-0.9
 # exec java -jar briss-0.9.jar "$@"
 
-exec java -jar ~/i/briss/briss-0.9/briss-0.9.jar "$@"
+#exec java -jar ~/i/briss/briss-0.0.13/briss-0.0.13.jar "$@"
+exec java -jar ~/i/briss/briss2/briss-1.0-rc.1/briss-1.0-rc.1.jar "$@"

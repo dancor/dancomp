@@ -1,3 +1,6 @@
+" Make escape work faster.
+set timeoutlen=1000 ttimeoutlen=0
+
 " Basics and Vundle.
 set nocompatible
 filetype off
@@ -8,8 +11,9 @@ Plugin 'junegunn/seoul256.vim'
 call vundle#end()
 filetype plugin indent on
 
-colorscheme seoul256
-colorscheme gruvbox
+"colorscheme seoul256-light
+"colorscheme gruvbox
+"colorscheme koehler
 
 map <F4> :w<CR>
 imap <F4> <ESC><F4>

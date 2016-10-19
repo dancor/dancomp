@@ -10,14 +10,14 @@ import Control.DeepSeq
 import Control.Exception
 --import qualified Control.Foldl as Fdl
 import Control.Monad
-import Control.Monad.Error
+import Control.Monad.Except
 import Control.Monad.Identity
 --import qualified Control.Monad.Memo as MMemo
 import Control.Monad.Random
 import Control.Monad.Trans.Resource
 import Control.Parallel
 import Control.Parallel.Strategies
-import Control.Wire hiding ((<>))
+import Control.Wire hiding ((<>), unless)
 import qualified Control.Wire as Wire
 import qualified Data.Aeson as Ae
 import Data.Binary
@@ -35,8 +35,10 @@ import qualified Data.Conduit.Combinators as CC
 import qualified Data.Conduit.List as CL
 import qualified Data.Conduit.Text as CT
 --import qualified Data.Conduit.Util as CU
-import qualified Data.DateTime as DTi
+--import qualified Data.DateTime as DTi
 --import Data.Either.Unwrap
+import Data.Either
+import Data.Fixed
 import qualified Data.Foldable as Fold
 import Data.Function hiding ((.), id)
 import qualified Data.HashMap.Lazy as HML
@@ -54,7 +56,7 @@ import qualified Data.Map.Strict as SMap
 import Data.Maybe
 import qualified Data.MemoCombinators as Memo
 import Data.Monoid
-import qualified Data.MultiSet as MSet
+--import qualified Data.MultiSet as MSet
 import Data.Numbers.Primes
 import Data.Ord
 import Data.Ratio
@@ -73,9 +75,9 @@ import Data.Time.Calendar.WeekDate
 import Data.Time.Clock.POSIX
 import Data.Time.Clock.TAI
 import qualified Data.Traversable as Trav
-import Data.Tree
-import qualified Data.Trie as BST
-import qualified Data.Trie.Convenience as BSTC
+import qualified Data.Tree as Tree
+--import qualified Data.Trie as BST
+--import qualified Data.Trie.Convenience as BSTC
 import qualified Data.Vector as Vec
 import qualified Data.Vector.Mutable as MVec
 import qualified Data.Vector.Storable as SVec
@@ -84,21 +86,20 @@ import qualified Data.Vector.Unboxed as UVec
 import qualified Data.Vector.Unboxed.Mutable as MUVec
 import Debug.Trace
 import GHC.Generics
-import qualified Haskore.Basic.Pitch as HBP
-import Haskore.Basic.Duration hiding (Ratio)
-import Haskore.Melody.Standard hiding (f)
-import Haskore.Music.GeneralMIDI as MidiMus hiding (transpose)
-import Haskore.Music hiding (take, filter, repeat, transpose)
-import Haskore.Interface.MIDI.Render
+--import qualified Haskore.Basic.Pitch as HBP
+--import Haskore.Basic.Duration hiding (Ratio)
+--import Haskore.Melody.Standard hiding (f)
+--import Haskore.Music.GeneralMIDI as MidiMus hiding (transpose)
+--import qualified Haskore.Music as Mus
+--import Haskore.Interface.MIDI.Render
 import HSH
 import Language.Haskell.TH
 import MajMemSys
-import qualified Math.Combinatorics.Binomial as Binom
+--import qualified Math.Combinatorics.Binomial as Binom
 import Network.HTTP.Conduit
 import Numeric
 import Prelude hiding ((.), id)
 import Safe
-import System.Cmd
 import System.Directory
 import System.Environment
 import System.Exit

@@ -1,2 +1,2 @@
 #!/bin/sh
-exec sudo pon sprint
+exec perl -I ~/i/spread0r/lib ~/i/spread0r/spread0r.pl -w 400 "$@"

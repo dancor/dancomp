@@ -1,25 +1,21 @@
-#!/bin/zsh
+#!/bin/sh
 
-nets wi &
-
-# not needed in 14.10?
-#unity-settings-daemon &
-
-input-devices-fixes
+fcitx &
+nets eth &
+unity-settings-daemon &
 
 # tmux stuff
-notif-up &
+#notif-up &
 export TMUX=''
 tmux-multi-group-prune &
+#notifier &
 
 # other stuff
 sleep 1
 scrs &
-gnome-panel &
-sleep 1
-think-touch off &
-think-touchpad off &
+#gnome-panel &
 
-redshift -O 3700K
+fix-input-devices &
+forever sh -c 'sleep 2 && fix-input-devices > /dev/null' &
 
 exec fluxbox

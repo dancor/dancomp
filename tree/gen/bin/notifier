@@ -1,3 +1,2 @@
 #!/bin/sh
-title=NOTIFIEROMG
-exec xm ta2 -- -title "$title" -bg brown4 "$@" -e bash -c 'screen -x -S notifier -c ~/.screenrc.notifier || screen -S notifier -c ~/.screenrc.notifier'
+exec xm NOTIFIEROMG 's1 2 +.12987' 13 -- -bg brown4 "$@"

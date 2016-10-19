@@ -33,20 +33,21 @@ else:
 
 # duplicates wmv stuff?
 a_map = {
+    'b': 'Tor Browser',
+    'c': 'Chromium',
+    'e': 'b2',
+    'f': 'firefox',
+    'i': 'b3',
+    'k': 'Anki',
+    'n': 'b1',
+    'N': 'NOTIFIEROMG',
+    'p': 'pdf',  # evince doesn't put pdf or anything in title, hm
+    'Q': 'Quod Libet',
     'r': 'a1',
     's': 'a2',
     't': 'a3',
-    'n': 'b1',
-    'e': 'b2',
-    'i': 'b3',
+    'T': 'thunderbird',
     'w': 'arora',
-    'f': 'firefox',
-    'b': 'Tor Browser',
-    'c': 'Chromium',
-    'N': 'NOTIFIEROMG',
-    'p': 'pdf',  # evince doesn't put pdf or anything in title, hm
-    'k': 'Anki',
-    'Q': 'Quod Libet',
 }
 
 title = pref + a_map[a]
