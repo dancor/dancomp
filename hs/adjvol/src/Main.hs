@@ -14,9 +14,9 @@ doErrs :: [String] -> a
 doErrs errs = error $ concat errs ++ usage
 
 sinkId :: String
---sinkId = "0"
+sinkId = "0"
 --sinkId = "1"
-sinkId = "alsa_output.pci-0000_00_1b.0.analog-stereo"
+--sinkId = "alsa_output.pci-0000_00_1b.0.analog-stereo"
 
 pacmd :: [String] -> IO String
 pacmd args = do

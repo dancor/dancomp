@@ -34,9 +34,11 @@ else:
 
 if opts.profile:
     profile = opts.profile
+
 if browser_type == 'goog':
     home = os.getenv('HOME')
-    cmd += ['--user-data-dir=%s/.config/chromium/%s' % (home, profile)]
+    if profile:
+        cmd += ['--user-data-dir=%s/.config/chromium/%s' % (home, profile)]
 elif browser_type == 'ff':
     if profile != 'default':
         cmd += ['-new-instance']

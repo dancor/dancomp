@@ -1,18 +1,14 @@
 #!/bin/bash
 
-export LANG='en_US.UTF-8'
+#export LANG='en_US.UTF-8'
 
-#export XMODIFIERS="@im=ibus"
-#export GTK_IM_MODULE=ibus
-#export QT_IM_MODULE=ibus
-
-export XMODIFIERS="@im=fcitx"
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
+#export XMODIFIERS="@im=fcitx"
+#export GTK_IM_MODULE=fcitx
+#export QT_IM_MODULE=fcitx
 
 # Hack so that GNOME lets me run Fluxbox without a startup delay and an
 # error about Fluxbox not "registering", whatever that means.
-export WINDOW_MANAGER=/bin/true
+#export WINDOW_MANAGER=/bin/true
 
 PATH=/sbin:/usr/sbin
 PATH="$PATH":/usr/local/bin:/bin:/usr/bin:/usr/games:/usr/games/bin
@@ -40,7 +36,7 @@ alias ls='ls --color=auto -p'
 alias ll='ls -l'
 
 # reset will restore ^S as stop, etc
-alias reset='reset;source ~/.zshrc'
+#alias reset='reset;source ~/.zshrc'
 
 mde() {  # mkdir enter
   mkdir -p "$1" && cd "$1"
@@ -67,28 +63,13 @@ pr() {
 
 c() {
   case "$1" in
-    mcb) cd ~/p/dancomp/bin;;
-    hlu) cd ~/p/hs/lib/Util;;
+    dcb) cd ~/p/dancomp/tree/gen/bin;;
     *) cd "$1";;
   esac
 }
 
 pdo() {
   echo "$@" && eval "$@"
-}
-
-xdr() {
-  mkdir -p ~/.x-display
-  if [[ -n "$1" ]]
-  then
-    source ~/.x-display/"$1"
-  fi
-  [[ -f ~/.x-display/default ]] || echo 'export DISPLAY=:0' > ~/.x-display/default
-  source ~/.x-display/default
-}
-
-gfn() {  # fb-new and enter
-  git fb-new "$@" && cd "$2"
 }
 
 prN() {
@@ -98,38 +79,19 @@ prN() {
 }
 
 u() {
-  N="$1"
-  D='..'
-  while [ -n "$N" -a "$N" -gt 1 ]
-  do
-    D="$D"'/..'
-    N=$((N - 1))
-  done
-  cd "$D"
+  cd ..
 }
 u2() {
-  u 2
+  cd ../..
 }
 u3() {
-  u 3
+  cd ../../..
 }
 u4() {
-  u 4
+  cd ../../../..
 }
 u5() {
-  u 5
-}
-u6() {
-  u 6
-}
-u7() {
-  u 7
-}
-u8() {
-  u 8
-}
-u9() {
-  u 9
+  cd ../../../../..
 }
 
 f() {
@@ -143,81 +105,6 @@ ra() {
   cd "$DIR" >/dev/null 2>&1
 }
 
-xdr
-
 alias ls="ls --color=auto -p"
-
 alias mv="mv -i"
 alias cp="cp -i"
-
-alias garb='g arb'
-alias gbr='g br'
-alias gco='g co'
-alias gci='g ci'
-alias gdi='g di'
-alias glo='g lo'
-alias gpi='g pi'
-alias gst='g st'
-alias gab='g ab'
-alias gar='g ar'
-alias gau='g au'
-alias gb='g b'
-alias gca='g ca'
-alias gcf='g cf'
-alias gcoc='g coc'
-alias gcom='g com'
-alias gcp='g cp'
-alias gdia='g dia'
-alias gdica='g dica'
-alias gdic='g dic'
-alias gdi='g di'
-alias gdima='g dima'
-alias gdim='g dim'
-alias gdra='g dra'
-alias gdr='g dr'
-alias gf='g f'
-alias gfm='g fm'
-alias giu='g iu'
-alias gki='g ki'
-alias gmad='g mad'
-alias gmda='g mda'
-alias gmd='g md'
-alias gmm='g mm'
-alias gnb='g nb'
-alias gnc='g nc'
-alias gpb='g pb'
-alias gpu='g pu'
-alias gra='g ra'
-alias grem='g rem'
-alias grt='g rt'
-alias gsbr='g sbr'
-alias gsd='g sd'
-alias gsl='g sl'
-alias gsr='g sr'
-alias guf='g uf'
-alias ggo='g go'
-alias gmv='g mv'
-alias gup='g up'
-alias gvn='g vn'
-
-SSH_ENV="$HOME/.ssh/environment"
-
-function start_agent {
-     echo "Initialising new SSH agent..."
-     /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-     echo succeeded
-     chmod 600 "${SSH_ENV}"
-     . "${SSH_ENV}" > /dev/null
-}
-
-# Source SSH settings, if applicable
-
-if [ -f "${SSH_ENV}" ]; then
-     . "${SSH_ENV}" > /dev/null
-     #ps ${SSH_AGENT_PID} doesn't work under cywgin
-     ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-         start_agent;
-     }
-else
-     start_agent;
-fi

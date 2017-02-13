@@ -9,42 +9,6 @@ SAVEHIST=1000
 autoload -Uz compinit
 compinit
 
-bindkey -v
-bindkey '^[[A' up-line-or-history
-bindkey '^[[B' down-line-or-history
-
-###
-### <madness desc="to get home etc. keys to work in vi mode">
-###
-# create a zkbd compatible hash;
-# to add other keys to this hash, see: man 5 terminfo
-typeset -A key
-
-key[Home]=${terminfo[khome]}
-key[End]=${terminfo[kend]}
-key[Insert]=${terminfo[kich1]}
-key[Delete]=${terminfo[kdch1]}
-key[Up]=${terminfo[kcuu1]}
-key[Down]=${terminfo[kcud1]}
-key[Left]=${terminfo[kcub1]}
-key[Right]=${terminfo[kcuf1]}
-key[PageUp]=${terminfo[kpp]}
-key[PageDown]=${terminfo[knp]}
-
-# setup key accordingly
-[[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
-[[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
-[[ -n "${key[Insert]}"  ]]  && bindkey  "${key[Insert]}"  overwrite-mode
-[[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
-[[ -n "${key[Up]}"      ]]  && bindkey  "${key[Up]}"      up-line-or-history
-[[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    down-line-or-history
-[[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
-[[ -n "${key[Right]}"   ]]  && bindkey  "${key[Right]}"   forward-char
-
-###
-### </madness>
-###
-
 setopt appendhistory
 setopt autocd
 setopt autopushd
@@ -57,9 +21,6 @@ setopt notify
 setopt pushdignoredups
 
 zstyle ":completion:*:commands" rehash 1
-
-stty stop undef
-mesg n
 
 # tab completion stuff
 typeset -U fpath
@@ -128,30 +89,3 @@ screen*)
   }
 ;;
 esac
-
-if which ghc >/dev/null
-then
-  function hm {
-    ghc -e "interact ($*)";
-  }
-  function hml {
-    hm "unlines.($*).lines";
-  }
-  function hmw {
-    hml "map (unwords.($*).words)"
-  }
-fi
-
-if [[ x"${CONSOLE_AUTO}" == x1 ]]
-then
-  N=${TTY: -1}
-  if [[ x"${N}" == x6 ]]
-  then
-    unset CONSOLE_AUTO
-    exec startx
-  else
-    tmux-multi-group-prune &
-    tmux new-window -d -t 3"${N}"
-    tmux new-session -t lalala \; select-window -t 3"${N}" || echo 'could not attach to tmux'
-  fi
-fi

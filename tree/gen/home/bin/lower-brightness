@@ -1,0 +1,13 @@
+#!/bin/sh
+CUR=`cat /sys/class/backlight/intel_backlight/brightness`
+if [ $CUR -lt 100 ]; then
+  if [ $CUR -lt 10 ]; then
+    NEW=$(($CUR-1))
+  else
+    NEW=$(($CUR-10))
+  fi
+else
+    NEW=$(($CUR-100))
+fi
+NEW2=$(($NEW<1?1:$NEW))
+echo $NEW2 | sudo tee /sys/class/backlight/intel_backlight/brightness

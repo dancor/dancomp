@@ -1,21 +1,12 @@
 #!/bin/sh
 
-fcitx &
-nets eth &
-unity-settings-daemon &
+# Running unity-settings-daemon messes up keyboard modifications periodically?
+#unity-settings-daemon &
 
-# tmux stuff
-#notif-up &
 export TMUX=''
-tmux-multi-group-prune &
-#notifier &
-
-# other stuff
-sleep 1
+init-my-tmux
+tmux-multi-group-prune
+fix-input-devices
 scrs &
-#gnome-panel &
-
-fix-input-devices &
-forever sh -c 'sleep 2 && fix-input-devices > /dev/null' &
-
+#forever sh -c 'sleep 2 && fix-input-devices > /dev/null' &
 exec fluxbox

@@ -1,0 +1,14 @@
+#!/bin/sh
+CUR=`cat /sys/class/backlight/intel_backlight/brightness`
+MAX=`cat /sys/class/backlight/intel_backlight/max_brightness`
+if [ $CUR -lt 100 ]; then
+  if [ $CUR -lt 10 ]; then
+    NEW=$(($CUR+1))
+  else
+    NEW=$(($CUR+10))
+  fi
+else
+    NEW=$(($CUR+100))
+fi
+NEW2=$(($NEW>$MAX?$MAX:$NEW))
+echo $NEW2 | sudo tee /sys/class/backlight/intel_backlight/brightness
