@@ -27,10 +27,7 @@ data Wmv = Wmv
     deriving Show
 
 charWAndH :: P2 Rational
---charWAndH = P2 8 13
-charWAndH = P2 10 16
--- For 2160p:
---charWAndH = P2 16 28
+charWAndH = P2 10 20
 
 scrsUnitChWAndH :: [P2 Rational]
 scrsUnitChWAndH = [P2 80 40, P2 80 40]

@@ -48,24 +48,8 @@ rde() {  # rmdir exit
   rmdir "$D"
 }
 
-ww() {
-  cd /var/www
-}
-
-pr() {
-  if [[ -n "$@" ]]
-  then
-    d=`prd "$@"` && cd "$d"
-  else
-    cd ~/projects
-  fi
-}
-
 c() {
-  case "$1" in
-    dcb) cd ~/p/dancomp/tree/gen/bin;;
-    *) cd "$1";;
-  esac
+  cd `prd "$@"`
 }
 
 pdo() {

@@ -106,16 +106,9 @@ diffDir opts dir = do
     let (instAsRoot, destDir) = case lookup dir destDirInfos of
             Just v -> second ($ home) v
             _ -> error $ "unknown directory: " ++ dir
-        cAnoa = "anoa"
-        cKiva = "kiva"
-        workDirs = ["nonwork"]
-        isHomeserver = host `elem` [cKiva, cAnoa]
         dirs = map (\ x -> home </> "p" </> x) .
             concatMap (\ x -> ["dancomp" </> x, "dancomp-secret" </> x]) .
-            map (\ x -> "tree" </> x </> dir) $ ["gen"] ++
-            workDirs ++
-            (if isHomeserver then ["homeserver"] else ["sat"]) ++
-            [host]
+            map (\ x -> "tree" </> x </> dir) $ ["gen"] ++ [host]
     dirsFiles <- mapM filesInIfExist dirs
     -- prefer later file listings (host-specific over gen, secret over not)
     let files = M.toList . M.fromList . concat .

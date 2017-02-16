@@ -48,7 +48,7 @@ def v(d, f):
     if opts.remove:
         inst_cmd.append("-r")
     else:
-        make_f_executable = d.find("/bin") != -1
+        make_f_executable = d.endswith("/bin") or f.startswith("bin/")
         base_cmd = "v"
         if make_f_executable:
             base_cmd = "vx"

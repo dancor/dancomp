@@ -1,0 +1,3 @@
+#!/bin/sh
+nmcli c down e
+nmcli c up e
