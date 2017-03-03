@@ -27,7 +27,7 @@ data Wmv = Wmv
     deriving Show
 
 charWAndH :: P2 Rational
-charWAndH = P2 10 20
+charWAndH = P2 10 21
 
 scrsUnitChWAndH :: [P2 Rational]
 scrsUnitChWAndH = [P2 80 40, P2 80 40]

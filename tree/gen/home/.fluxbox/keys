@@ -26,6 +26,13 @@ XF86AudioMute :Exec adjvol -m
 233 :ExecCommand raise-brightness
 XF86Launch1 :Exec adjvol -s 70
 
+Mod4 F3 :ExecCommand lower-brightness
+Mod4 F4 :ExecCommand raise-brightness
+Mod4 F7 :Exec adjvol -m
+Mod4 F8 :ExecCommand adjvol -l
+Mod4 F9 :ExecCommand adjvol -r
+Mod4 F10 :Exec adjvol -s 70
+
 OnDesktop Mouse1 :HideMenus
 OnDesktop Mouse2 :WorkspaceMenu
 OnDesktop Mouse3 :RootMenu

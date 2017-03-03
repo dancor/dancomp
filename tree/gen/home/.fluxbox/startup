@@ -1,9 +1,14 @@
 #!/bin/sh
 
+# Not needed if lightdm is running
+fcitx &
+pulse-restart &
+
 # Running unity-settings-daemon messes up keyboard modifications periodically?
 #unity-settings-daemon &
 
 export TMUX=''
+power-off-gpu
 init-my-tmux
 tmux-multi-group-prune
 fix-input-devices

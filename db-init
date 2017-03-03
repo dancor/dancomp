@@ -1,4 +1,0 @@
-#!/bin/sh
-U="`whoami`"
-sudo sudo -u postgres psql template1 -c 'CREATE USER '"$U"';'
-sudo sudo -u postgres psql template1 -c 'ALTER USER '"$U"' CREATEDB;'

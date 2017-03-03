@@ -7,7 +7,7 @@ then
 fi
 TMUX='' exec urxvt +sb -fg black -bg "$BG_COLOR" \
   -b 0 -w 0 -fn \
-  'xft:Inconsolata:pixelsize=18' \
+  'xft:Inconsolata:pixelsize=19' \
   "$@" &
 #TMUX='' exec urxvt -fg orange -bg black -color4 slateblue \
 #  -b 0 -w 0 -fn \
