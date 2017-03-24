@@ -26,11 +26,11 @@ zstyle ":completion:*:commands" rehash 1
 typeset -U fpath
 fpath=(~/.zsh/fun $fpath)
 autoload -U ~/.zsh/fun/*(:t)
+compdef _c c
 compdef _wh wh
 compdef _wh cw
 compdef _wh vw
 compdef _vs vs
-compdef _pr pr
 compdef _sudo so
 compdef _gitkill g
 frel() {

@@ -1,3 +1,3 @@
 #!/bin/sh
 PATH=/home/danl/bin:/home/danl/bin/git:/usr/local/bin:/bin:/usr/bin:/usr/games:/usr/games/bin:/sbin:/usr/sbin:/home/danl/imod/chromium/depot_tools:/opt/java/bin \
-  exec sudo -u danl runsvdir /home/danl/service
+  exec sudo -u danl runsvdir /home/danl/etc/service

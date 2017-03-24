@@ -1,0 +1,83 @@
+#!/bin/sh 
+  
+  ##
+  ## DISK and FILESYSTEMS
+  ##
+
+  # Set the disks to aggressively save power.
+  # Some might find these settings too aggressive.  If so, change
+  # "-S 4" to something larger like -S 24 (two minutes) and -B 1 to -B 255.
+  # -S 4 => put in standby after 20 seconds idle
+  # -B 1 => highest degree of power savings
+  # -M => not supported by my drive
+  echo
+  echo HDPARM
+  echo
+  sudo hdparm -S 4 /dev/sda
+
+  # Change ext3/ext4 filesystem settings to reduce disk activity.
+  # noatime => disable updates to a file's access time when the file is read.
+  # commit=600 => Change the commit times to 10 minutes.
+  echo
+  echo EXT FILESYSTEM
+  echo
+  sudo mount -o remount,noatime,commit=600 /
+
+  # Set laptop disk write mode
+  echo
+  echo LAPTOP DISK WRITE MODE
+  echo
+  sudo sh -c 'echo 5 > /proc/sys/vm/laptop_mode'
+
+  # Set SATA to minimum power
+  echo
+  echo SATA
+  echo
+  sudo sh -c 'echo min_power > /sys/class/scsi_host/host0/link_power_management_policy'
+  sudo sh -c 'echo min_power > /sys/class/scsi_host/host1/link_power_management_policy'
+
+  ##
+  ## NETWORK
+  ##
+
+  # set the wifi to power savings.
+  echo
+  echo WIFI
+  echo
+  sudo iwconfig wlp3s0 power on
+  sudo rfkill block 0
+
+  ##
+  ## CPU AND MEMORY
+  ##
+
+  # Make sure ondemand governor is set
+  echo
+  echo ONDEMAND
+  echo
+  # sudo vim /etc/default/cpufrequtils
+  # sudo /etc/init.d/cpufrequtils restarts
+
+  # Reduce disk activity by waiting up to 10 minutes before doing writes
+  echo
+  echo DISK DIRTIES
+  echo
+  sudo sh -c 'echo 90 > /proc/sys/vm/dirty_ratio'
+  sudo sh -c 'echo 1 > /proc/sys/vm/dirty_background_ratio'
+  sudo sh -c 'echo 60000 > /proc/sys/vm/dirty_writeback_centisecs'
+
+  ##
+  ## SOUND AND VIDEO
+  ##
+
+  # Set sound card power savings
+  echo
+  echo SOUND
+  echo
+  sudo sh -c 'echo 10 > /sys/module/snd_hda_intel/parameters/power_save'
+
+  # Remove the webcam driver
+  echo
+  echo WEBCAM
+  echo
+  sudo sh -c 'modprobe -r uvcvideo'

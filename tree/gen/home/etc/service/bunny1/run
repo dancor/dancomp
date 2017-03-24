@@ -1,0 +1,2 @@
+#!/bin/sh
+exec ~/p/bunny1/src/lol.py

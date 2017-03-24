@@ -1,17 +1,27 @@
 #!/bin/sh
 
 # Not needed if lightdm is running
-fcitx &
+fcitx
 pulse-restart &
 
 # Running unity-settings-daemon messes up keyboard modifications periodically?
 #unity-settings-daemon &
 
 export TMUX=''
+save-power
 power-off-gpu
 init-my-tmux
 tmux-multi-group-prune
 fix-input-devices
-scrs &
+
+# this makes two-finger middle-click work a lot better
+# but don't seem to get much else with it?
+touchegg &
+
+# sometimes fcitx input doesn't work only in scrs; fcitx needs time to start?
+xterm &
+#sleep 8
+#scrs &
+
 #forever sh -c 'sleep 2 && fix-input-devices > /dev/null' &
 exec fluxbox

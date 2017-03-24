@@ -7,4 +7,4 @@
 #exec mplayer -nolirc "$@"
 
 # pulse is wack lately (gives no sound)..
-exec mplayer -ao alsa -nolirc "$@"
+exec mplayer -ao alsa -vo gl -nolirc "$@"

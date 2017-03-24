@@ -1,2 +1,0 @@
-#!/bin/sh
-cd ~/i/mod/bunny1/wtf && exec python a.py

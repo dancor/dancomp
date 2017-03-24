@@ -1,0 +1,2 @@
+#!/bin/sh
+~/i/kiwix/kiwix "$@" > /dev/null 2>&1 &

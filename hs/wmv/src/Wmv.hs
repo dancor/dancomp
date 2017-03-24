@@ -26,7 +26,9 @@ data Wmv = Wmv
     }
     deriving Show
 
+-- This seems to keep switching? What's going on?
 charWAndH :: P2 Rational
+--charWAndH = P2 10 20
 charWAndH = P2 10 21
 
 scrsUnitChWAndH :: [P2 Rational]

@@ -2,9 +2,13 @@
 BG_COLOR='white'
 if [ "x$1" = "x--alternate" ]
 then
-    BG_COLOR='gray95'
     shift
+    BG_COLOR='#fffff7'
+else
+    BG_COLOR='gray95'
+    BG_COLOR='#fff7ff'
 fi
+# Sometimes 19, sometimes 18, what's going on?
 TMUX='' exec urxvt +sb -fg black -bg "$BG_COLOR" \
   -b 0 -w 0 -fn \
   'xft:Inconsolata:pixelsize=19' \

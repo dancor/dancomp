@@ -1,0 +1,2 @@
+#!/bin/sh
+exec ~/p/one-off/skim-zim/serve ~/data/enwikt.zim
