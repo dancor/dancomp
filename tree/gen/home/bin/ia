@@ -3,8 +3,9 @@
 #DNS=4.2.2.2
 DNS=8.8.8.8
 
-HOST=google.com
+#HOST=google.com
 #HOST=baidu.com
+HOST=facebook.com
 
 ping "$@" -c 1 "$DNS"
 

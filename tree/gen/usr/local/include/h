@@ -5,7 +5,7 @@
 import Control.Applicative hiding ((<|>))
 import qualified Control.Applicative as App
 import Control.Arrow
-import Control.Concurrent
+import qualified Control.Concurrent as Conc
 import Control.DeepSeq
 import Control.Exception
 --import qualified Control.Foldl as Fdl
@@ -14,17 +14,22 @@ import Control.Monad.Except
 import Control.Monad.Identity
 --import qualified Control.Monad.Memo as MMemo
 import Control.Monad.Random
+import Control.Monad.ST
 import Control.Monad.Trans.Resource
 import Control.Parallel
 import Control.Parallel.Strategies
-import Control.Wire hiding ((<>), unless)
-import qualified Control.Wire as Wire
+--import Control.Wire hiding ((<>), unless)
+--import qualified Control.Wire as Wire
+--import qualified Data.Array.Repa as R
+--import Data.Array.Repa ((:.))
+--import Data.Array.Repa ((:.), Z, U, DIM0, DIM1, DIM2, DIM3, DIM4, DIM5)
 import qualified Data.Aeson as Ae
 import Data.Binary
 import Data.Bits
 import qualified Data.ByteString as BS
 import qualified Data.ByteString.Lazy as BSL
 import qualified Data.ByteString.Lazy.Char8 as BSLC
+import qualified Data.ByteString.Lazy.Search as BSLS
 import qualified Data.ByteString.Char8 as BSC
 import qualified Data.ByteString.UTF8 as BSU
 import qualified Data.ByteString.Lazy.UTF8 as BSLU
@@ -47,17 +52,17 @@ import qualified Data.HashSet as HSet
 import Data.Int
 import qualified Data.IntMap as IntMap
 import Data.List
-import Data.List.Split
-import qualified Data.ListLike as LL
-import Data.ListLike.Text
-import Data.ListLike.Vector
+import qualified Data.List.Split as Spl
+--import qualified Data.ListLike as LL
+--import Data.ListLike.Text
+--import Data.ListLike.Vector
 import qualified Data.Map as Map
 import qualified Data.Map.Strict as SMap
 import Data.Maybe
-import qualified Data.MemoCombinators as Memo
+--import qualified Data.MemoCombinators as Memo
 import Data.Monoid
 --import qualified Data.MultiSet as MSet
-import Data.Numbers.Primes
+--import Data.Numbers.Primes
 import Data.Ord
 import Data.Ratio
 import qualified Data.Serialize as Ser
@@ -85,6 +90,7 @@ import qualified Data.Vector.Storable.Mutable as MSVec
 import qualified Data.Vector.Unboxed as UVec
 import qualified Data.Vector.Unboxed.Mutable as MUVec
 import Debug.Trace
+import Euterpea as Eut
 import GHC.Generics
 --import qualified Haskore.Basic.Pitch as HBP
 --import Haskore.Basic.Duration hiding (Ratio)
@@ -96,9 +102,10 @@ import HSH
 import Language.Haskell.TH
 import MajMemSys
 --import qualified Math.Combinatorics.Binomial as Binom
-import Network.HTTP.Conduit
+--import Network.HTTP.Conduit
 import Numeric
-import Prelude hiding ((.), id)
+--import Prelude hiding ((.), id)
+import Prelude
 import Safe
 import System.Directory
 import System.Environment
@@ -111,7 +118,7 @@ import System.Random
 import qualified System.Random.MWC as MWC
 import qualified Test.QuickCheck as QC
 import qualified Text.ParserCombinators.Parsec as Psec
-import Text.HTML.TagSoup
+import qualified Text.HTML.TagSoup as TS
 import Text.Printf
 import Text.Regex.Posix
 import qualified Text.XML.Light as TXL

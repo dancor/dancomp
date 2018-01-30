@@ -1,19 +1,24 @@
 " Make escape work faster.
 set timeoutlen=1000 ttimeoutlen=0
 
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swp//
+
 " Basics and Vundle.
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'morhetz/gruvbox'
-Plugin 'junegunn/seoul256.vim'
-call vundle#end()
+"call vundle#begin()
+"Plugin 'morhetz/gruvbox'
+"Plugin 'junegunn/seoul256.vim'
+"call vundle#end()
 filetype plugin indent on
 
 "colorscheme seoul256-light
 "colorscheme gruvbox
 "colorscheme koehler
+
+autocmd BufEnter * :syntax sync fromstart
 
 map <F4> :w<CR>
 imap <F4> <ESC><F4>

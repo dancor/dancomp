@@ -4,6 +4,7 @@ import Control.Applicative
 import Control.Arrow
 import Control.Concurrent
 import Control.Monad
+import Data.Function
 import Data.List
 import Data.List.Utils
 import Data.Ratio
@@ -125,12 +126,22 @@ twoWords = (\(x:y:_) -> (x, y)) . words
 readI :: String -> Int
 readI = read
 
+getScrsPixelWAndH :: IO [P2 Rational]
+getScrsPixelWAndH = do
+    
+    widthHeightXs <-
+        map (take 3 . words .
+            replace "+" " " . replace "x" " " . (!! 2) . words) .
+        filter (" connected " `isInfixOf`) . lines <$>
+        readProcess "xrandr" [] ""
+    return .
+        map (\(w:h:_) -> P2 (fromIntegral $ readI w) (fromIntegral $ readI h)) $
+        sortBy (compare `on` (!! 2))
+        widthHeightXs
+
 main :: IO ()
 main = do
-    scrsPixelWAndH <- map (
-        (\(x, y) -> P2 (fromIntegral $ readI x) (fromIntegral $ readI y)) .
-        twoWords . replace "x" " " . head . words) .
-        filter ("*" `isInfixOf`) . lines <$> readProcess "xrandr" [] ""
+    scrsPixelWAndH <- getScrsPixelWAndH
     -- A unit is a place on the screen for a normal size text terminal.
     let scrsUnitWAndH = zipWith
             (\(P2 _scrPixelW scrPixelH) (P2 scrUnitChW _scrUnitChH) ->

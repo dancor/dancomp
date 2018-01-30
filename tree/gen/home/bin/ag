@@ -98,6 +98,6 @@ else:
 #do_update = False
 
 if do_update and not opts.no_update:
-    cu.cmd_wait('rnr 1d sudo apt-get update')
+    cu.cmd_wait('rnr 1d sudo apt-get update', can_fail=True)
 
 cu.cmd_wait(cs.split() + args)

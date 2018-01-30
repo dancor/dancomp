@@ -89,11 +89,9 @@ elif args:
     if not ret:
         completed_ks = [x for x in get_all_poss() if x.startswith(k)]
         completed_ks_len = len(completed_ks)
-        if completed_ks_len == 1:
-            ret = do_lookup(completed_ks[0])
-        elif completed_ks_len > 1:
+        if completed_ks_len > 1:
             print("Multiple matches: " + str(completed_ks), file=sys.stderr)
-            sys.exit(-1)
+        ret = do_lookup(completed_ks[0])
 else:
     ret = None
 

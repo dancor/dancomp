@@ -7,6 +7,6 @@ synopsis:        <syn>
 build-type:      Simple
 build-depends:   base, process, regex-posix
 
-executable:      b
+executable:      blankscr
 main-is:         Main.hs
 hs-source-dirs:  src

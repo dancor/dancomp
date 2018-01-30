@@ -1,2 +1,0 @@
-#!/bin/sh
-exec xm NOTIFIEROMG 's1 2 +.12987' 13 -- -bg brown4 "$@"

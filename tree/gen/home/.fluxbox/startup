@@ -14,6 +14,8 @@ init-my-tmux
 tmux-multi-group-prune
 fix-input-devices
 
+redshift &
+
 # this makes two-finger middle-click work a lot better
 # but don't seem to get much else with it?
 touchegg &

@@ -1,7 +1,0 @@
-#!/bin/sh
-#adjvol -m
-sudo s2ram
-#asdf
-#adjvol -u
-sleep 3
-think-touch off

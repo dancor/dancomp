@@ -1,7 +1,0 @@
-#!/bin/bash
-F=~/log/me/"${1:-me}"
-if [[ -z "$2" ]]
-then
-  echo $'\n'"$(mydate -u)"$'\n- ' >> "$F"
-fi
-exec v +999999999 "$F"

@@ -5,9 +5,11 @@ if [ $CUR -lt 100 ]; then
     NEW=$(($CUR-1))
   else
     NEW=$(($CUR-10))
+    NEW=$(($NEW<9?9:$NEW))
   fi
 else
     NEW=$(($CUR-100))
+    NEW=$(($NEW<99?99:$NEW))
 fi
 NEW2=$(($NEW<1?1:$NEW))
 echo $NEW2 | sudo tee /sys/class/backlight/intel_backlight/brightness

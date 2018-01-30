@@ -48,18 +48,25 @@ Mod1 Shift Tab :PrevWindow groups
 
 Mod1 F4 :Close
 
+#
 # z is zap-it-away/out-of-sight or zoom-out
+#
+
+Mod4 z a :ExecCommand wf -z a
+Mod4 z b :ExecCommand wf -z b
+Mod4 z c :ExecCommand wf -z c
+Mod4 z d :ExecCommand wf -z d
+Mod4 z e :ExecCommand wf -z e
+Mod4 z f :ExecCommand wf -z f
+Mod4 z i :ExecCommand wf -z i
+Mod4 z k :ExecCommand wf -z k
+Mod4 z n :ExecCommand wf -z n
+Mod4 z o :ExecCommand wf -z o
+Mod4 z p :ExecCommand wf -z p
 Mod4 z r :ExecCommand wf -z r
 Mod4 z s :ExecCommand wf -z s
 Mod4 z t :ExecCommand wf -z t
-Mod4 z h :ExecCommand wf -z h
-#Mod4 z t :ExecCommand wf -z t
-Mod4 z n :ExecCommand wf -z n
-Mod4 z o :ExecCommand wf -z o
-Mod4 z a :ExecCommand wf -z a
-Mod4 z f :ExecCommand wf -z f
-Mod4 z c :ExecCommand wf -z c
-Mod4 z p :ExecCommand wf -z p
+Mod4 z Shift t :ExecCommand wf -z T
 Mod4 z w :ExecCommand wf -z w
 
 #
@@ -69,6 +76,7 @@ Mod4 z w :ExecCommand wf -z w
 Mod4 s a :ExecCommand wf a
 Mod4 s b :ExecCommand wf b
 Mod4 s c :ExecCommand wf c
+Mod4 s d :ExecCommand wf d
 Mod4 s e :ExecCommand wf e
 Mod4 s f :ExecCommand wf f
 Mod4 s i :ExecCommand wf i
@@ -87,19 +95,42 @@ Mod4 s w :ExecCommand wf w
 #
 
 Mod4 t a :ExecCommand wmv 0
-Mod4 t r :ExecCommand wmv 0
-Mod4 t s :ExecCommand wmv 1
-Mod4 t t :ExecCommand wmv 2
-Mod4 t d :ExecCommand wmv 0+
+Mod4 t r :ExecCommand wmv 1
+Mod4 t s :ExecCommand wmv 2
+Mod4 t t :ExecCommand wmv 3
+Mod4 t d :ExecCommand wmv 4+
+Mod4 t 2 a :ExecCommand wmv 0+2
+Mod4 t 2 r :ExecCommand wmv 1+2
+Mod4 t 2 s :ExecCommand wmv 2+2
+Mod4 t 2 t :ExecCommand wmv 3+
+Mod4 t 3 a :ExecCommand wmv 0+3
+Mod4 t 3 r :ExecCommand wmv 1+3
+Mod4 t 3 s :ExecCommand wmv 2+
+Mod4 t 4 a :ExecCommand wmv 0+4
+Mod4 t 4 r :ExecCommand wmv 1+
+Mod4 t 5 a :ExecCommand wmv 0+
+Mod4 t h :ExecCommand wmv s2 0
+Mod4 t n :ExecCommand wmv s2 1
+Mod4 t e :ExecCommand wmv s2 2
+Mod4 t i :ExecCommand wmv s2 3
+Mod4 t o :ExecCommand wmv s2 4+
+Mod4 t 2 h :ExecCommand wmv s2 0+2
+Mod4 t 2 n :ExecCommand wmv s2 1+2
+Mod4 t 2 e :ExecCommand wmv s2 2+2
+Mod4 t 2 i :ExecCommand wmv s2 3+
+Mod4 t 3 h :ExecCommand wmv s2 0+3
+Mod4 t 3 n :ExecCommand wmv s2 1+3
+Mod4 t 3 e :ExecCommand wmv s2 2+
+Mod4 t 4 h :ExecCommand wmv s2 0+4
+Mod4 t 4 n :ExecCommand wmv s2 1+
+Mod4 t 5 h :ExecCommand wmv s2 0+
+
+#Mod4 t d :ExecCommand wmv 0+
+
 Mod4 t x :ExecCommand wmv 0+2
 Mod4 t c :ExecCommand wmv 1+
 Mod4 t v :ExecCommand wmv 0+1.4
 Mod4 t b :ExecCommand wmv 1.4+
-Mod4 t n :ExecCommand wmv s2 0
-Mod4 t e :ExecCommand wmv s2 1
-Mod4 t i :ExecCommand wmv s2 2
-Mod4 t o :ExecCommand wmv s2 3
-Mod4 t h :ExecCommand wmv s2 0+
 Mod4 t m :ExecCommand wmv s2 0+2
 Mod4 t comma :ExecCommand wmv s2 1+
 Mod4 t period :ExecCommand wmv s2 0+1.4
@@ -133,13 +164,20 @@ Mod4 t z o :ExecCommand wmv s2 3 .5+
 #Mod4 t m :ExecCommand wmv m
 #Mod4 t comma :ExecCommand wmv ,
 
+#
 # r is "run"
-Mod4 r m r :ExecCommand xm a1 0 1
-Mod4 r m s :ExecCommand xm a2 1 2
-Mod4 r m t :ExecCommand xm a3 2 3
-Mod4 r m n :ExecCommand xm b1 's2 0' 7
-Mod4 r m e :ExecCommand xm b2 's2 1' 8
-Mod4 r m i :ExecCommand xm b3 's2 2' 9
+#
+
+Mod4 r m a :ExecCommand xm a1 0 1
+Mod4 r m r :ExecCommand xm a2 1 2
+Mod4 r m s :ExecCommand xm a3 2 3
+Mod4 r m t :ExecCommand xm a4 3 4
+Mod4 r m d :ExecCommand xm a5 4 5
+Mod4 r m h :ExecCommand xm b1 's2 0' 6
+Mod4 r m n :ExecCommand xm b2 's2 1' 7
+Mod4 r m e :ExecCommand xm b3 's2 2' 8
+Mod4 r m i :ExecCommand xm b4 's2 3' 9
+Mod4 r m o :ExecCommand xm b5 's2 4' 10
 
 Mod4 r b :ExecCommand torb
 Mod4 r c :ExecCommand ff -c
@@ -154,8 +192,8 @@ Mod4 r t :ExecCommand thunderbird
 Mod4 r x :ExecCommand xt
 Mod4 r v :ExecCommand gvim
 
-Mod4 n :ExecCommand notifierHide
-Mod4 r n :ExecCommand notifierShow
+Mod4 n :ExecCommand hide-notifier
+Mod4 r n :ExecCommand show-notifier
 
 Mod4 F1 :ExecCommand mus n
 Mod4 F2 :ExecCommand mus p

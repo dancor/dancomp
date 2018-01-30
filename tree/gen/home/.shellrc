@@ -16,6 +16,12 @@ PATH="$PATH":/opt/java/bin
 PATH="$PATH":~/bin:~/bin/git:~/.cabal/bin
 export PATH
 
+# Is this for CUDA?
+LD_LIBRARY_PATH="$LD_LIBRARY_PATH":/usr/lib/x86_64-linux-gnu
+# This is for libreoffice
+LD_LIBRARY_PATH="$LD_LIBRARY_PATH":/usr/lib/libreoffice/program
+export LD_LIBRARY_PATH
+
 #export PYTHONPATH=/home/danl/p/peoplesounds:"$PYTHONPATH"
 
 export GIT_CEILING_DIRECTORIES=/home:/root
