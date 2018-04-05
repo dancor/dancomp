@@ -126,22 +126,26 @@ twoWords = (\(x:y:_) -> (x, y)) . words
 readI :: String -> Int
 readI = read
 
-getScrsPixelWAndH :: IO [P2 Rational]
-getScrsPixelWAndH = do
-    
-    widthHeightXs <-
-        map (take 3 . words .
-            replace "+" " " . replace "x" " " . (!! 2) . words) .
-        filter (" connected " `isInfixOf`) . lines <$>
-        readProcess "xrandr" [] ""
-    return .
-        map (\(w:h:_) -> P2 (fromIntegral $ readI w) (fromIntegral $ readI h)) $
-        sortBy (compare `on` (!! 2))
-        widthHeightXs
+monitorsInfo :: IO [P2 Rational]
+monitorsInfo = do
+    ls <- tail . lines <$> readProcess "xrandr" ["--listmonitors"] ""
+    let parseNumsAndName [_,_,numsStr,name] =
+            (name, parseNums $ map read $ words $ map myRep numsStr)
+          where
+            myRep '/' = ' '
+            myRep 'x' = ' '
+            myRep '+' = ' '
+            myRep x = x
+        parseNumsAndName e = error $ "parseNumsAndName failed on: " ++ show e
+        parseNums [width,_,height,_,_xOffset,_yOffset] =
+            P2 (fromIntegral width) (fromIntegral height)
+        parseNums e = error $ "parseNums failed on: " ++ show e
+    return $ sortBy (compare `on` p1) $ map (snd . parseNumsAndName . words) ls
 
 main :: IO ()
 main = do
-    scrsPixelWAndH <- getScrsPixelWAndH
+    scrsPixelWAndH <- monitorsInfo
+    --mapM_ print scrsPixelWAndH
     -- A unit is a place on the screen for a normal size text terminal.
     let scrsUnitWAndH = zipWith
             (\(P2 _scrPixelW scrPixelH) (P2 scrUnitChW _scrUnitChH) ->

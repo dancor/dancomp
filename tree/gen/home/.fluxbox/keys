@@ -79,6 +79,7 @@ Mod4 s c :ExecCommand wf c
 Mod4 s d :ExecCommand wf d
 Mod4 s e :ExecCommand wf e
 Mod4 s f :ExecCommand wf f
+Mod4 s h :ExecCommand wf h
 Mod4 s i :ExecCommand wf i
 Mod4 s k :ExecCommand wf k
 Mod4 s n :ExecCommand wf n
