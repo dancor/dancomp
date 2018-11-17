@@ -29,6 +29,7 @@ map <F9>P :set nopaste<CR>
 set expandtab
 set sw=4
 set ts=4
+" todo change for py files?
 set si
 
 " Tell vim to remember certain things when we exit

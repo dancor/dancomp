@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+# Start the default set of X terminals, running
+# multiplexed-positioned-titled-xt for each one.
+# See multiplexed-positioned-titled-xt for more info.
+
 from optparse import OptionParser
 import cmd_util as cu
 import sys
@@ -22,8 +26,10 @@ opt_p = OptionParser(usage)
 opt_p.add_option("-v", "--verbose", action="store_true", help="show commands")
 (opts, args) = opt_p.parse_args()
 
-for title, pos, tmux in scrs:
-    cmd = " ".join(["xm", title, pos, tmux] + list(cu.args_esc(args))) + " >> /home/danl/log/xm_wtf 2>&1 &"
+for title, pos, multiplexer_window in scrs:
+    cmd = " ".join(["multiplexed-positioned-titled-xt", multiplexer_window,
+        pos, title] + list(cu.args_esc(args))) + \
+        " >> ~/log/multiplexed-positioned-titled-xt.log 2>&1 &"
     if opts.verbose:
         print(cmd)
     cu.cmd_wait(cmd)

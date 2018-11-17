@@ -1,0 +1,15 @@
+#!/bin/zsh
+while true
+do
+    bat | grep -q '^    state:               discharging$'
+    IS_CHARGING=$?
+    if [[ "$IS_CHARGING" == '0' ]]
+    then
+        PERCENT=$(bat | grep -oP '(?<=percentage:          ).*(?=%)')
+        if [[ "$PERCENT" -le '2' ]]
+        then
+            /home/danl/bin/hib
+        fi
+    fi
+    sleep 10
+done

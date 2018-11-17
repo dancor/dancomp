@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# To run mesa applications with bumblebee in ubuntu 18.04..
+export __GLVND_DISALLOW_PATCHING=1
+
 #export LANG='en_US.UTF-8'
 
 export XMODIFIERS="@im=fcitx"

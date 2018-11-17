@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Start an X terminal on a given multiplexer window and with a given X title,
+# and pass along any additional args.
+
+multiplexer_window="$1"
+title="$2"
+shift 2
+if [ "x$1" = "x--alternate" ]
+then
+    shift
+    exec xt --alternate -T "$title" "$@" -e s "$multiplexer_window" &
+else
+    exec xt -T "$title" "$@" -e s "$multiplexer_window" &
+fi

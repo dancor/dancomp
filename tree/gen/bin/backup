@@ -1,0 +1,15 @@
+#!/bin/sh
+set -e
+
+echo '- Backup luks to /boot'
+sudo cryptsetup luksHeaderBackup /dev/sda7 --header-backup-file=/boot/luks-header2-dev-sda7
+sudo diff /boot/luks-header-dev-sda7 /boot/luks-header2-dev-sda7
+sudo mv /boot/luks-header2-dev-sda7 /boot/luks-header-dev-sda7
+
+echo '- Backup lvm to /boot'
+sudo cp /etc/lvm /boot/lvm-backup2 -Rafv
+echo 'FIXME: check for lvm change? or otherwise do verification'
+sudo rm -r /boot/lvm-backup
+sudo mv /boot/lvm-backup2 /boot/lvm-backup
+
+echo 'FIXME: backup data'

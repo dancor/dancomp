@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Pre
+#adjvol -m
+
+# Action
+sudo systemctl suspend
+
+# Post
+#asdf
+#adjvol -u
+#sleep 3
+#think-touch off

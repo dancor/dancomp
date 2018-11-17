@@ -20,10 +20,14 @@ redshift &
 # but don't seem to get much else with it?
 touchegg &
 
+notifier &
+
 # sometimes fcitx input doesn't work only in scrs; fcitx needs time to start?
-xterm &
+#xterm &
 #sleep 8
 #scrs &
+
+xm a1 0 1
 
 #forever sh -c 'sleep 2 && fix-input-devices > /dev/null' &
 exec fluxbox

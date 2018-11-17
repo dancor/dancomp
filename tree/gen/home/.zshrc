@@ -10,7 +10,6 @@ autoload -Uz compinit
 compinit
 
 setopt appendhistory
-setopt autocd
 setopt autopushd
 setopt extendedglob
 setopt hist_ignore_all_dups
