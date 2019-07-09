@@ -9,14 +9,22 @@ export XMODIFIERS="@im=fcitx"
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 
-# Hack so that GNOME lets me run Fluxbox without a startup delay and an
+export EDITOR=vim
+export PAGER=less
+export LESSCHARSET='utf-8'
+export WINDOW_MANAGER=/usr/bin/fluxbox
+export LS_COLORS='di=01;35'
+alias ls='ls --color=auto -p'
+alias ll='ls -l'
+
+#Hack so that GNOME lets me run Fluxbox without a startup delay and an
 # error about Fluxbox not "registering", whatever that means.
 #export WINDOW_MANAGER=/bin/true
 
 PATH=/sbin:/usr/sbin
 PATH="$PATH":/usr/local/bin:/bin:/usr/bin:/usr/games:/usr/games/bin
 PATH="$PATH":/opt/java/bin
-PATH="$PATH":~/bin:~/bin/git:~/.cabal/bin
+PATH="$PATH":~/bin:~/bin/git:~/.cabal/bin:~/.local/bin
 export PATH
 
 # Is this for CUDA?
@@ -29,20 +37,11 @@ export LD_LIBRARY_PATH
 
 export GIT_CEILING_DIRECTORIES=/home:/root
 
+export ANDROID_HOME=~/Android/Sdk
+
 #export SDL_AUDIODRIVER=alsa
 #export AUDIODEV=plug:dmix
 
-export EDITOR="vim"
-export PAGER="less"
-
-export LESSCHARSET='utf-8'
-
-export WINDOW_MANAGER=/usr/bin/fluxbox
-
-export LS_COLORS='di=01;35'
-
-alias ls='ls --color=auto -p'
-alias ll='ls -l'
 
 # reset will restore ^S as stop, etc
 #alias reset='reset;source ~/.zshrc'

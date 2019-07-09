@@ -6,17 +6,9 @@ set directory=~/.vim/swp//
 
 " Basics and Vundle.
 set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-"call vundle#begin()
-"Plugin 'morhetz/gruvbox'
-"Plugin 'junegunn/seoul256.vim'
-"call vundle#end()
+"filetype off
+execute pathogen#infect()
 filetype plugin indent on
-
-"colorscheme seoul256-light
-"colorscheme gruvbox
-"colorscheme koehler
 
 autocmd BufEnter * :syntax sync fromstart
 
@@ -47,3 +39,5 @@ autocmd BufReadPost *
   \ if line("'\"") > 0 && line("'\"") <= line("$") |
   \   exe "normal g`\"" |
   \ endif
+
+colo zellner

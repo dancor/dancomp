@@ -43,7 +43,7 @@ def rat(f):
         cmd = ['tar', 'xjf']
     elif endtry(f, r, ['.tar.gz', '.tgz', '.tar.Z']):
         cmd = ['tar', 'xzf']
-    elif endtry(f, r, ['.tar', '.tar.xz']):
+    elif endtry(f, r, ['.tar', '.tar.xz', '.txz']):
         cmd = ['tar', 'xf']
     elif endtry(f, r, ['.zip']):
         cmd = ['unzip']

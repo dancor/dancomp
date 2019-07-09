@@ -1,19 +1,31 @@
-#!/bin/sh
-BG_COLOR='white'
-if [ "x$1" = "x--alternate" ]
-then
-    shift
-    BG_COLOR='#fffff7'
-else
-    BG_COLOR='gray95'
-    BG_COLOR='#fff7ff'
-fi
-# Sometimes 19, sometimes 18, what's going on?
-TMUX='' exec urxvt +sb -fg black -bg "$BG_COLOR" \
-  -b 0 -w 0 -fn \
-  'xft:Inconsolata:pixelsize=19' \
-  "$@" &
-#TMUX='' exec urxvt -fg orange -bg black -color4 slateblue \
-#  -b 0 -w 0 -fn \
-#  'xft:Terminus:pixelsize=15,xft:AR PL UMing CN:pixelsize=13' \
-#  "$@" &
+#!/usr/bin/env python3
+from optparse import OptionParser
+from time import sleep
+import cmd_util as cu
+import sys
+import os
+
+usage = ''
+opt_p = OptionParser(usage)
+opt_p.add_option("-a", "--alternate", action="store_true")
+opt_p.add_option("-b", "--black", action="store_true")
+(opts, args) = opt_p.parse_args()
+if opts.black:
+    term_args = ['--color4', '#3333ee', '--color12', '#3333ff', \
+        '--color11', '#aaaa00']
+    fg_color = 'gray70'
+    if opts.alternate:
+        bg_color = '#070700'
+    else:
+        bg_color = 'black'
+else:
+    term_args = []
+    fg_color = 'black'
+    if opts.alternate:
+        bg_color = '#fffff7'
+    else:
+        bg_color = 'white'
+os.putenv('TMUX', '')
+term = '/usr/bin/urxvt'
+os.execv(term , [term, '+sb', '-fg', fg_color, '-bg', bg_color, '-b', '0',
+    '-w', '0', '-fn',  'xft:Inconsolata:pixelsize=19'] + term_args + args)

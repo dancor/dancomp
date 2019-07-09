@@ -5,13 +5,14 @@ servers = (
     port = "6667";
     #port = "7000";
     autoconnect = "Yes";
-    password = "SECRET-PASSWORD";
+    show_names_on_join = "no";
   },
   {
     address = "irc.oftc.net";
     chatnet = "o";
     port = "6667";
     autoconnect = "No";
+    show_names_on_join = "no";
   }
 );
 

@@ -22,8 +22,8 @@ else:
 
 a, = args
 
-if a[0] in ('a', 'q'):
-    if a[0] == 'a':
+if a[0] in ('q', 'z'):
+    if a[0] == 'q':
         pref = 'h'
     else:
         pref = 'l'
@@ -33,8 +33,10 @@ else:
 
 # duplicates wmv stuff?
 a_map = {
+    'a': 'a1',
     'b': 'Tor Browser',
     'c': 'Chromium',
+    'C': 'google-chrome',
     'e': 'b2',
     'f': 'firefox',
     'i': 'b3',
@@ -43,11 +45,11 @@ a_map = {
     'N': 'NOTIFIEROMG',
     'p': 'pdf',  # evince doesn't put pdf or anything in title, hm
     'Q': 'Quod Libet',
-    'r': 'a1',
-    's': 'a2',
-    't': 'a3',
+    'r': 'a2',
+    's': 'a3',
+    't': 'a4',
     'T': 'thunderbird',
-    'w': 'arora',
+    'w': ' - Kiwix',
 }
 
 title = pref + a_map[a]

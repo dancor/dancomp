@@ -32,6 +32,8 @@ compdef _wh vw
 compdef _vs vs
 compdef _sudo so
 compdef _gitkill g
+compdef _optirun optirun
+compdef _optirun gpu
 frel() {
   local f
   f=(~/.zsh/fun/*(.))

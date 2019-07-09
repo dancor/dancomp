@@ -25,12 +25,12 @@ sub notify {
 
     return if (!$server || !($dest->{level} & MSGLEVEL_HILIGHT));
 
-    system ("doNotify", "irc", "1", $dest->{target}, $message);
+    system ("notif", "irc", "1", $dest->{target}, $message);
 }
 
 sub priv_message {
     my ($server, $message, $nick, $address, $target) = @_;
-    system ("doNotify", "irc", "1", $nick, $message);
+    system ("notify", "irc", "1", $nick, $message);
 }
 
 Irssi::signal_add('print text', 'notify');

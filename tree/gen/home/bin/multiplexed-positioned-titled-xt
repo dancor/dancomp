@@ -17,6 +17,7 @@ import os
 usage = ''
 opt_p = OptionParser(usage)
 opt_p.add_option("-a", "--adjust-only", action="store_true")
+opt_p.add_option("-b", "--black", action="store_true")
 opt_p.add_option("-r", "--run-only", action="store_true")
 opt_p.add_option("-v", "--verbose", action="store_true")
 (opts, args) = opt_p.parse_args()
@@ -24,6 +25,9 @@ multiplexer_window = args[0]
 wmv_arg = args[1]
 xt_title = args[2]
 xt_extra_args = args[3:]
+col_args = []
+if opts.black:
+    col_args += ['--black']
 wmv_bin = "/home/danl/.cabal/bin/wmv"
 
 def coord(n):
@@ -37,20 +41,18 @@ if not opts.adjust_only:
     xS, yS, wS, hS = cu.cmd_output(cmd)[0].split()
     x, y, w, h = int(xS), int(yS), int(wS), int(hS)
     if wmv_arg.isdigit() and int(wmv_arg) % 2 == 1:
-        col_args = ["--alternate"]
-    else:
-        col_args = []
+        col_args += ["--alternate"]
     geom_arg = "%dx%d%s%s" % (w, h, coord(x), coord(y))
-    cmd = ["multiplexed-titled-xt", multiplexer_window, xt_title] + \
-        col_args + ["-geometry", geom_arg] + xt_extra_args
+    cmd = ["xt"] + col_args + ['--', '-T', xt_title, "-geometry", geom_arg] + \
+        xt_extra_args + ["-e", "s", multiplexer_window]
     if opts.verbose:
         print(cmd)
     env_mod = os.environ
     env_mod["TMUX"] = ""
-    cu.cmd_wait(cmd, env=env_mod)
+    cu.cmd_run(cmd, env=env_mod)
 if not opts.run_only:
     if not opts.adjust_only:
-        sleep(1.5)
+        sleep(0.01)
     cmd = [wmv_bin] + wmv_arg.split(' ') + [xt_title]
     if opts.verbose:
         print(cmd)

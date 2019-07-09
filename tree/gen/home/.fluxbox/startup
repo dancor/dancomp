@@ -1,20 +1,18 @@
 #!/bin/sh
 
+sudo swapoff /swap
+
+save-power
+turn-off-gpu
+
 # Not needed if lightdm is running
 fcitx
-pulse-restart &
-
-# Running unity-settings-daemon messes up keyboard modifications periodically?
-#unity-settings-daemon &
 
 export TMUX=''
-save-power
-power-off-gpu
 init-my-tmux
 tmux-multi-group-prune
-fix-input-devices
 
-redshift &
+#redshift &
 
 # this makes two-finger middle-click work a lot better
 # but don't seem to get much else with it?
@@ -22,12 +20,18 @@ touchegg &
 
 notifier &
 
-# sometimes fcitx input doesn't work only in scrs; fcitx needs time to start?
-#xterm &
-#sleep 8
-#scrs &
+# fcitx input doesn't work only in scrs; fcitx needs time to start?
+# so just not starting any screens here
 
-xm a1 0 1
+# is it worth running every second? or just manually after change
+fix-input-devices
+#forever sh -c 'sleep 1 && fix-input-devices > /dev/null' &
 
-#forever sh -c 'sleep 2 && fix-input-devices > /dev/null' &
+nmcli con up sonic-client
+
+multiplexed-positioned-titled-xt 1 0 a1
+multiplexed-positioned-titled-xt 2 1 a2
+multiplexed-positioned-titled-xt 3 2 a3
+ff -c
+
 exec fluxbox

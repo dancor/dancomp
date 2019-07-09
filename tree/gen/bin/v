@@ -7,4 +7,8 @@
 #exec emacs "$@"
 #exec emacsclient -c --alternate-editor emacs "$@"
 
-exec vim "$@"
+# 2018-12 too many nvim screen garbles (^L) and seg faults
+# remember to rm ~/.viminfo when switching between vim and nvim
+exec nvim "$@"
+
+#exec vim "$@"

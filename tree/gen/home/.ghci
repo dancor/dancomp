@@ -1,3 +1,5 @@
-:l /home/danl/p/hs/ghci.hs
+:set -cpp
 :set prompt "> "
 :set +s
+:l /home/danl/p/hs/ghci.hs
+:set -XOverloadedStrings

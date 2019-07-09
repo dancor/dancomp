@@ -13,16 +13,41 @@ import Control.Monad.Trans.Resource
 import Control.Parallel
 import Control.Parallel.Strategies
 import qualified Data.Aeson as Ae
+import qualified Data.Aeson.Parser.Internal as Ae
+import Data.Array.Repa hiding (map, (++), zipWith)
+import Data.Array.Repa.Repr.Cursored
+import Data.Array.Repa.Repr.ByteString
+import Data.Array.Repa.Repr.ForeignPtr
+import Data.Array.Repa.Repr.HintInterleave
+import Data.Array.Repa.Repr.HintSmall
+import Data.Array.Repa.Repr.Partitioned
+import Data.Array.Repa.Repr.Vector
+{-
+    (Array, D, DIM0, DIM1, DIM2, DIM3, DIM4, DIM5, U, Z(..), (:.)(..))
+    import Data.Array.Repa.Repr.Cursored (C)
+    import Data.Array.Repa.Repr.ByteString (B)
+    import Data.Array.Repa.Repr.ForeignPtr (F)
+    import Data.Array.Repa.Repr.HintInterleave (I)
+    import Data.Array.Repa.Repr.HintSmall (S)
+    import Data.Array.Repa.Repr.Partitioned (P)
+    import Data.Array.Repa.Repr.Vector (V)
+    import qualified Data.Array.Repa.Repr.Vector as R
+    import qualified Data.Array.Repa as R
+-}
 import Data.Binary
 import Data.Bits
+import qualified Data.ByteString (ByteString(..))
 import qualified Data.ByteString as B
-import qualified Data.ByteString.Char8 as B hiding (readFile, writeFile)
+import qualified Data.ByteString.Char8 as B hiding
+    (readFile, writeFile, pack, unpack, lines)
 import qualified Data.ByteString.Lazy as BL
-import qualified Data.ByteString.Lazy.Char8 as BL
+import qualified Data.ByteString.Lazy.Char8 as BL hiding
+    (readFile, writeFile, pack, unpack, lines)
 import qualified Data.ByteString.Lazy.Search as BL
 import qualified Data.ByteString.Lazy.UTF8 as BL
 import qualified Data.ByteString.UTF8 as B
 import Data.Char
+--import Data.Char.WCWidth
 import Data.Conduit
 import qualified Data.Conduit.Binary as CB
 import qualified Data.Conduit.Combinators as CC
@@ -34,18 +59,23 @@ import qualified Data.Foldable as Fold
 import Data.Function hiding ((.), id)
 import Data.Hashable
 import qualified Data.HashMap.Lazy as HML
-import qualified Data.HashMap.Strict as HM
 import Data.HashMap.Strict (HashMap)
-import qualified Data.HashSet as HS
+import qualified Data.HashMap.Strict as HM
 import Data.HashSet (HashSet)
+import qualified Data.HashSet as HS
 import Data.Int
+import Data.IntMap (IntMap)
 import qualified Data.IntMap as IntMap
+import Data.IntSet (IntSet)
+import qualified Data.IntSet as IntSet
 import Data.List
 import qualified Data.List.Split as Spl
 import qualified Data.Map as Map
 import qualified Data.Map.Strict as SMap
 import Data.Maybe
 import Data.Monoid
+import Data.MultiSet (MultiSet)
+import qualified Data.MultiSet as MSet
 import Data.Ord
 import Data.Ratio
 import qualified Data.Serialize as Ser
@@ -58,6 +88,7 @@ import qualified Data.Text as T
 import qualified Data.Text.Encoding as T
 import qualified Data.Text.IO as T
 import qualified Data.Text.Lazy as TL
+import qualified Data.Text.Lazy.Encoding as TL
 import qualified Data.Text.Lazy.IO as TL
 import Data.Time
 import Data.Time.Calendar.WeekDate
@@ -65,18 +96,23 @@ import Data.Time.Clock.POSIX
 import Data.Time.Clock.TAI
 import qualified Data.Traversable as Trav
 import qualified Data.Tree as Tree
-import qualified Data.Vector as V
-import qualified Data.Vector.Mutable as VM
-import qualified Data.Vector.Storable as VS
-import qualified Data.Vector.Storable.Mutable as VSM
-import qualified Data.Vector.Unboxed as VU
-import qualified Data.Vector.Unboxed.Mutable as VUM
+import Data.Strict.Tuple ((:!:))
+import qualified Data.Strict.Tuple as Tup
+--import Data.StrictVector (Vector, (!), (!?))
+--import qualified Data.StrictVector as V
+--import qualified Data.StrictVector.Mutable as VM
+import qualified Data.Vector as VL
+import qualified Data.Vector.Mutable as VLM
+import qualified Data.Vector.Storable as VLS
+import qualified Data.Vector.Storable.Mutable as VLSM
+import qualified Data.Vector.Unboxed as VLU
+import qualified Data.Vector.Unboxed.Mutable as VLUM
 import Debug.Trace
-import qualified Euterpea as Eut
+--import qualified Euterpea as Eut
 import GHC.Generics
 import HSH
 import Language.Haskell.TH
-import MajMemSys
+--import MajMemSys
 import Numeric
 import Prelude
 import Safe

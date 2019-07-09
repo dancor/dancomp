@@ -25,13 +25,14 @@ Mod4 F7 :ExecCommand arst
 # (p)inyin
 # (w)ubi2008
 # (x)-sampa
-Mod4 i a :Exec fcitx-remote -os arabic
-Mod4 i c :Exec fcitx-remote -c
-Mod4 i h :Exec fcitx-remote -os m17n_hi_phonetic
-Mod4 i p :Exec fcitx-remote -os pinyin
-Mod4 i r :Exec fcitx-remote -os m17n_t_rfc1345
-Mod4 i w :Exec fcitx-remote -os wubi2008
-Mod4 i x :Exec fcitx-remote -os ipa-x-sampa
+Mod4 f a :Exec my-fcitx-remote -os arabic
+Mod4 f c :Exec my-fcitx-remote -c
+Mod4 f h :Exec my-fcitx-remote -os m17n_hi_phonetic
+Mod4 f p :Exec my-fcitx-remote -os pinyin
+Mod4 f r :Exec my-fcitx-remote -os m17n_t_rfc1345
+Mod4 f w :Exec my-fcitx-remote -os wubi2008
+Mod4 f x :Exec my-fcitx-remote -os ipa-x-sampa
+Mod4 f j :Exec my-fcitx-remote -os mozc
 
 XF86AudioLowerVolume :ExecCommand adjvol -l
 XF86AudioRaiseVolume :ExecCommand adjvol -r
@@ -69,9 +70,11 @@ Mod1 F4 :Close
 Mod4 z a :ExecCommand wf -z a
 Mod4 z b :ExecCommand wf -z b
 Mod4 z c :ExecCommand wf -z c
+Mod4 z Shift c :ExecCommand wf -z C
 Mod4 z d :ExecCommand wf -z d
 Mod4 z e :ExecCommand wf -z e
 Mod4 z f :ExecCommand wf -z f
+Mod4 z g :ExecCommand wf -z g
 Mod4 z i :ExecCommand wf -z i
 Mod4 z k :ExecCommand wf -z k
 Mod4 z n :ExecCommand wf -z n
@@ -90,9 +93,11 @@ Mod4 z w :ExecCommand wf -z w
 Mod4 s a :ExecCommand wf a
 Mod4 s b :ExecCommand wf b
 Mod4 s c :ExecCommand wf c
+Mod4 s Shift c :ExecCommand wf C
 Mod4 s d :ExecCommand wf d
 Mod4 s e :ExecCommand wf e
 Mod4 s f :ExecCommand wf f
+Mod4 s g :ExecCommand wf g
 Mod4 s h :ExecCommand wf h
 Mod4 s i :ExecCommand wf i
 Mod4 s k :ExecCommand wf k
@@ -156,8 +161,7 @@ Mod4 t 6 5 :ExecCommand wmv 2.0+
 Mod4 t 7 1 :ExecCommand wmv 0.0+3.5
 Mod4 t 7 2 :ExecCommand wmv 0.5+3.5
 Mod4 t 7 3 :ExecCommand wmv 1.0+3.5
-Mod4 t 7 4 :ExecCommand wmv 1.5+3.5
-Mod4 t 7 5 :ExecCommand wmv 2.0+
+Mod4 t 7 4 :ExecCommand wmv 1.5+
 Mod4 t 8 1 :ExecCommand wmv 0.0+4.0
 Mod4 t 8 2 :ExecCommand wmv 0.5+4.0
 Mod4 t 8 3 :ExecCommand wmv 1.0+
@@ -212,8 +216,7 @@ Mod4 t q 6 5 :ExecCommand wmv 2.0+    0.0+0.5
 Mod4 t q 7 1 :ExecCommand wmv 0.0+3.5 0.0+0.5
 Mod4 t q 7 2 :ExecCommand wmv 0.5+3.5 0.0+0.5
 Mod4 t q 7 3 :ExecCommand wmv 1.0+3.5 0.0+0.5
-Mod4 t q 7 4 :ExecCommand wmv 1.5+3.5 0.0+0.5
-Mod4 t q 7 5 :ExecCommand wmv 2.0+    0.0+0.5
+Mod4 t q 7 4 :ExecCommand wmv 1.5+    0.0+0.5
 Mod4 t q 8 1 :ExecCommand wmv 0.0+4.0 0.0+0.5
 Mod4 t q 8 2 :ExecCommand wmv 0.5+4.0 0.0+0.5
 Mod4 t q 8 3 :ExecCommand wmv 1.0+    0.0+0.5
@@ -268,8 +271,7 @@ Mod4 t z 6 5 :ExecCommand wmv 2.0+    0.5+
 Mod4 t z 7 1 :ExecCommand wmv 0.0+3.5 0.5+
 Mod4 t z 7 2 :ExecCommand wmv 0.5+3.5 0.5+
 Mod4 t z 7 3 :ExecCommand wmv 1.0+3.5 0.5+
-Mod4 t z 7 4 :ExecCommand wmv 1.5+3.5 0.5+
-Mod4 t z 7 5 :ExecCommand wmv 2.0+    0.5+
+Mod4 t z 7 4 :ExecCommand wmv 1.5+    0.5+
 Mod4 t z 8 1 :ExecCommand wmv 0.0+4.0 0.5+
 Mod4 t z 8 2 :ExecCommand wmv 0.5+4.0 0.5+
 Mod4 t z 8 3 :ExecCommand wmv 1.0+    0.5+
@@ -488,19 +490,31 @@ Mod4 t z 5 h :ExecCommand wmv s2 0+ .5+
 # r is "run"
 #
 
-Mod4 r m a :ExecCommand xm a1 0 1
-Mod4 r m r :ExecCommand xm a2 1 2
-Mod4 r m s :ExecCommand xm a3 2 3
-Mod4 r m t :ExecCommand xm a4 3 4
-Mod4 r m d :ExecCommand xm a5 4 5
-Mod4 r m h :ExecCommand xm b1 's2 0' 6
-Mod4 r m n :ExecCommand xm b2 's2 1' 7
-Mod4 r m e :ExecCommand xm b3 's2 2' 8
-Mod4 r m i :ExecCommand xm b4 's2 3' 9
-Mod4 r m o :ExecCommand xm b5 's2 4' 10
+Mod4 r m a :ExecCommand multiplexed-positioned-titled-xt 1 0 a1
+Mod4 r m r :ExecCommand multiplexed-positioned-titled-xt 2 1 a2
+Mod4 r m s :ExecCommand multiplexed-positioned-titled-xt 3 2 a3
+Mod4 r m t :ExecCommand multiplexed-positioned-titled-xt 4 3 a4
+Mod4 r m d :ExecCommand multiplexed-positioned-titled-xt 5 4 a5
+Mod4 r m h :ExecCommand multiplexed-positioned-titled-xt 6 's2 0' b1
+Mod4 r m n :ExecCommand multiplexed-positioned-titled-xt 7 's2 1' b2
+Mod4 r m e :ExecCommand multiplexed-positioned-titled-xt 8 's2 2' b3
+Mod4 r m i :ExecCommand multiplexed-positioned-titled-xt 9 's2 3' b4
+Mod4 r m o :ExecCommand multiplexed-positioned-titled-xt 10 's2 4' b5
+Mod4 r m a :ExecCommand multiplexed-positioned-titled-xt -b 1 0 a1
+Mod4 r m b a :ExecCommand multiplexed-positioned-titled-xt -b 1 0 a1
+Mod4 r m b r :ExecCommand multiplexed-positioned-titled-xt -b 2 1 a2
+Mod4 r m b s :ExecCommand multiplexed-positioned-titled-xt -b 3 2 a3
+Mod4 r m b t :ExecCommand multiplexed-positioned-titled-xt -b 4 3 a4
+Mod4 r m b d :ExecCommand multiplexed-positioned-titled-xt -b 5 4 a5
+Mod4 r m b h :ExecCommand multiplexed-positioned-titled-xt -b 6 's2 0' b1
+Mod4 r m b n :ExecCommand multiplexed-positioned-titled-xt -b 7 's2 1' b2
+Mod4 r m b e :ExecCommand multiplexed-positioned-titled-xt -b 8 's2 2' b3
+Mod4 r m b i :ExecCommand multiplexed-positioned-titled-xt -b 9 's2 3' b4
+Mod4 r m b o :ExecCommand multiplexed-positioned-titled-xt -b 10 's2 4' b5
 
 Mod4 r b :ExecCommand torb
 Mod4 r c :ExecCommand ff -c
+Mod4 r Shift c :ExecCommand google-chrome
 Mod4 r f :ExecCommand ff -f
 Mod4 r Shift f :ExecCommand ff -f
 Mod4 r Mod1 f :ExecCommand ff -f -p s
