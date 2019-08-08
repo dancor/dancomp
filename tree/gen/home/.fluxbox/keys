@@ -514,7 +514,8 @@ Mod4 r m b o :ExecCommand multiplexed-positioned-titled-xt -b 10 's2 4' b5
 
 Mod4 r b :ExecCommand torb
 Mod4 r c :ExecCommand ff -c
-Mod4 r Shift c :ExecCommand google-chrome
+Mod4 r Shift c :ExecCommand ff -C
+Mod4 r Mod1 Shift c :ExecCommand ff -C -p 2
 Mod4 r f :ExecCommand ff -f
 Mod4 r Shift f :ExecCommand ff -f
 Mod4 r Mod1 f :ExecCommand ff -f -p s
