@@ -1,0 +1,7 @@
+#!/bin/sh
+turn-off-gpu
+sudo swapon /swap
+sudo s2disk
+sudo swapoff /swap
+
+#(sleep 1; think-touchpad off; sleep 2; think-touchpad off) &

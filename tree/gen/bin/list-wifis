@@ -1,0 +1,2 @@
+#!/bin/sh
+exec iwlist wlan0 scan | grep ESSID

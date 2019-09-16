@@ -1,0 +1,2 @@
+#!/bin/sh
+exec sudo mv /lib/modprobe.d/blacklist-nvidia.conf /home/danl/.config/danl/blacklist-nvidia.conf

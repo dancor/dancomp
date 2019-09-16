@@ -1,0 +1,5 @@
+#!/bin/sh
+turn-on-gpu
+"$@"
+sleep 0.1
+turn-off-gpu

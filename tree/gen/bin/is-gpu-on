@@ -1,0 +1,4 @@
+#!/bin/sh
+echo Listing any active GPU modules:
+lsmod | grep nvidia
+echo Done.
