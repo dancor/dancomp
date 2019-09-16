@@ -1,0 +1,2 @@
+#!/bin/sh
+cd ~/i/lc0/contribute && optirun ./client_linux

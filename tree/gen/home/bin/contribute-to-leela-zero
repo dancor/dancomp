@@ -1,0 +1,2 @@
+#!/bin/sh
+cd ~/i/lizzie/leela-zero/autogtp && exec optirun ./autogtp -k sgfs

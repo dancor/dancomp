@@ -1,0 +1,11 @@
+#!/bin/sh
+wmctrl -r 'Netflix - Google Chrome' -e 0,800,0,1760,1440
+wmctrl -r Chromium -e 0,800,0,1760,1440
+wmctrl -r Kiwix -e 0,800,0,1760,1440
+
+wmctrl -r 'Volume Control' -e 0,0,0,800,720
+
+wmctrl -r a1 -e 0,0,0,800,1440
+wmctrl -r a2 -e 0,800,0,800,1440
+wmctrl -r a3 -e 0,1600,0,800,1440
+

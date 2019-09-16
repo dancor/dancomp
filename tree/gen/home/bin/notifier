@@ -1,0 +1,3 @@
+#!/bin/sh
+exec multiplexed-positioned-titled-xt 13 's1 2 +.12987' NOTIFIEROMG -- \
+  -bg pink "$@" -e sh -c 'memoplex -N'
