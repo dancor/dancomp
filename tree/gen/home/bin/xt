@@ -11,15 +11,31 @@ opt_p.add_option("-a", "--alternate", action="store_true")
 opt_p.add_option("-b", "--black", action="store_true")
 (opts, args) = opt_p.parse_args()
 if opts.black:
-    term_args = ['--color4', '#3333ee', '--color12', '#3333ff', \
-        '--color11', '#aaaa00']
+    term_args = ['--color4', '#33e', '--color12', '#33f', '--color11', '#aa0']
     fg_color = 'gray70'
     if opts.alternate:
         bg_color = '#070700'
     else:
         bg_color = 'black'
 else:
-    term_args = []
+    term_args = [
+        #'--color0' , '#f00', # Black, DarkGrey
+        #'--color8' , '#f00',
+        #'--color1' , '#f00', # DarkRed, Red
+        #'--color9' , '#f00',
+        '--color2' , '#484', # DarkGreen, Green
+        '--color10', '#6c6',
+        #'--color3' , '#f00', # DarkYellow, Yellow
+        #'--color11', '#f00',
+        '--color4' , '#228', # DarkBlue, Blue
+        '--color12', '#44f',
+        #'--color5' , '#f00', # DarkMagenta, Magenta
+        #'--color13', '#f00',
+        '--color6' , '#068', # DarkCyan, Cyan
+        '--color14', '#0cf',
+        #'--color7' , '#f00', # LightGrey, White
+        #'--color15', '#f00',
+        ]
     fg_color = 'black'
     if opts.alternate:
         bg_color = '#fffff7'

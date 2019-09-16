@@ -24,7 +24,9 @@ alias ll='ls -l'
 PATH=/sbin:/usr/sbin
 PATH="$PATH":/usr/local/bin:/bin:/usr/bin:/usr/games:/usr/games/bin
 PATH="$PATH":/opt/java/bin
-PATH="$PATH":~/bin:~/bin/git:~/.cabal/bin:~/.local/bin
+PATH="$PATH":~/bin:~/bin/git:~/.cabal/bin:~/.cargo/bin:~/.local/bin
+PATH="$PATH":~/p/em/emsdk:~/p/em/emsdk/fastcomp/emscripten
+PATH="$PATH":~/p/em/emsdk/node/12.9.1_64bit/bin
 export PATH
 
 # Is this for CUDA?

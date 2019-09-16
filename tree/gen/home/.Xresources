@@ -3,8 +3,8 @@ emacs.verticalScrollBars:off
 emacs.scrollBarWidth:0
 emacs.toolBar:0
 emacs.font:Monospace-10
-emacs.foreground:black
-emacs.background:lightyellow
+!emacs.foreground:black
+!emacs.background:lightyellow
 
 urxvt.scrollBar:false
 urxvt.inputMethod:ibus
@@ -13,26 +13,26 @@ urxvt.iso14755: false
 urxvt.iso14755_52: false
 
 ! Black + DarkGrey
-*color0:  #000000
-*color8:  #555555
+!*color0:  #000000
+!*color8:  #555555
 ! DarkRed + Red
-*color1:  #770000
-*color9:  #cc0000
+!*color1:  #770000
+!*color9:  #cc0000
 ! DarkGreen + Green
-*color2:  #007700
-*color10: #00cc00
+!*color2:  #007700
+!*color10: #00cc00
 ! DarkYellow + Yellow
-*color3:  #777700
-*color11: #cccc00
+!*color3:  #777700
+!*color11: #cccc00
 ! DarkBlue + Blue
-*color4:  #000077
-*color12: #0000cc
+!*color4:  #000077
+!*color12: #0000cc
 ! DarkMagenta + Magenta
-*color5:  #770077
-*color13: #cc00cc
+!*color5:  #770077
+!*color13: #cc00cc
 !DarkCyan + Cyan (both not tango)
-*color6:  #007777
-*color14: #00cccc
+!*color6:  #007777
+!*color14: #00cccc
 ! LightGrey + White
-*color7:  #aaaaaa
-*color15: #ffffff
+!*color7:  #aaaaaa
+!*color15: #ffffff

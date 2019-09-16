@@ -223,6 +223,61 @@ Mod4 t q 8 3 :ExecCommand wmv 1.0+    0.0+0.5
 Mod4 t q 9 1 :ExecCommand wmv 0.0+4.5 0.0+0.5
 Mod4 t q 9 2 :ExecCommand wmv 0.5+    0.0+0.5
 Mod4 t q 0   :ExecCommand wmv 0.0+    0.0+0.5
+Mod4 t Shift q 1 1 :ExecCommand wmv 0.0+0.5 0.0+0.87
+Mod4 t Shift q 1 2 :ExecCommand wmv 0.5+0.5 0.0+0.87
+Mod4 t Shift q 1 3 :ExecCommand wmv 1.0+0.5 0.0+0.87
+Mod4 t Shift q 1 4 :ExecCommand wmv 1.5+0.5 0.0+0.87
+Mod4 t Shift q 1 5 :ExecCommand wmv 2.0+0.5 0.0+0.87
+Mod4 t Shift q 1 6 :ExecCommand wmv 2.5+0.5 0.0+0.87
+Mod4 t Shift q 1 7 :ExecCommand wmv 3.0+0.5 0.0+0.87
+Mod4 t Shift q 1 8 :ExecCommand wmv 3.5+0.5 0.0+0.87
+Mod4 t Shift q 1 9 :ExecCommand wmv 4.0+0.5 0.0+0.87
+Mod4 t Shift q 1 0 :ExecCommand wmv 4.5+    0.0+0.87
+Mod4 t Shift q 2 1 :ExecCommand wmv 0.0+1.0 0.0+0.87
+Mod4 t Shift q 2 2 :ExecCommand wmv 0.5+1.0 0.0+0.87
+Mod4 t Shift q 2 3 :ExecCommand wmv 1.0+1.0 0.0+0.87
+Mod4 t Shift q 2 4 :ExecCommand wmv 1.5+1.0 0.0+0.87
+Mod4 t Shift q 2 5 :ExecCommand wmv 2.0+1.0 0.0+0.87
+Mod4 t Shift q 2 6 :ExecCommand wmv 2.5+1.0 0.0+0.87
+Mod4 t Shift q 2 7 :ExecCommand wmv 3.0+1.0 0.0+0.87
+Mod4 t Shift q 2 8 :ExecCommand wmv 3.5+1.0 0.0+0.87
+Mod4 t Shift q 2 9 :ExecCommand wmv 4.0+    0.0+0.87
+Mod4 t Shift q 3 1 :ExecCommand wmv 0.0+1.5 0.0+0.87
+Mod4 t Shift q 3 2 :ExecCommand wmv 0.5+1.5 0.0+0.87
+Mod4 t Shift q 3 3 :ExecCommand wmv 1.0+1.5 0.0+0.87
+Mod4 t Shift q 3 4 :ExecCommand wmv 1.5+1.5 0.0+0.87
+Mod4 t Shift q 3 5 :ExecCommand wmv 2.0+1.5 0.0+0.87
+Mod4 t Shift q 3 6 :ExecCommand wmv 2.5+1.5 0.0+0.87
+Mod4 t Shift q 3 7 :ExecCommand wmv 3.0+1.5 0.0+0.87
+Mod4 t Shift q 3 8 :ExecCommand wmv 3.5+    0.0+0.87
+Mod4 t Shift q 4 1 :ExecCommand wmv 0.0+2.0 0.0+0.87
+Mod4 t Shift q 4 2 :ExecCommand wmv 0.5+2.0 0.0+0.87
+Mod4 t Shift q 4 3 :ExecCommand wmv 1.0+2.0 0.0+0.87
+Mod4 t Shift q 4 4 :ExecCommand wmv 1.5+2.0 0.0+0.87
+Mod4 t Shift q 4 5 :ExecCommand wmv 2.0+2.0 0.0+0.87
+Mod4 t Shift q 4 6 :ExecCommand wmv 2.5+2.0 0.0+0.87
+Mod4 t Shift q 4 7 :ExecCommand wmv 3.0+    0.0+0.87
+Mod4 t Shift q 5 1 :ExecCommand wmv 0.0+2.5 0.0+0.87
+Mod4 t Shift q 5 2 :ExecCommand wmv 0.5+2.5 0.0+0.87
+Mod4 t Shift q 5 3 :ExecCommand wmv 1.0+2.5 0.0+0.87
+Mod4 t Shift q 5 4 :ExecCommand wmv 1.5+2.5 0.0+0.87
+Mod4 t Shift q 5 5 :ExecCommand wmv 2.0+2.5 0.0+0.87
+Mod4 t Shift q 5 6 :ExecCommand wmv 2.5+    0.0+0.87
+Mod4 t Shift q 6 1 :ExecCommand wmv 0.0+3.0 0.0+0.87
+Mod4 t Shift q 6 2 :ExecCommand wmv 0.5+3.0 0.0+0.87
+Mod4 t Shift q 6 3 :ExecCommand wmv 1.0+3.0 0.0+0.87
+Mod4 t Shift q 6 4 :ExecCommand wmv 1.5+3.0 0.0+0.87
+Mod4 t Shift q 6 5 :ExecCommand wmv 2.0+    0.0+0.87
+Mod4 t Shift q 7 1 :ExecCommand wmv 0.0+3.5 0.0+0.87
+Mod4 t Shift q 7 2 :ExecCommand wmv 0.5+3.5 0.0+0.87
+Mod4 t Shift q 7 3 :ExecCommand wmv 1.0+3.5 0.0+0.87
+Mod4 t Shift q 7 4 :ExecCommand wmv 1.5+    0.0+0.87
+Mod4 t Shift q 8 1 :ExecCommand wmv 0.0+4.0 0.0+0.87
+Mod4 t Shift q 8 2 :ExecCommand wmv 0.5+4.0 0.0+0.87
+Mod4 t Shift q 8 3 :ExecCommand wmv 1.0+    0.0+0.87
+Mod4 t Shift q 9 1 :ExecCommand wmv 0.0+4.5 0.0+0.87
+Mod4 t Shift q 9 2 :ExecCommand wmv 0.5+    0.0+0.87
+Mod4 t Shift q 0   :ExecCommand wmv 0.0+    0.0+0.87
 Mod4 t z 1 1 :ExecCommand wmv 0.0+0.5 0.5+
 Mod4 t z 1 2 :ExecCommand wmv 0.5+0.5 0.5+
 Mod4 t z 1 3 :ExecCommand wmv 1.0+0.5 0.5+
