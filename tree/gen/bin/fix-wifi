@@ -1,9 +1,15 @@
 #!/bin/sh
 set -e
-#sudo systemctl start wpa_supplicant.service
-#nmcli dev wifi list
-#nmcli --ask connection up #PUT-CONN-NAME-HERE#
+sudo systemctl start wpa_supplicant.service
+nmcli dev wifi list | cat
+#nmcli --ask connection up e
+nmcli --ask connection up e-5G
+#nmcli --ask connection up zona
+#nmcli --ask connection up TheCenturionLounge
+#nmcli --ask connection up "_Free EWR WiFi"
+#nmcli --ask connection up 'Grand Canyon'
+#nmcli --ask connection up "Desert Pearl Inn"
 
-sudo systemctl stop wpa_supplicant.service
-sudo wpa_supplicant -i wlan0 -c /etc/wpa_supplicant.conf -B
-sudo dhclient wlan0
+#sudo systemctl stop wpa_supplicant.service
+#sudo wpa_supplicant -i wlan0 -c /etc/wpa_supplicant.conf -B
+#sudo dhclient wlan0

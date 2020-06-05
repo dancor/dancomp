@@ -7,7 +7,6 @@ build-depends:
     base
   , directory
   , filepath
-  , polyopt
   , process
   , unix
 build-type:     Simple

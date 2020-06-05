@@ -1,5 +1,5 @@
 #!/bin/sh
-echo Listing any active GPU modules:
+echo Listing any active "nvidia" modules:
 if lsmod | grep nvidia; then
     echo
     echo ON: Some Nvidia driver seems to be loaded.  On recent Linux versions,

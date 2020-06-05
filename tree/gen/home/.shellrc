@@ -22,7 +22,7 @@ alias ll='ls -l'
 #export WINDOW_MANAGER=/bin/true
 
 PATH=/sbin:/usr/sbin
-PATH="$PATH":/usr/local/bin:/bin:/usr/bin:/usr/games:/usr/games/bin
+PATH="$PATH":/usr/local/bin:/bin:/usr/bin:/snap/bin:/usr/games:/usr/games/bin
 PATH="$PATH":/opt/java/bin
 PATH="$PATH":~/bin:~/bin/git:~/.cabal/bin:~/.cargo/bin:~/.local/bin
 PATH="$PATH":~/p/em/emsdk:~/p/em/emsdk/fastcomp/emscripten

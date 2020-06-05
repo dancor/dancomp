@@ -1,34 +1,19 @@
 import Control.Applicative
 import Data.List
 import GHC.IO.Exception
+import System.Console.GetOpt
 import System.Directory
+import System.Environment
 import System.Posix.Env
 import System.FilePath
 import System.Process
-import qualified Opt
-
-usage :: String
-usage = "usage: adjvol [options]\n" ++ Opt.optInfo
-
-doErrs :: [String] -> a
-doErrs errs = error $ concat errs ++ usage
+import Text.Read
 
 sinkId :: String
 sinkId = "0"
---sinkId = "1"
---sinkId = "alsa_output.pci-0000_00_1b.0.analog-stereo"
 
 pacmd :: [String] -> IO String
 pacmd args = do
-    {-
-    setEnv "DISPLAY" ":0" False
-    setEnv "PULSE_RUNTIME_PATH" "/home/danl/.config/pulse/" False
-    readProcessWithExitCode "pacmd" args ""
-    -}
-    {-
-    (ec, out, err) <- readProcessWithExitCode "sudo" (["-u", "pulse",
-        "PULSE_RUNTIME_PATH=/var/run/pulse", "--", "pacmd"] ++ args) ""
-    -}
     (ec, out, err) <- readProcessWithExitCode "pacmd" args ""
     case (ec, err) of
       (ExitSuccess, "") -> return out
@@ -46,7 +31,7 @@ getVol = do
     out <- pacmd ["dump"]
     let wds = words . head .
             filter ("set-sink-volume" `isPrefixOf`) $ lines out
-    print wds
+    --print wds
     return $ read (wds !! 2)
 
 muteOn :: IO ()
@@ -85,37 +70,30 @@ intToPcnt x = fromIntegral x * 100 / 65536
 pcntToInt :: Float -> Int
 pcntToInt x = round $ x * 65536 / 100
 
+myRead :: String -> Float
+myRead s = case readMaybe s of
+  Just r -> r
+  _ -> error $ "Expected a real number but got " ++ show s
+
+optDescs :: [OptDescr (IO ())]
+optDescs = [
+    Option "l" ["lower"] (NoArg lowerVol) "Lower the volume",
+    Option "r" ["raise"] (NoArg $ muteOff >> raiseVol) "Raise the volume",
+    Option "m" ["mute"] (NoArg muteOn) "Mute the volume",
+    Option "u" ["unmute"] (NoArg muteOff) "Unmute the volume",
+    Option "s" ["set"]
+        (ReqArg (\s -> muteOff >> setVol (pcntToInt $ myRead s)) "PERCENT")
+        "Set the volume",
+    Option "g" ["get"] (NoArg $ getVol >>= print . intToPcnt) "Get the volume",
+    Option "M" ["get-mute"] (NoArg $ getMute >>= print) "Get the mute state"] 
+
 main :: IO ()
 main = do
     homeDir <- getHomeDirectory
-    (opts, tasks) <- Opt.getOpts (homeDir </> ".adjvol" </> "config") usage
-    -- way for polyopt to help with exclusive args?  hm
-    {-
-    when (Opt.lower opts && Opt.raise opts) $
-      error "It doesn't make sense to raise and lower the volume.."
-    when (Opt.lower opts) $
-    -}
-    case opts of
-      Opt.Opts True False False False Nothing False False -> do
-        putStrLn "lower"
-        -- muteOff
-        lowerVol
-      Opt.Opts False True False False Nothing False False ->
-        muteOff >> raiseVol
-      Opt.Opts False False True False Nothing False False ->
-        --muteOn >> lowerVol  -- so next raise returns to previous
-        muteOn
-      Opt.Opts False False False True Nothing False False ->
-        muteOff
-      Opt.Opts False False False False (Just v) False False ->
-        -- WTF?
-        --setVol (pcntToInt v) >> muteOff
-        muteOff >> setVol (pcntToInt v)
-        --setVol (pcntToInt v) >> muteOff >> lowerVol >> raiseVol
-      Opt.Opts False False False False Nothing True False -> do
-        v <- getVol
-        print v
-        print $ intToPcnt v
-      Opt.Opts False False False False Nothing False True ->
-        getMute >>= print
-      _ -> error "You must specify exactly one operation."
+    args <- getArgs
+    let usageStr = usageInfo "usage: adjvol [OPTIONS]" optDescs
+    case getOpt RequireOrder optDescs args of
+      ([],_,_) -> error usageStr
+      (opts,[],[]) -> sequence_ opts
+      (_,nonOpts,errs) -> error $ concat errs ++ concatMap
+        (\n -> "Unrecognized argument: " ++ show n ++ "\n") nonOpts ++ usageStr

@@ -27,12 +27,14 @@ Mod4 F7 :ExecCommand arst
 # (x)-sampa
 Mod4 f a :Exec my-fcitx-remote -os arabic
 Mod4 f c :Exec my-fcitx-remote -c
-Mod4 f h :Exec my-fcitx-remote -os m17n_hi_phonetic
+Mod4 f h :Exec my-fcitx-remote -os danhebrew # old: hindi: m17n_hi_phonetic
+Mod4 f k :Exec my-fcitx-remote -os dankorean
 Mod4 f p :Exec my-fcitx-remote -os pinyin
-Mod4 f r :Exec my-fcitx-remote -os m17n_t_rfc1345
+Mod4 f r :Exec my-fcitx-remote -os danrussian
 Mod4 f w :Exec my-fcitx-remote -os wubi2008
 Mod4 f x :Exec my-fcitx-remote -os ipa-x-sampa
 Mod4 f j :Exec my-fcitx-remote -os mozc
+Mod4 f 3 :Exec my-fcitx-remote -os m17n_t_rfc1345
 
 XF86AudioLowerVolume :ExecCommand adjvol -l
 XF86AudioRaiseVolume :ExecCommand adjvol -r
@@ -54,9 +56,9 @@ OnDesktop Mouse3 :RootMenu
 OnDesktop Mouse4 :NextWorkspace
 OnDesktop Mouse5 :PrevWorkspace
 
-Mod4 c :Reconfig
-Mod4 p :RootMenu
-Mod4 u :ExecCommand unity-control-center
+Mod4 x r :Reconfig
+Mod4 x m :RootMenu
+Mod4 x u :ExecCommand unity-control-center
 Mod4 w :ClientMenu
 Mod1 Tab :NextWindow groups
 Mod1 Shift Tab :PrevWindow groups
@@ -110,229 +112,204 @@ Mod4 s t :ExecCommand wf t
 Mod4 s Shift t :ExecCommand wf T
 Mod4 s w :ExecCommand wf w
 
+Mod4 v 0 2 3 0 1 :ExecCommand wmv 0      +0.333
+Mod4 v 0 2 3 1 1 :ExecCommand wmv 0 0.333+0.334 # hack fit
+Mod4 v 0 2 3 2 1 :ExecCommand wmv 0 0.666+0.335 # hack fit
+Mod4 v 0 2 3 0 2 :ExecCommand wmv 0      +0.668 # hack fit
+Mod4 v 0 2 3 1 2 :ExecCommand wmv 0 0.333+0.668 # hack fit
+Mod4 v 9 3 0 1 :ExecCommand wmv 0+      +0.333
+Mod4 v 9 3 1 1 :ExecCommand wmv 0+ 0.333+0.334 # hack fit
+Mod4 v 9 3 2 1 :ExecCommand wmv 0+ 0.666+0.335 # hack fit
+Mod4 v 9 3 0 2 :ExecCommand wmv 0+      +0.668 # hack fit
+Mod4 v 9 3 1 2 :ExecCommand wmv 0+ 0.333+0.668 # hack fit
+
 #
 # t is "to" (window-move)
 #
-Mod4 t 1 1 :ExecCommand wmv 0.0+0.5
-Mod4 t 1 2 :ExecCommand wmv 0.5+0.5
-Mod4 t 1 3 :ExecCommand wmv 1.0+0.5
-Mod4 t 1 4 :ExecCommand wmv 1.5+0.5
-Mod4 t 1 5 :ExecCommand wmv 2.0+0.5
-Mod4 t 1 6 :ExecCommand wmv 2.5+0.5
-Mod4 t 1 7 :ExecCommand wmv 3.0+0.5
-Mod4 t 1 8 :ExecCommand wmv 3.5+0.5
-Mod4 t 1 9 :ExecCommand wmv 4.0+0.5
-Mod4 t 1 0 :ExecCommand wmv 4.5+
-Mod4 t 2 1 :ExecCommand wmv 0.0+1.0
-Mod4 t 2 2 :ExecCommand wmv 0.5+1.0
-Mod4 t 2 3 :ExecCommand wmv 1.0+1.0
-Mod4 t 2 4 :ExecCommand wmv 1.5+1.0
-Mod4 t 2 5 :ExecCommand wmv 2.0+1.0
-Mod4 t 2 6 :ExecCommand wmv 2.5+1.0
-Mod4 t 2 7 :ExecCommand wmv 3.0+1.0
-Mod4 t 2 8 :ExecCommand wmv 3.5+1.0
-Mod4 t 2 9 :ExecCommand wmv 4.0+
-Mod4 t 3 1 :ExecCommand wmv 0.0+1.5
-Mod4 t 3 2 :ExecCommand wmv 0.5+1.5
-Mod4 t 3 3 :ExecCommand wmv 1.0+1.5
-Mod4 t 3 4 :ExecCommand wmv 1.5+1.5
-Mod4 t 3 5 :ExecCommand wmv 2.0+1.5
-Mod4 t 3 6 :ExecCommand wmv 2.5+1.5
-Mod4 t 3 7 :ExecCommand wmv 3.0+1.5
-Mod4 t 3 8 :ExecCommand wmv 3.5+
-Mod4 t 4 1 :ExecCommand wmv 0.0+2.0
-Mod4 t 4 2 :ExecCommand wmv 0.5+2.0
-Mod4 t 4 3 :ExecCommand wmv 1.0+2.0
-Mod4 t 4 4 :ExecCommand wmv 1.5+2.0
-Mod4 t 4 5 :ExecCommand wmv 2.0+2.0
-Mod4 t 4 6 :ExecCommand wmv 2.5+2.0
-Mod4 t 4 7 :ExecCommand wmv 3.0+
-Mod4 t 5 1 :ExecCommand wmv 0.0+2.5
-Mod4 t 5 2 :ExecCommand wmv 0.5+2.5
-Mod4 t 5 3 :ExecCommand wmv 1.0+2.5
-Mod4 t 5 4 :ExecCommand wmv 1.5+2.5
-Mod4 t 5 5 :ExecCommand wmv 2.0+2.5
-Mod4 t 5 6 :ExecCommand wmv 2.5+
-Mod4 t 6 1 :ExecCommand wmv 0.0+3.0
-Mod4 t 6 2 :ExecCommand wmv 0.5+3.0
-Mod4 t 6 3 :ExecCommand wmv 1.0+3.0
-Mod4 t 6 4 :ExecCommand wmv 1.5+3.0
-Mod4 t 6 5 :ExecCommand wmv 2.0+
-Mod4 t 7 1 :ExecCommand wmv 0.0+3.5
-Mod4 t 7 2 :ExecCommand wmv 0.5+3.5
-Mod4 t 7 3 :ExecCommand wmv 1.0+3.5
-Mod4 t 7 4 :ExecCommand wmv 1.5+
-Mod4 t 8 1 :ExecCommand wmv 0.0+4.0
-Mod4 t 8 2 :ExecCommand wmv 0.5+4.0
-Mod4 t 8 3 :ExecCommand wmv 1.0+
-Mod4 t 9 1 :ExecCommand wmv 0.0+4.5
-Mod4 t 9 2 :ExecCommand wmv 0.5+
-Mod4 t 0   :ExecCommand wmv 0.0+
-Mod4 t q 1 1 :ExecCommand wmv 0.0+0.5 0.0+0.5
-Mod4 t q 1 2 :ExecCommand wmv 0.5+0.5 0.0+0.5
-Mod4 t q 1 3 :ExecCommand wmv 1.0+0.5 0.0+0.5
-Mod4 t q 1 4 :ExecCommand wmv 1.5+0.5 0.0+0.5
-Mod4 t q 1 5 :ExecCommand wmv 2.0+0.5 0.0+0.5
-Mod4 t q 1 6 :ExecCommand wmv 2.5+0.5 0.0+0.5
-Mod4 t q 1 7 :ExecCommand wmv 3.0+0.5 0.0+0.5
-Mod4 t q 1 8 :ExecCommand wmv 3.5+0.5 0.0+0.5
-Mod4 t q 1 9 :ExecCommand wmv 4.0+0.5 0.0+0.5
-Mod4 t q 1 0 :ExecCommand wmv 4.5+    0.0+0.5
-Mod4 t q 2 1 :ExecCommand wmv 0.0+1.0 0.0+0.5
-Mod4 t q 2 2 :ExecCommand wmv 0.5+1.0 0.0+0.5
-Mod4 t q 2 3 :ExecCommand wmv 1.0+1.0 0.0+0.5
-Mod4 t q 2 4 :ExecCommand wmv 1.5+1.0 0.0+0.5
-Mod4 t q 2 5 :ExecCommand wmv 2.0+1.0 0.0+0.5
-Mod4 t q 2 6 :ExecCommand wmv 2.5+1.0 0.0+0.5
-Mod4 t q 2 7 :ExecCommand wmv 3.0+1.0 0.0+0.5
-Mod4 t q 2 8 :ExecCommand wmv 3.5+1.0 0.0+0.5
-Mod4 t q 2 9 :ExecCommand wmv 4.0+    0.0+0.5
-Mod4 t q 3 1 :ExecCommand wmv 0.0+1.5 0.0+0.5
-Mod4 t q 3 2 :ExecCommand wmv 0.5+1.5 0.0+0.5
-Mod4 t q 3 3 :ExecCommand wmv 1.0+1.5 0.0+0.5
-Mod4 t q 3 4 :ExecCommand wmv 1.5+1.5 0.0+0.5
-Mod4 t q 3 5 :ExecCommand wmv 2.0+1.5 0.0+0.5
-Mod4 t q 3 6 :ExecCommand wmv 2.5+1.5 0.0+0.5
-Mod4 t q 3 7 :ExecCommand wmv 3.0+1.5 0.0+0.5
-Mod4 t q 3 8 :ExecCommand wmv 3.5+    0.0+0.5
-Mod4 t q 4 1 :ExecCommand wmv 0.0+2.0 0.0+0.5
-Mod4 t q 4 2 :ExecCommand wmv 0.5+2.0 0.0+0.5
-Mod4 t q 4 3 :ExecCommand wmv 1.0+2.0 0.0+0.5
-Mod4 t q 4 4 :ExecCommand wmv 1.5+2.0 0.0+0.5
-Mod4 t q 4 5 :ExecCommand wmv 2.0+2.0 0.0+0.5
-Mod4 t q 4 6 :ExecCommand wmv 2.5+2.0 0.0+0.5
-Mod4 t q 4 7 :ExecCommand wmv 3.0+    0.0+0.5
-Mod4 t q 5 1 :ExecCommand wmv 0.0+2.5 0.0+0.5
-Mod4 t q 5 2 :ExecCommand wmv 0.5+2.5 0.0+0.5
-Mod4 t q 5 3 :ExecCommand wmv 1.0+2.5 0.0+0.5
-Mod4 t q 5 4 :ExecCommand wmv 1.5+2.5 0.0+0.5
-Mod4 t q 5 5 :ExecCommand wmv 2.0+2.5 0.0+0.5
-Mod4 t q 5 6 :ExecCommand wmv 2.5+    0.0+0.5
-Mod4 t q 6 1 :ExecCommand wmv 0.0+3.0 0.0+0.5
-Mod4 t q 6 2 :ExecCommand wmv 0.5+3.0 0.0+0.5
-Mod4 t q 6 3 :ExecCommand wmv 1.0+3.0 0.0+0.5
-Mod4 t q 6 4 :ExecCommand wmv 1.5+3.0 0.0+0.5
-Mod4 t q 6 5 :ExecCommand wmv 2.0+    0.0+0.5
-Mod4 t q 7 1 :ExecCommand wmv 0.0+3.5 0.0+0.5
-Mod4 t q 7 2 :ExecCommand wmv 0.5+3.5 0.0+0.5
-Mod4 t q 7 3 :ExecCommand wmv 1.0+3.5 0.0+0.5
-Mod4 t q 7 4 :ExecCommand wmv 1.5+    0.0+0.5
-Mod4 t q 8 1 :ExecCommand wmv 0.0+4.0 0.0+0.5
-Mod4 t q 8 2 :ExecCommand wmv 0.5+4.0 0.0+0.5
-Mod4 t q 8 3 :ExecCommand wmv 1.0+    0.0+0.5
-Mod4 t q 9 1 :ExecCommand wmv 0.0+4.5 0.0+0.5
-Mod4 t q 9 2 :ExecCommand wmv 0.5+    0.0+0.5
-Mod4 t q 0   :ExecCommand wmv 0.0+    0.0+0.5
-Mod4 t Shift q 1 1 :ExecCommand wmv 0.0+0.5 0.0+0.87
-Mod4 t Shift q 1 2 :ExecCommand wmv 0.5+0.5 0.0+0.87
-Mod4 t Shift q 1 3 :ExecCommand wmv 1.0+0.5 0.0+0.87
-Mod4 t Shift q 1 4 :ExecCommand wmv 1.5+0.5 0.0+0.87
-Mod4 t Shift q 1 5 :ExecCommand wmv 2.0+0.5 0.0+0.87
-Mod4 t Shift q 1 6 :ExecCommand wmv 2.5+0.5 0.0+0.87
-Mod4 t Shift q 1 7 :ExecCommand wmv 3.0+0.5 0.0+0.87
-Mod4 t Shift q 1 8 :ExecCommand wmv 3.5+0.5 0.0+0.87
-Mod4 t Shift q 1 9 :ExecCommand wmv 4.0+0.5 0.0+0.87
-Mod4 t Shift q 1 0 :ExecCommand wmv 4.5+    0.0+0.87
-Mod4 t Shift q 2 1 :ExecCommand wmv 0.0+1.0 0.0+0.87
-Mod4 t Shift q 2 2 :ExecCommand wmv 0.5+1.0 0.0+0.87
-Mod4 t Shift q 2 3 :ExecCommand wmv 1.0+1.0 0.0+0.87
-Mod4 t Shift q 2 4 :ExecCommand wmv 1.5+1.0 0.0+0.87
-Mod4 t Shift q 2 5 :ExecCommand wmv 2.0+1.0 0.0+0.87
-Mod4 t Shift q 2 6 :ExecCommand wmv 2.5+1.0 0.0+0.87
-Mod4 t Shift q 2 7 :ExecCommand wmv 3.0+1.0 0.0+0.87
-Mod4 t Shift q 2 8 :ExecCommand wmv 3.5+1.0 0.0+0.87
-Mod4 t Shift q 2 9 :ExecCommand wmv 4.0+    0.0+0.87
-Mod4 t Shift q 3 1 :ExecCommand wmv 0.0+1.5 0.0+0.87
-Mod4 t Shift q 3 2 :ExecCommand wmv 0.5+1.5 0.0+0.87
-Mod4 t Shift q 3 3 :ExecCommand wmv 1.0+1.5 0.0+0.87
-Mod4 t Shift q 3 4 :ExecCommand wmv 1.5+1.5 0.0+0.87
-Mod4 t Shift q 3 5 :ExecCommand wmv 2.0+1.5 0.0+0.87
-Mod4 t Shift q 3 6 :ExecCommand wmv 2.5+1.5 0.0+0.87
-Mod4 t Shift q 3 7 :ExecCommand wmv 3.0+1.5 0.0+0.87
-Mod4 t Shift q 3 8 :ExecCommand wmv 3.5+    0.0+0.87
-Mod4 t Shift q 4 1 :ExecCommand wmv 0.0+2.0 0.0+0.87
-Mod4 t Shift q 4 2 :ExecCommand wmv 0.5+2.0 0.0+0.87
-Mod4 t Shift q 4 3 :ExecCommand wmv 1.0+2.0 0.0+0.87
-Mod4 t Shift q 4 4 :ExecCommand wmv 1.5+2.0 0.0+0.87
-Mod4 t Shift q 4 5 :ExecCommand wmv 2.0+2.0 0.0+0.87
-Mod4 t Shift q 4 6 :ExecCommand wmv 2.5+2.0 0.0+0.87
-Mod4 t Shift q 4 7 :ExecCommand wmv 3.0+    0.0+0.87
-Mod4 t Shift q 5 1 :ExecCommand wmv 0.0+2.5 0.0+0.87
-Mod4 t Shift q 5 2 :ExecCommand wmv 0.5+2.5 0.0+0.87
-Mod4 t Shift q 5 3 :ExecCommand wmv 1.0+2.5 0.0+0.87
-Mod4 t Shift q 5 4 :ExecCommand wmv 1.5+2.5 0.0+0.87
-Mod4 t Shift q 5 5 :ExecCommand wmv 2.0+2.5 0.0+0.87
-Mod4 t Shift q 5 6 :ExecCommand wmv 2.5+    0.0+0.87
-Mod4 t Shift q 6 1 :ExecCommand wmv 0.0+3.0 0.0+0.87
-Mod4 t Shift q 6 2 :ExecCommand wmv 0.5+3.0 0.0+0.87
-Mod4 t Shift q 6 3 :ExecCommand wmv 1.0+3.0 0.0+0.87
-Mod4 t Shift q 6 4 :ExecCommand wmv 1.5+3.0 0.0+0.87
-Mod4 t Shift q 6 5 :ExecCommand wmv 2.0+    0.0+0.87
-Mod4 t Shift q 7 1 :ExecCommand wmv 0.0+3.5 0.0+0.87
-Mod4 t Shift q 7 2 :ExecCommand wmv 0.5+3.5 0.0+0.87
-Mod4 t Shift q 7 3 :ExecCommand wmv 1.0+3.5 0.0+0.87
-Mod4 t Shift q 7 4 :ExecCommand wmv 1.5+    0.0+0.87
-Mod4 t Shift q 8 1 :ExecCommand wmv 0.0+4.0 0.0+0.87
-Mod4 t Shift q 8 2 :ExecCommand wmv 0.5+4.0 0.0+0.87
-Mod4 t Shift q 8 3 :ExecCommand wmv 1.0+    0.0+0.87
-Mod4 t Shift q 9 1 :ExecCommand wmv 0.0+4.5 0.0+0.87
-Mod4 t Shift q 9 2 :ExecCommand wmv 0.5+    0.0+0.87
-Mod4 t Shift q 0   :ExecCommand wmv 0.0+    0.0+0.87
-Mod4 t z 1 1 :ExecCommand wmv 0.0+0.5 0.5+
-Mod4 t z 1 2 :ExecCommand wmv 0.5+0.5 0.5+
-Mod4 t z 1 3 :ExecCommand wmv 1.0+0.5 0.5+
-Mod4 t z 1 4 :ExecCommand wmv 1.5+0.5 0.5+
-Mod4 t z 1 5 :ExecCommand wmv 2.0+0.5 0.5+
-Mod4 t z 1 6 :ExecCommand wmv 2.5+0.5 0.5+
-Mod4 t z 1 7 :ExecCommand wmv 3.0+0.5 0.5+
-Mod4 t z 1 8 :ExecCommand wmv 3.5+0.5 0.5+
-Mod4 t z 1 9 :ExecCommand wmv 4.0+0.5 0.5+
-Mod4 t z 1 0 :ExecCommand wmv 4.5+    0.5+
-Mod4 t z 2 1 :ExecCommand wmv 0.0+1.0 0.5+
-Mod4 t z 2 2 :ExecCommand wmv 0.5+1.0 0.5+
-Mod4 t z 2 3 :ExecCommand wmv 1.0+1.0 0.5+
-Mod4 t z 2 4 :ExecCommand wmv 1.5+1.0 0.5+
-Mod4 t z 2 5 :ExecCommand wmv 2.0+1.0 0.5+
-Mod4 t z 2 6 :ExecCommand wmv 2.5+1.0 0.5+
-Mod4 t z 2 7 :ExecCommand wmv 3.0+1.0 0.5+
-Mod4 t z 2 8 :ExecCommand wmv 3.5+1.0 0.5+
-Mod4 t z 2 9 :ExecCommand wmv 4.0+    0.5+
-Mod4 t z 3 1 :ExecCommand wmv 0.0+1.5 0.5+
-Mod4 t z 3 2 :ExecCommand wmv 0.5+1.5 0.5+
-Mod4 t z 3 3 :ExecCommand wmv 1.0+1.5 0.5+
-Mod4 t z 3 4 :ExecCommand wmv 1.5+1.5 0.5+
-Mod4 t z 3 5 :ExecCommand wmv 2.0+1.5 0.5+
-Mod4 t z 3 6 :ExecCommand wmv 2.5+1.5 0.5+
-Mod4 t z 3 7 :ExecCommand wmv 3.0+1.5 0.5+
-Mod4 t z 3 8 :ExecCommand wmv 3.5+    0.5+
-Mod4 t z 4 1 :ExecCommand wmv 0.0+2.0 0.5+
-Mod4 t z 4 2 :ExecCommand wmv 0.5+2.0 0.5+
-Mod4 t z 4 3 :ExecCommand wmv 1.0+2.0 0.5+
-Mod4 t z 4 4 :ExecCommand wmv 1.5+2.0 0.5+
-Mod4 t z 4 5 :ExecCommand wmv 2.0+2.0 0.5+
-Mod4 t z 4 6 :ExecCommand wmv 2.5+2.0 0.5+
-Mod4 t z 4 7 :ExecCommand wmv 3.0+    0.5+
-Mod4 t z 5 1 :ExecCommand wmv 0.0+2.5 0.5+
-Mod4 t z 5 2 :ExecCommand wmv 0.5+2.5 0.5+
-Mod4 t z 5 3 :ExecCommand wmv 1.0+2.5 0.5+
-Mod4 t z 5 4 :ExecCommand wmv 1.5+2.5 0.5+
-Mod4 t z 5 5 :ExecCommand wmv 2.0+2.5 0.5+
-Mod4 t z 5 6 :ExecCommand wmv 2.5+    0.5+
-Mod4 t z 6 1 :ExecCommand wmv 0.0+3.0 0.5+
-Mod4 t z 6 2 :ExecCommand wmv 0.5+3.0 0.5+
-Mod4 t z 6 3 :ExecCommand wmv 1.0+3.0 0.5+
-Mod4 t z 6 4 :ExecCommand wmv 1.5+3.0 0.5+
-Mod4 t z 6 5 :ExecCommand wmv 2.0+    0.5+
-Mod4 t z 7 1 :ExecCommand wmv 0.0+3.5 0.5+
-Mod4 t z 7 2 :ExecCommand wmv 0.5+3.5 0.5+
-Mod4 t z 7 3 :ExecCommand wmv 1.0+3.5 0.5+
-Mod4 t z 7 4 :ExecCommand wmv 1.5+    0.5+
-Mod4 t z 8 1 :ExecCommand wmv 0.0+4.0 0.5+
-Mod4 t z 8 2 :ExecCommand wmv 0.5+4.0 0.5+
-Mod4 t z 8 3 :ExecCommand wmv 1.0+    0.5+
-Mod4 t z 9 1 :ExecCommand wmv 0.0+4.5 0.5+
-Mod4 t z 9 2 :ExecCommand wmv 0.5+    0.5+
-Mod4 t z 0   :ExecCommand wmv 0.0+    0.5+
+Mod4 t 0 1 :ExecCommand wmv 0.0+0.5
+Mod4 t 1 1 :ExecCommand wmv 0.5+0.5
+Mod4 t 2 1 :ExecCommand wmv 1.0+0.5
+Mod4 t 3 1 :ExecCommand wmv 1.5+0.5
+Mod4 t 4 1 :ExecCommand wmv 2.0+0.5
+Mod4 t 5 1 :ExecCommand wmv 2.5+0.5
+Mod4 t 6 1 :ExecCommand wmv 3.0+0.5
+mod4 t 7 1 :execcommand wmv 3.5+0.5
+mod4 t 8 1 :execcommand wmv 4.0+   
+Mod4 t 0 2 :ExecCommand wmv 0.0+1.0
+Mod4 t 1 2 :ExecCommand wmv 0.5+1.0
+Mod4 t 2 2 :ExecCommand wmv 1.0+1.0
+Mod4 t 3 2 :ExecCommand wmv 1.5+1.0
+Mod4 t 4 2 :ExecCommand wmv 2.0+1.0
+Mod4 t 5 2 :ExecCommand wmv 2.5+1.0
+Mod4 t 6 2 :ExecCommand wmv 3.0+1.0
+Mod4 t 7 2 :ExecCommand wmv 3.5+   
+Mod4 t 0 3 :ExecCommand wmv 0.0+1.5
+Mod4 t 1 3 :ExecCommand wmv 0.5+1.5
+Mod4 t 2 3 :ExecCommand wmv 1.0+1.5
+Mod4 t 3 3 :ExecCommand wmv 1.5+1.5
+Mod4 t 4 3 :ExecCommand wmv 2.0+1.5
+Mod4 t 5 3 :ExecCommand wmv 2.5+1.5
+Mod4 t 6 3 :ExecCommand wmv 3.0+   
+Mod4 t 0 4 :ExecCommand wmv 0.0+2.0
+Mod4 t 1 4 :ExecCommand wmv 0.5+2.0
+Mod4 t 2 4 :ExecCommand wmv 1.0+2.0
+Mod4 t 3 4 :ExecCommand wmv 1.5+2.0
+Mod4 t 4 4 :ExecCommand wmv 2.0+2.0
+Mod4 t 5 4 :ExecCommand wmv 2.5+   
+Mod4 t 0 5 :ExecCommand wmv 0.0+2.5
+Mod4 t 1 5 :ExecCommand wmv 0.5+2.5
+Mod4 t 2 5 :ExecCommand wmv 1.0+2.5
+Mod4 t 3 5 :ExecCommand wmv 1.5+2.5
+Mod4 t 4 5 :ExecCommand wmv 2.0+   
+Mod4 t 0 6 :ExecCommand wmv 0.0+3.0
+Mod4 t 1 6 :ExecCommand wmv 0.5+3.0
+Mod4 t 2 6 :ExecCommand wmv 1.0+3.0
+Mod4 t 3 6 :ExecCommand wmv 1.5+   
+Mod4 t 0 7 :ExecCommand wmv 0.0+3.5
+Mod4 t 1 7 :ExecCommand wmv 0.5+3.5
+Mod4 t 2 7 :ExecCommand wmv 1.0+   
+Mod4 t 0 8 :ExecCommand wmv 0.0+4.0
+Mod4 t 1 8 :ExecCommand wmv 0.5+   
+Mod4 t 0 9 :ExecCommand wmv 0.0+   
+Mod4 t 9   :ExecCommand wmv 0.0+   
+Mod4 t q 0 1 :ExecCommand wmv 0.0+0.5 0+0.5
+Mod4 t q 1 1 :ExecCommand wmv 0.5+0.5 0+0.5
+Mod4 t q 2 1 :ExecCommand wmv 1.0+0.5 0+0.5
+Mod4 t q 3 1 :ExecCommand wmv 1.5+0.5 0+0.5
+Mod4 t q 4 1 :ExecCommand wmv 2.0+0.5 0+0.5
+Mod4 t q 5 1 :ExecCommand wmv 2.5+0.5 0+0.5
+Mod4 t q 6 1 :ExecCommand wmv 3.0+0.5 0+0.5
+mod4 t q 7 1 :execcommand wmv 3.5+0.5 0+0.5
+mod4 t q 8 1 :execcommand wmv 4.0+    0+0.5
+Mod4 t q 0 2 :ExecCommand wmv 0.0+1.0 0+0.5
+Mod4 t q 1 2 :ExecCommand wmv 0.5+1.0 0+0.5
+Mod4 t q 2 2 :ExecCommand wmv 1.0+1.0 0+0.5
+Mod4 t q 3 2 :ExecCommand wmv 1.5+1.0 0+0.5
+Mod4 t q 4 2 :ExecCommand wmv 2.0+1.0 0+0.5
+Mod4 t q 5 2 :ExecCommand wmv 2.5+1.0 0+0.5
+Mod4 t q 6 2 :ExecCommand wmv 3.0+1.0 0+0.5
+Mod4 t q 7 2 :ExecCommand wmv 3.5+    0+0.5
+Mod4 t q 0 3 :ExecCommand wmv 0.0+1.5 0+0.5
+Mod4 t q 1 3 :ExecCommand wmv 0.5+1.5 0+0.5
+Mod4 t q 2 3 :ExecCommand wmv 1.0+1.5 0+0.5
+Mod4 t q 3 3 :ExecCommand wmv 1.5+1.5 0+0.5
+Mod4 t q 4 3 :ExecCommand wmv 2.0+1.5 0+0.5
+Mod4 t q 5 3 :ExecCommand wmv 2.5+1.5 0+0.5
+Mod4 t q 6 3 :ExecCommand wmv 3.0+    0+0.5
+Mod4 t q 0 4 :ExecCommand wmv 0.0+2.0 0+0.5
+Mod4 t q 1 4 :ExecCommand wmv 0.5+2.0 0+0.5
+Mod4 t q 2 4 :ExecCommand wmv 1.0+2.0 0+0.5
+Mod4 t q 3 4 :ExecCommand wmv 1.5+2.0 0+0.5
+Mod4 t q 4 4 :ExecCommand wmv 2.0+2.0 0+0.5
+Mod4 t q 5 4 :ExecCommand wmv 2.5+    0+0.5
+Mod4 t q 0 5 :ExecCommand wmv 0.0+2.5 0+0.5
+Mod4 t q 1 5 :ExecCommand wmv 0.5+2.5 0+0.5
+Mod4 t q 2 5 :ExecCommand wmv 1.0+2.5 0+0.5
+Mod4 t q 3 5 :ExecCommand wmv 1.5+2.5 0+0.5
+Mod4 t q 4 5 :ExecCommand wmv 2.0+    0+0.5
+Mod4 t q 0 6 :ExecCommand wmv 0.0+3.0 0+0.5
+Mod4 t q 1 6 :ExecCommand wmv 0.5+3.0 0+0.5
+Mod4 t q 2 6 :ExecCommand wmv 1.0+3.0 0+0.5
+Mod4 t q 3 6 :ExecCommand wmv 1.5+    0+0.5
+Mod4 t q 0 7 :ExecCommand wmv 0.0+3.5 0+0.5
+Mod4 t q 1 7 :ExecCommand wmv 0.5+3.5 0+0.5
+Mod4 t q 2 7 :ExecCommand wmv 1.0+    0+0.5
+Mod4 t q 0 8 :ExecCommand wmv 0.0+4.0 0+0.5
+Mod4 t q 1 8 :ExecCommand wmv 0.5+    0+0.5
+Mod4 t q 0 9 :ExecCommand wmv 0.0+    0+0.5
+Mod4 t q 9   :ExecCommand wmv 0.0+    0+0.5
+Mod4 t Shift q 0 1 :ExecCommand wmv 0.0+0.5 0+0.87
+Mod4 t Shift q 1 1 :ExecCommand wmv 0.5+0.5 0+0.87
+Mod4 t Shift q 2 1 :ExecCommand wmv 1.0+0.5 0+0.87
+Mod4 t Shift q 3 1 :ExecCommand wmv 1.5+0.5 0+0.87
+Mod4 t Shift q 4 1 :ExecCommand wmv 2.0+0.5 0+0.87
+Mod4 t Shift q 5 1 :ExecCommand wmv 2.5+0.5 0+0.87
+Mod4 t Shift q 6 1 :ExecCommand wmv 3.0+0.5 0+0.87
+mod4 t Shift q 7 1 :execcommand wmv 3.5+0.5 0+0.87
+mod4 t Shift q 8 1 :execcommand wmv 4.0+    0+0.87
+Mod4 t Shift q 0 2 :ExecCommand wmv 0.0+1.0 0+0.87
+Mod4 t Shift q 1 2 :ExecCommand wmv 0.5+1.0 0+0.87
+Mod4 t Shift q 2 2 :ExecCommand wmv 1.0+1.0 0+0.87
+Mod4 t Shift q 3 2 :ExecCommand wmv 1.5+1.0 0+0.87
+Mod4 t Shift q 4 2 :ExecCommand wmv 2.0+1.0 0+0.87
+Mod4 t Shift q 5 2 :ExecCommand wmv 2.5+1.0 0+0.87
+Mod4 t Shift q 6 2 :ExecCommand wmv 3.0+1.0 0+0.87
+Mod4 t Shift q 7 2 :ExecCommand wmv 3.5+    0+0.87
+Mod4 t Shift q 0 3 :ExecCommand wmv 0.0+1.5 0+0.87
+Mod4 t Shift q 1 3 :ExecCommand wmv 0.5+1.5 0+0.87
+Mod4 t Shift q 2 3 :ExecCommand wmv 1.0+1.5 0+0.87
+Mod4 t Shift q 3 3 :ExecCommand wmv 1.5+1.5 0+0.87
+Mod4 t Shift q 4 3 :ExecCommand wmv 2.0+1.5 0+0.87
+Mod4 t Shift q 5 3 :ExecCommand wmv 2.5+1.5 0+0.87
+Mod4 t Shift q 6 3 :ExecCommand wmv 3.0+    0+0.87
+Mod4 t Shift q 0 4 :ExecCommand wmv 0.0+2.0 0+0.87
+Mod4 t Shift q 1 4 :ExecCommand wmv 0.5+2.0 0+0.87
+Mod4 t Shift q 2 4 :ExecCommand wmv 1.0+2.0 0+0.87
+Mod4 t Shift q 3 4 :ExecCommand wmv 1.5+2.0 0+0.87
+Mod4 t Shift q 4 4 :ExecCommand wmv 2.0+2.0 0+0.87
+Mod4 t Shift q 5 4 :ExecCommand wmv 2.5+    0+0.87
+Mod4 t Shift q 0 5 :ExecCommand wmv 0.0+2.5 0+0.87
+Mod4 t Shift q 1 5 :ExecCommand wmv 0.5+2.5 0+0.87
+Mod4 t Shift q 2 5 :ExecCommand wmv 1.0+2.5 0+0.87
+Mod4 t Shift q 3 5 :ExecCommand wmv 1.5+2.5 0+0.87
+Mod4 t Shift q 4 5 :ExecCommand wmv 2.0+    0+0.87
+Mod4 t Shift q 0 6 :ExecCommand wmv 0.0+3.0 0+0.87
+Mod4 t Shift q 1 6 :ExecCommand wmv 0.5+3.0 0+0.87
+Mod4 t Shift q 2 6 :ExecCommand wmv 1.0+3.0 0+0.87
+Mod4 t Shift q 3 6 :ExecCommand wmv 1.5+    0+0.87
+Mod4 t Shift q 0 7 :ExecCommand wmv 0.0+3.5 0+0.87
+Mod4 t Shift q 1 7 :ExecCommand wmv 0.5+3.5 0+0.87
+Mod4 t Shift q 2 7 :ExecCommand wmv 1.0+    0+0.87
+Mod4 t Shift q 0 8 :ExecCommand wmv 0.0+4.0 0+0.87
+Mod4 t Shift q 1 8 :ExecCommand wmv 0.5+    0+0.87
+Mod4 t Shift q 0 9 :ExecCommand wmv 0.0+    0+0.87
+Mod4 t Shift q 9   :ExecCommand wmv 0.0+    0+0.87
+Mod4 t z 0 1 :ExecCommand wmv 0.0+0.5 0.5+
+Mod4 t z 1 1 :ExecCommand wmv 0.5+0.5 0.5+
+Mod4 t z 2 1 :ExecCommand wmv 1.0+0.5 0.5+
+Mod4 t z 3 1 :ExecCommand wmv 1.5+0.5 0.5+
+Mod4 t z 4 1 :ExecCommand wmv 2.0+0.5 0.5+
+Mod4 t z 5 1 :ExecCommand wmv 2.5+0.5 0.5+
+Mod4 t z 6 1 :ExecCommand wmv 3.0+0.5 0.5+
+mod4 t z 7 1 :execcommand wmv 3.5+0.5 0.5+
+mod4 t z 8 1 :execcommand wmv 4.0+    0.5+
+Mod4 t z 0 2 :ExecCommand wmv 0.0+1.0 0.5+
+Mod4 t z 1 2 :ExecCommand wmv 0.5+1.0 0.5+
+Mod4 t z 2 2 :ExecCommand wmv 1.0+1.0 0.5+
+Mod4 t z 3 2 :ExecCommand wmv 1.5+1.0 0.5+
+Mod4 t z 4 2 :ExecCommand wmv 2.0+1.0 0.5+
+Mod4 t z 5 2 :ExecCommand wmv 2.5+1.0 0.5+
+Mod4 t z 6 2 :ExecCommand wmv 3.0+1.0 0.5+
+Mod4 t z 7 2 :ExecCommand wmv 3.5+    0.5+
+Mod4 t z 0 3 :ExecCommand wmv 0.0+1.5 0.5+
+Mod4 t z 1 3 :ExecCommand wmv 0.5+1.5 0.5+
+Mod4 t z 2 3 :ExecCommand wmv 1.0+1.5 0.5+
+Mod4 t z 3 3 :ExecCommand wmv 1.5+1.5 0.5+
+Mod4 t z 4 3 :ExecCommand wmv 2.0+1.5 0.5+
+Mod4 t z 5 3 :ExecCommand wmv 2.5+1.5 0.5+
+Mod4 t z 6 3 :ExecCommand wmv 3.0+    0.5+
+Mod4 t z 0 4 :ExecCommand wmv 0.0+2.0 0.5+
+Mod4 t z 1 4 :ExecCommand wmv 0.5+2.0 0.5+
+Mod4 t z 2 4 :ExecCommand wmv 1.0+2.0 0.5+
+Mod4 t z 3 4 :ExecCommand wmv 1.5+2.0 0.5+
+Mod4 t z 4 4 :ExecCommand wmv 2.0+2.0 0.5+
+Mod4 t z 5 4 :ExecCommand wmv 2.5+    0.5+
+Mod4 t z 0 5 :ExecCommand wmv 0.0+2.5 0.5+
+Mod4 t z 1 5 :ExecCommand wmv 0.5+2.5 0.5+
+Mod4 t z 2 5 :ExecCommand wmv 1.0+2.5 0.5+
+Mod4 t z 3 5 :ExecCommand wmv 1.5+2.5 0.5+
+Mod4 t z 4 5 :ExecCommand wmv 2.0+    0.5+
+Mod4 t z 0 6 :ExecCommand wmv 0.0+3.0 0.5+
+Mod4 t z 1 6 :ExecCommand wmv 0.5+3.0 0.5+
+Mod4 t z 2 6 :ExecCommand wmv 1.0+3.0 0.5+
+Mod4 t z 3 6 :ExecCommand wmv 1.5+    0.5+
+Mod4 t z 0 7 :ExecCommand wmv 0.0+3.5 0.5+
+Mod4 t z 1 7 :ExecCommand wmv 0.5+3.5 0.5+
+Mod4 t z 2 7 :ExecCommand wmv 1.0+    0.5+
+Mod4 t z 0 8 :ExecCommand wmv 0.0+4.0 0.5+
+Mod4 t z 1 8 :ExecCommand wmv 0.5+    0.5+
+Mod4 t z 0 9 :ExecCommand wmv 0.0+    0.5+
+Mod4 t z 9   :ExecCommand wmv 0.0+    0.5+
 
 Mod4 t a :ExecCommand wmv 0
 Mod4 t r :ExecCommand wmv 1
@@ -395,6 +372,37 @@ Mod4 t q 3 e :ExecCommand wmv s2 2+ +.5
 Mod4 t q 4 h :ExecCommand wmv s2 0+4 +.5
 Mod4 t q 4 n :ExecCommand wmv s2 1+ +.5
 Mod4 t q 5 h :ExecCommand wmv s2 0+ +.5
+
+Mod4 t Shift q a :ExecCommand wmv 0 +.87
+Mod4 t Shift q r :ExecCommand wmv 1 +.87
+Mod4 t Shift q s :ExecCommand wmv 2 +.87
+Mod4 t Shift q t :ExecCommand wmv 3 +.87
+Mod4 t Shift q d :ExecCommand wmv 4+ +.87
+Mod4 t Shift q 2 a :ExecCommand wmv 0+2 +.87
+Mod4 t Shift q 2 r :ExecCommand wmv 1+2 +.87
+Mod4 t Shift q 2 s :ExecCommand wmv 2+2 +.87
+Mod4 t Shift q 2 t :ExecCommand wmv 3+ +.87
+Mod4 t Shift q 3 a :ExecCommand wmv 0+3 +.87
+Mod4 t Shift q 3 r :ExecCommand wmv 1+3 +.87
+Mod4 t Shift q 3 s :ExecCommand wmv 2+ +.87
+Mod4 t Shift q 4 a :ExecCommand wmv 0+4 +.87
+Mod4 t Shift q 4 r :ExecCommand wmv 1+ +.87
+Mod4 t Shift q 5 a :ExecCommand wmv 0+ +.87
+Mod4 t Shift q h :ExecCommand wmv s2 0 +.87
+Mod4 t Shift q n :ExecCommand wmv s2 1 +.87
+Mod4 t Shift q e :ExecCommand wmv s2 2 +.87
+Mod4 t Shift q i :ExecCommand wmv s2 3 +.87
+Mod4 t Shift q o :ExecCommand wmv s2 4+ +.87
+Mod4 t Shift q 2 h :ExecCommand wmv s2 0+2 +.87
+Mod4 t Shift q 2 n :ExecCommand wmv s2 1+2 +.87
+Mod4 t Shift q 2 e :ExecCommand wmv s2 2+2 +.87
+Mod4 t Shift q 2 i :ExecCommand wmv s2 3+ +.87
+Mod4 t Shift q 3 h :ExecCommand wmv s2 0+3 +.87
+Mod4 t Shift q 3 n :ExecCommand wmv s2 1+3 +.87
+Mod4 t Shift q 3 e :ExecCommand wmv s2 2+ +.87
+Mod4 t Shift q 4 h :ExecCommand wmv s2 0+4 +.87
+Mod4 t Shift q 4 n :ExecCommand wmv s2 1+ +.87
+Mod4 t Shift q 5 h :ExecCommand wmv s2 0+ +.87
 
 Mod4 t z a :ExecCommand wmv 0 .5+
 Mod4 t z r :ExecCommand wmv 1 .5+
@@ -568,13 +576,12 @@ Mod4 r m b i :ExecCommand multiplexed-positioned-titled-xt -b 9 's2 3' b4
 Mod4 r m b o :ExecCommand multiplexed-positioned-titled-xt -b 10 's2 4' b5
 
 Mod4 r b :ExecCommand torb
-Mod4 r c :ExecCommand ff -c
-Mod4 r Shift c :ExecCommand ff -C
-Mod4 r Mod1 Shift c :ExecCommand ff -C -p 2
+Mod4 r c :ExecCommand ff -C
+Mod4 r Shift c :ExecCommand ff -C -p 2
+Mod4 r Mod1 c :ExecCommand ff -C -p s
 Mod4 r f :ExecCommand ff -f
-Mod4 r Shift f :ExecCommand ff -f
+Mod4 r Shift f :ExecCommand ff -f -p 2
 Mod4 r Mod1 f :ExecCommand ff -f -p s
-Mod4 r Mod1 Shift f :ExecCommand ff -f -p s
 Mod4 r g :ExecCommand gimp
 Mod4 r k :ExecCommand anki
 #Mod4 r Shift m :ExecCommand mutt_pull

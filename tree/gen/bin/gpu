@@ -1,5 +1,22 @@
 #!/bin/sh
-turn-on-gpu
+set -e
+
+DIR=~/.local/danl/gpu-power
+mkdir -p "$DIR"
+FILE="$DIR/$$"
+CLIENT_NUM=$(ls "$DIR" | wc -l)
+echo > "$FILE"
+if [ $CLIENT_NUM -eq 0 ]
+then
+  turn-on-gpu
+fi
+
 "$@"
-sleep 0.1
-turn-off-gpu
+sleep 2
+
+rm "$FILE"
+CLIENT_NUM=$(ls "$DIR" | wc -l)
+if [ $CLIENT_NUM -eq 0 ]
+then
+  turn-off-gpu
+fi

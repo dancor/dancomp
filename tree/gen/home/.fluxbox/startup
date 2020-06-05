@@ -1,16 +1,14 @@
 #!/bin/sh
 
-sudo swapoff /swap
-
-save-power
-turn-off-gpu
-
 # Not needed if lightdm is running
 fcitx
 
 export TMUX=''
-init-my-tmux
-tmux-multi-group-prune
+
+if [ -e ~/.first-startx ]; then
+    rm ~/.first-startx
+    init-my-tmux
+fi
 
 #redshift &
 
@@ -23,15 +21,12 @@ notifier &
 # fcitx input doesn't work only in scrs; fcitx needs time to start?
 # so just not starting any screens here
 
-# is it worth running every second? or just manually after change
-fix-input-devices
-#forever sh -c 'sleep 1 && fix-input-devices > /dev/null' &
-
-nmcli con up sonic-client
-
 multiplexed-positioned-titled-xt 1 0 a1
 multiplexed-positioned-titled-xt 2 1 a2
 multiplexed-positioned-titled-xt 3 2 a3
-ff -c
+#ff -c
 
+# is it worth running every second? or just manually after change
+#forever sh -c 'sleep 1 && fix-input-devices > /dev/null' &
+fix-input-devices
 exec fluxbox
