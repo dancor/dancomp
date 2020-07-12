@@ -1,0 +1,7 @@
+#!/bin/sh
+turn-off-gpu
+turn-on-swap
+save-power
+#fix-wifi
+touch ~/.first-startx
+exec startx

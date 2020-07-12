@@ -1,0 +1,2 @@
+#!/bin/sh
+exec xboard -timeControl 0:05 -se lc0

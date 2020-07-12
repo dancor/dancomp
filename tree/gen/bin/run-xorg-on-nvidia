@@ -1,0 +1,5 @@
+#!/bin/sh
+#xinit $EXECL -- $NEWDISP vt$LVT -nolisten tcp -br -config nvidia-xorg.conf -configdir nvidia-xorg.conf.d
+
+turn-on-gpu
+is-gpu-on && exec xinit /home/danl/x/nvidia-xinitrc -- :1 vt2 -nolisten tcp -br -config /home/danl/x/nvidia-xorg.conf
