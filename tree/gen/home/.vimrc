@@ -12,6 +12,9 @@ filetype plugin indent on
 
 autocmd BufEnter * :syntax sync fromstart
 
+" Remember position when reopening a file
+autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe
+
 map <F4> :w<CR>
 imap <F4> <ESC><F4>
 

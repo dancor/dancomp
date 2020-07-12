@@ -16,6 +16,7 @@ export WINDOW_MANAGER=/usr/bin/fluxbox
 export LS_COLORS='di=01;35'
 alias ls='ls --color=auto -p'
 alias ll='ls -l'
+alias rm='echo Instead of rm, use mtt and ett. Use /bin/rm if needed.'
 
 #Hack so that GNOME lets me run Fluxbox without a startup delay and an
 # error about Fluxbox not "registering", whatever that means.
@@ -33,6 +34,8 @@ export PATH
 LD_LIBRARY_PATH="$LD_LIBRARY_PATH":/usr/lib/x86_64-linux-gnu
 # This is for libreoffice
 LD_LIBRARY_PATH="$LD_LIBRARY_PATH":/usr/lib/libreoffice/program
+# This is for hasktorch
+LD_LIBRARY_PATH="$LD_LIBRARY_PATH"::/home/danl/i/hs/hasktorch/deps/libtorch/lib
 export LD_LIBRARY_PATH
 
 #export PYTHONPATH=/home/danl/p/peoplesounds:"$PYTHONPATH"
