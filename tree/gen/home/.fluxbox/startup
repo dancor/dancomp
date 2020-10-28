@@ -1,5 +1,8 @@
 #!/bin/sh
 
+fid
+xrdb ~/.Xresources
+
 # Not needed if lightdm is running
 fcitx
 

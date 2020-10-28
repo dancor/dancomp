@@ -1,9 +1,14 @@
 #!/bin/sh
 set -e
-sudo systemctl start wpa_supplicant.service
-nmcli dev wifi list | cat
+
+wlan0a &
+wlan0b
+signal-notif &
+
+#sudo systemctl start wpa_supplicant.service
+#nmcli dev wifi list | cat
+#nmcli --ask connection up e-5G
 #nmcli --ask connection up e
-nmcli --ask connection up e-5G
 #nmcli --ask connection up zona
 #nmcli --ask connection up TheCenturionLounge
 #nmcli --ask connection up "_Free EWR WiFi"

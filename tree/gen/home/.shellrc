@@ -22,13 +22,14 @@ alias rm='echo Instead of rm, use mtt and ett. Use /bin/rm if needed.'
 # error about Fluxbox not "registering", whatever that means.
 #export WINDOW_MANAGER=/bin/true
 
-PATH=/sbin:/usr/sbin
+PATH=~/bin:~/bin/git:~/.cabal/bin:~/.cargo/bin:~/.local/bin:/sbin:/usr/sbin
 PATH="$PATH":/usr/local/bin:/bin:/usr/bin:/snap/bin:/usr/games:/usr/games/bin
 PATH="$PATH":/opt/java/bin
-PATH="$PATH":~/bin:~/bin/git:~/.cabal/bin:~/.cargo/bin:~/.local/bin
 PATH="$PATH":~/p/em/emsdk:~/p/em/emsdk/fastcomp/emscripten
 PATH="$PATH":~/p/em/emsdk/node/12.9.1_64bit/bin
 export PATH
+
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 
 # Is this for CUDA?
 LD_LIBRARY_PATH="$LD_LIBRARY_PATH":/usr/lib/x86_64-linux-gnu
@@ -81,13 +82,25 @@ u() {
 u2() {
   cd ../..
 }
+uu() {
+  cd ../..
+}
 u3() {
+  cd ../../..
+}
+uuu() {
   cd ../../..
 }
 u4() {
   cd ../../../..
 }
+uuuu() {
+  cd ../../../..
+}
 u5() {
+  cd ../../../../..
+}
+uuuuu() {
   cd ../../../../..
 }
 
