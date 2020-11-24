@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# gnome applications hang for 20s on starting without this
+# (pavucontrol, fcitx-configtool)
+dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
+
 fid
 xrdb ~/.Xresources
 
@@ -13,7 +17,7 @@ if [ -e ~/.first-startx ]; then
     init-my-tmux
 fi
 
-#redshift &
+redshift &
 
 # this makes two-finger middle-click work a lot better
 # but don't seem to get much else with it?

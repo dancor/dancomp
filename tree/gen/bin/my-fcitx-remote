@@ -1,6 +1,6 @@
 #!/bin/sh
 fcitx-remote "$@"
 sleep 0.1
-fix-input-devices
+fid
 sleep 1
-fix-input-devices
+fid

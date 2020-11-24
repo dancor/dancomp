@@ -1,8 +1,8 @@
 #!/bin/sh
 set -e
 
-wlan0a &
-wlan0b
+wlan1a &
+wlan1b
 signal-notif &
 
 #sudo systemctl start wpa_supplicant.service
