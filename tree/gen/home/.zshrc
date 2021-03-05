@@ -18,6 +18,7 @@ setopt nolistambiguous
 setopt nomatch
 setopt notify
 setopt pushdignoredups
+setopt share_history
 
 zstyle ":completion:*:commands" rehash 1
 

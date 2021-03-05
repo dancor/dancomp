@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# So I can terminal multiplex and then start graphical environment.
+export DISPLAY=:0
+
 # To run mesa applications with bumblebee in ubuntu 18.04..
 export __GLVND_DISALLOW_PATCHING=1
 
@@ -28,6 +31,8 @@ PATH="$PATH":/opt/java/bin
 PATH="$PATH":~/p/em/emsdk:~/p/em/emsdk/fastcomp/emscripten
 PATH="$PATH":~/p/em/emsdk/node/12.9.1_64bit/bin
 export PATH
+
+export CUDA_PATH=/usr
 
 export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 
