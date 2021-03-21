@@ -36,12 +36,13 @@ export CUDA_PATH=/usr
 
 export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 
+# something here breaks pytorch
 # Is this for CUDA?
-LD_LIBRARY_PATH="$LD_LIBRARY_PATH":/usr/lib/x86_64-linux-gnu
+#LD_LIBRARY_PATH="$LD_LIBRARY_PATH":/usr/lib/x86_64-linux-gnu
 # This is for libreoffice
-LD_LIBRARY_PATH="$LD_LIBRARY_PATH":/usr/lib/libreoffice/program
+#LD_LIBRARY_PATH="$LD_LIBRARY_PATH":/usr/lib/libreoffice/program
 # This is for hasktorch
-LD_LIBRARY_PATH="$LD_LIBRARY_PATH"::/home/danl/i/hs/hasktorch/deps/libtorch/lib
+#LD_LIBRARY_PATH="$LD_LIBRARY_PATH"::/home/danl/i/hs/hasktorch/deps/libtorch/lib
 export LD_LIBRARY_PATH
 
 #export PYTHONPATH=/home/danl/p/peoplesounds:"$PYTHONPATH"

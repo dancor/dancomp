@@ -1,0 +1,27 @@
+#!/usr/bin/python3
+# This seems to have \r\n at end of file names but still work. adb push fixes?
+
+from os import path, walk
+from subprocess import check_output
+
+dirOnClon = b"/home/danl/Podcasts/mp3"
+dirOnZebu = b"/storage/external/podcasts/mp3"
+dirOnClonN = len(dirOnClon)
+
+print("I copy podcasts to an existing dir on a wire-connected android device.")
+input("Press enter to continue.")
+
+n = 0
+for dirpath, dirnames, filenames in walk(dirOnClon):
+    for filename in [f for f in filenames if f.endswith(b".mp3")]:
+        n += 1
+        assert dirpath.startswith(dirOnClon)
+        filename2 = dirOnZebu + path.join(dirpath[dirOnClonN:], filename)
+        o = check_output(["adb", "shell", "ls", filename2])
+        print(n, o)
+        if o.endswith(b": No such file or directory\r\n"):
+            print("PUSHING")
+            print(path.join(dirpath, filename))
+            print(filename2)
+            check_output(
+                ["adb", "push", path.join(dirpath, filename), filename2])
