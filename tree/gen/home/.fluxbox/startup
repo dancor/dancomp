@@ -1,20 +1,3 @@
 #!/bin/sh
-
-# gnome applications hang for 20s on starting without this
-# (pavucontrol, fcitx-configtool)
-dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
-
-fid
-xrdb ~/.Xresources
-fcitx # Not needed if lightdm is running
-export TMUX=''
-if [ -e ~/.first-startx ]; then
-    rm ~/.first-startx
-    init-my-tmux
-fi
-redshift &
-touchegg & # this makes two-finger middle-click work a lot better; does nothing else.
-notifier &
-xterm -e bb &
-(sleep 10; turn-off-gpu) &
+xterm -bg black -fg white &
 exec fluxbox
