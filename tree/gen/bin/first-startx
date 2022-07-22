@@ -1,8 +1,0 @@
-#!/bin/sh
-echo colorscheme dlight > ~/.config/nvim/plugin/danl-colorscheme.vim
-turn-off-gpu
-turn-on-swap
-save-power
-#fix-wifi
-touch ~/.first-startx
-exec startx
