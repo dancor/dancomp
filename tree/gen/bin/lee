@@ -1,4 +1,2 @@
 #!/bin/sh
-# i keep catting files that end up being huge or, worse, binary
-# i'm going to start making myself always use this instead
-less -EX "$@"
+exec less -EX "$@"

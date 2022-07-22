@@ -4,7 +4,7 @@ while true; do
     PERCENT=$(bat | grep -oP '(?<=percentage:          ).*(?=%)')
     if [[ "$PERCENT" -lt "$PREV_PERCENT" ]]; then
         if [[ "$PERCENT" -le 15 ]]; then
-            /usr/local/bin/hib
+            exec /usr/local/bin/shut-down-comp
         fi
         if [[ "$PERCENT" -le 20 && "$PREV_PERCENT" -gt 20 ||
               "$PERCENT" -le 30 && "$PREV_PERCENT" -gt 30 ||

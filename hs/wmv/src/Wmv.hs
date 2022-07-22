@@ -12,12 +12,7 @@ import Numeric
 import System.Environment
 import System.Process
 
-data P2 a = P2
-    { p1 :: !a
-    , p2 :: !a
-    }
-    deriving Show
-
+data P2 a = P2 {p1 :: !a , p2 :: !a} deriving Show
 data Wmv = Wmv
     { wScr :: !Int
     , wX :: !(P2 Rational)

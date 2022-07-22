@@ -6,34 +6,15 @@ dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XA
 
 fid
 xrdb ~/.Xresources
-
-# Not needed if lightdm is running
-fcitx
-
+fcitx # Not needed if lightdm is running
 export TMUX=''
-
 if [ -e ~/.first-startx ]; then
     rm ~/.first-startx
     init-my-tmux
 fi
-
 redshift &
-
-# this makes two-finger middle-click work a lot better
-# but don't seem to get much else with it?
-touchegg &
-
+touchegg & # this makes two-finger middle-click work a lot better; does nothing else.
 notifier &
-
-# fcitx input doesn't work only in scrs; fcitx needs time to start?
-# so just not starting any screens here
-
-multiplexed-positioned-titled-xt 1 0 a1
-#multiplexed-positioned-titled-xt 2 1 a2
-#multiplexed-positioned-titled-xt 3 2 a3
-ff -c
-
-# is it worth running every second? or just manually after change
-#forever sh -c 'sleep 1 && fix-input-devices > /dev/null' &
-fix-input-devices
+xterm -e bb &
+(sleep 10; turn-off-gpu) &
 exec fluxbox

@@ -112,7 +112,7 @@ import Debug.Trace
 --import qualified Euterpea as Eut
 import GHC.Generics
 import Language.Haskell.TH
-import MajMemSys
+--import MajMemSys
 import Network.Socket
 import Numeric
 import Prelude

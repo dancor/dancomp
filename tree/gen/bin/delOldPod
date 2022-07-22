@@ -1,3 +1,3 @@
 #!/bin/sh
-find /home/danl/Podcasts/mp3/ -type f -mtime +15|xargs mtt
-echo "Missing destination means there are none. Otherwise run ett to clear."
+find /home/danl/Podcasts/mp3/ -type f -mtime +11|xargs mtt
+echo 'Now run ett to clear space. If "missing destination" above there are none.'
