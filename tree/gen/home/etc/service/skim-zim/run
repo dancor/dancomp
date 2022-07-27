@@ -1,2 +1,3 @@
 #!/bin/sh
-exec ~/p/one-off/skim-zim/serve ~/data/enwikt.zim
+exec ~/p/o/skim-zim/serve ~/data/wikt/en.zim ~/data/wikt/es.zim \
+  ~/data/wiki/en.zim
