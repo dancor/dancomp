@@ -1,2 +1,2 @@
 #!/bin/sh
-exec ~/p/one-off/bubogo/bubogo "$@"
+exec ~/p/o/bubogo/bubogo "$@"

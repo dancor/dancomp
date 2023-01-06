@@ -1,7 +1,6 @@
 #!/bin/sh
-turn-off-gpu
-turn-on-swap
-sudo s2disk
+#turn-off-gpu
+#turn-on-swap
+exec sudo systemctl hibernate
 #turn-off-swap
-
 #(sleep 1; think-touchpad off; sleep 2; think-touchpad off) &
