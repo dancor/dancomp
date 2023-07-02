@@ -31,6 +31,7 @@ compdef _wh wh
 compdef _wh cw
 compdef _wh vw
 compdef _vs vs
+compdef _vb vb
 compdef _sudo so
 compdef _gitkill g
 compdef _optirun optirun
@@ -56,7 +57,7 @@ function precmd() {
   fi
   GIT_COL=33
 
-  HOST_PART='%{[00;'"$HOST_COL"'m%}%m:'
+  HOST_PART="%{[00;${HOST_COL}m%}${${(%):-%m}%lon}:"
   GIT_PART=''
   GIT_BR="$(git-br-prompt)"
   if [[ -n "$GIT_BR" ]]
@@ -70,7 +71,7 @@ function precmd() {
     PWD_PART_PRE='..'
     PWD_PART=${PWD_PART:${#PWD_PART} - 38}
   fi
-  PS1="$HOST_PART$GIT_PART$PWD_PART_PRE"'%{[00;36m%}'"$PWD_PART"'%{[00m%}> '
+  PS1="$HOST_PART$GIT_PART$PWD_PART_PRE%{[00;36m%}$PWD_PART%{[00m%}> "
   # clear last executed command name from screen title
   case "$TERM" in
   screen*)

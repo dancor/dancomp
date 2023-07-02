@@ -1,3 +1,0 @@
-#!/bin/sh
-xterm -bg black -fg white &
-exec fluxbox

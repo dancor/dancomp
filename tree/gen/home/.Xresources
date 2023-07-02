@@ -1,38 +1,38 @@
-emacs.menuBar: off
-emacs.verticalScrollBars: off
-emacs.scrollBarWidth: 0
-emacs.toolBar: 0
-emacs.font: Monospace-10
-!emacs.foreground:black
-!emacs.background:lightyellow
-
-urxvt.scrollBar: false
-!urxvt.inputMethod:ibus
-!urxvt.preeditType:OverTheSpot
-urxvt.iso14755: false
-urxvt.iso14755_52: false
-
-! Black + DarkGrey
-*color0:  #000000
-*color8:  #555555
-! LightGrey + White
-*color7:  #aaaaaa
-*color15: #ffffff
-! DarkRed + Red
-*color1:  #bd000d
-*color9:  #bd000d
-! DarkGreen + Green
-*color2:  #006607
-*color10: #006607
-! DarkYellow + Yellow
-*color3:  #ffbb00
-*color11: #ffbb00
-! DarkBlue + Blue
-*color4:  #004ce6
-*color12: #004ce6
-! DarkMagenta + Magenta
-*color5:  #ad007f
-*color13: #ad007f
-!DarkCyan + Cyan
-*color6:  #005a61
-*color14: #005a61
+!emacs.menuBar: off
+!emacs.verticalScrollBars: off
+!emacs.scrollBarWidth: 0
+!emacs.toolBar: 0
+!emacs.font: Monospace-10
+!!emacs.foreground:black
+!!emacs.background:lightyellow
+!
+!urxvt.scrollBar: false
+!!urxvt.inputMethod:ibus
+!!urxvt.preeditType:OverTheSpot
+!urxvt.iso14755: false
+!urxvt.iso14755_52: false
+!
+!! Black + DarkGrey
+!*color0:  #000000
+!*color8:  #555555
+!! LightGrey + White
+!*color7:  #aaaaaa
+!*color15: #ffffff
+!! DarkRed + Red
+!*color1:  #bd000d
+!*color9:  #bd000d
+!! DarkGreen + Green
+!*color2:  #006607
+!*color10: #006607
+!! DarkYellow + Yellow
+!*color3:  #ffbb00
+!*color11: #ffbb00
+!! DarkBlue + Blue
+!*color4:  #004ce6
+!*color12: #004ce6
+!! DarkMagenta + Magenta
+!*color5:  #ad007f
+!*color13: #ad007f
+!!DarkCyan + Cyan
+!*color6:  #005a61
+!*color14: #005a61
