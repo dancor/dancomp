@@ -1,1 +1,1 @@
-(make 2>&1 && ./focusWeb)|lee
+gcp; (make 2>&1 && ./focusWeb)|lee
