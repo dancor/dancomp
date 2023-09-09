@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {char mode;
   while (fgets(buf, sizeof buf, p)) {bufI = 0; bufReadWord(id, wdI);
     bufSkipSpaces(); bufSkipWord(); bufSkipSpaces();
     bufReadWord(wd, wdI);
-    printf("wd:%s\n", wd);
+    printf("wd{%s}\n", wd);
     exit(0);
     x = atoi(wd);
     bufSkipSpaces();
