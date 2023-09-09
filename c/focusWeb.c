@@ -6,8 +6,7 @@ char buf[65536]; int bufI;
 inline void bufReadWord(char *wd, int &wdI) {wdI = 0; bufReadWord:
   char c = zre(buf[bufI++]); if (c != ' ') {wd[wdI++] = c; goto bufReadWord;}
   wd[wdI++] = 0;}
-inline void bufSkipSpaces() {bufSkipSpaces:
-  if(zre(buf[bufI]) == ' ') {bufI++; goto bufSkipSpaces;}}
+inline void bufSkipSpaces() {while (zre(buf[bufI]) == ' ') bufI++;}
 inline void bufSkipWord() {while (zre(buf[bufI++]) != ' ') {}}
 int main() {int w, h, maxArea = 0, wdI;
   char wd[65536], id[65536], bestId[65536], *buf2;
