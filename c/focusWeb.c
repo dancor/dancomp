@@ -20,7 +20,6 @@ int main(int argc, char *argv[]) {char mode;
     printf("wd{%s}\n", wd);
     x = atoi(wd);
     printf("x:%d\n", x);
-    exit(0);
     bufSkipSpaces();
     bufReadWord(wd, wdI); y = atoi(wd); bufSkipSpaces();
     bufReadWord(wd, wdI); w = atoi(wd); bufSkipSpaces();
