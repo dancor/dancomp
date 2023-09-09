@@ -11,6 +11,7 @@ inline void bufSkipSpaces() {bufSkipSpaces:
 inline void bufSkipWord() {bufSkipWord:
   if (zre(buf[bufI++]) != ' ') goto bufSkipWord;}
 int main() {int w, h, maxArea = 0, wdI;
+  execl("/bin/echo", "HEYY");
   char wd[65536], id[65536], bestId[65536], *buf2;
   FILE* p = zre(popen("wmctrl -lG", "r"));
   nextL: if (fgets(buf, sizeof buf, p)) {
