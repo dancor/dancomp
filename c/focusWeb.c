@@ -29,7 +29,6 @@ int main() {int w, h, maxArea = 0, wdI;
     maxArea = w * h;
     strcpy(bestId, id);
     goto nextL;
-  }
-  execl("/bin/wmctrl", "wmctrl", "-ia", bestId, NULL);
-  pclose(p);
+  } //pclose(p);
+  return execl("/bin/wmctrl", "wmctrl", "-ia", bestId, NULL);
 }
