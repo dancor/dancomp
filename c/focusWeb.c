@@ -30,6 +30,6 @@ int main() {int w, h, maxArea = 0, wdI;
     strcpy(bestId, id);
     goto nextL;
   }
-  execl("/bin/echo", "echo", "wmctrl", "lol-ia", bestId, NULL);
+  execl("echo", "echo", "wmctrl", "lol-ia", bestId, NULL);
   pclose(p);
 }
