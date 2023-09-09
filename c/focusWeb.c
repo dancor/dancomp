@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {char mode;
     bufReadWord(wd, wdI); h = atoi(wd); bufSkipSpaces(); bufSkipWord();
     bufSkipSpaces(); buf2 = buf + bufI;
     if (strcmp(" - Google Chrome\n", buf2 + strlen(buf2) - 17)) continue;
-    if (mode == 'g') 
+    if (mode == 'g')
     if (w * h <= value) continue;
     value = w * h;
     strcpy(bestId, id);}
