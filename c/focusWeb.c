@@ -22,8 +22,8 @@ int main(int argc, char *argv[]) {char mode;
     bufReadWord(wd, wdI); h = atoi(wd); bufSkipSpaces(); bufSkipWord();
     bufSkipSpaces(); buf2 = buf + bufI;
     if (strcmp(" - Google Chrome\n", buf2 + strlen(buf2) - 17)) continue;
-    if (mode == 'g') {
-      if (w * h <= val) continue; val = w * h; strcpy(bestId, id);} else
+    if (mode == 'g') {if (w * h <= val) continue;
+      val = w * h; strcpy(bestId, id);} else
     if (mode == 'f') {if (x >= val) continue; val = x; strcpy(bestId, id);}
     else             {if (y <= val) continue; val = y; strcpy(bestId, id);}
   return execl("/bin/wmctrl", "wmctrl", "-ia", bestId, NULL);}
