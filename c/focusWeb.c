@@ -4,8 +4,7 @@
 #include "../../templates/cpp/err.h"
 char buf[65536]; int bufI;
 inline void bufReadWord(char *wd, int &wdI) {wdI = 0; char c;
-  while ((c = zre(buf[bufI++])) != ' ') wd[wdI++] = c;
-  wd[wdI++] = 0;}
+  while ((c = zre(buf[bufI++])) != ' ') wd[wdI++] = c; wd[wdI++] = 0;}
 inline void bufSkipSpaces() {while (zre(buf[bufI]) == ' ') bufI++;}
 inline void bufSkipWord() {while (zre(buf[bufI++]) != ' ') {}}
 int main() {int w, h, maxArea = 0, wdI;
