@@ -1,14 +1,3 @@
-#!/bin/sh
-
-# doesn't work w/ sudo :(
-#exec $EDITOR "$@"
-
-#exec emacs -nw "$@"
-#exec emacs "$@"
-#exec emacsclient -c --alternate-editor emacs "$@"
-
-# 2018-12 too many nvim screen garbles (^L) and seg faults
-# remember to rm ~/.viminfo when switching between vim and nvim
 exec nvim "$@"
-
-#exec vim "$@"
+# note doesn't work w/ sudo, prob some fix:
+#exec $EDITOR "$@"
