@@ -18,6 +18,7 @@ int main(int argc, char *argv[]) {char mode;
     bufSkipSpaces(); bufSkipWord(); bufSkipSpaces();
     bufReadWord(wd, wdI);
     printf("wd:%s\n", wd);
+    exit(0);
     x = atoi(wd);
     bufSkipSpaces();
     bufReadWord(wd, wdI); y = atoi(wd); bufSkipSpaces();
