@@ -25,5 +25,5 @@ int main(int argc, char *argv[]) {char mode;
     switch (mode) {case 'g': a = w * h; if (a <= val) continue;
         val = a; strcpy(bestId, id); break;
       case 'f': if (x >= val) continue; val = x; strcpy(bestId, id); break;
-      default:  if (y <= val) continue; val = y; strcpy(bestId, id);}
+      default:  if (y <= val) continue; val = y; strcpy(bestId, id);}}
   return execl("/bin/wmctrl", "wmctrl", "-ia", bestId, NULL);}
