@@ -13,7 +13,7 @@ inline void bufSkipWord() {bufSkipWord:
 int main() {int w, h, maxArea = 0, wdI;
   char wd[65536], id[65536], bestId[65536], *buf2;
   FILE* p = zre(popen("wmctrl -lG", "r"));
-  nextL: if (fgets(buf, sizeof buf, p)) {
+  while (fgets(buf, sizeof buf, p)) {
     bufI = 0; //printf("buf:%s", buf);
     bufReadWord(id, wdI);
     bufSkipSpaces(); bufSkipWord();
@@ -24,11 +24,10 @@ int main() {int w, h, maxArea = 0, wdI;
     bufSkipSpaces(); bufSkipWord();
     buf2 = buf + bufI;
     bufSkipSpaces();
-    if (strcmp(" - Google Chrome\n", buf2 + strlen(buf2) - 17)) goto nextL;
-    if (w * h <= maxArea) goto nextL;
+    if (strcmp(" - Google Chrome\n", buf2 + strlen(buf2) - 17)) continue;
+    if (w * h <= maxArea) continue;
     maxArea = w * h;
     strcpy(bestId, id);
-    goto nextL;
   } //pclose(p);
   return execl("/bin/wmctrl", "wmctrl", "-ia", bestId, NULL);
 }
