@@ -10,7 +10,7 @@ inline void bufSkipSpaces() {while (zre(buf[bufI]) == ' ') bufI++;}
 inline void bufSkipWord() {while (zre(buf[bufI++]) != ' ') {}}
 int main(int argc, char *argv[]) {
   zre(argc == 2);
-  if (!argv[1][1]) && argv[1][0] >= 'f' && argv[1][0] <= 'h') {}
+  if (!argv[1][1] && argv[1][0] >= 'f' && argv[1][0] <= 'h') {}
     else zre(0);
   int w, h, maxArea = 0, wdI;
   char wd[65536], id[65536], bestId[65536], *buf2;
