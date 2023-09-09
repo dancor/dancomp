@@ -7,12 +7,12 @@ inline void bufReadWord(char *wd, int &wdI) {wdI = 0; char c;
   while ((c = zre(buf[bufI++])) != ' ') wd[wdI++] = c;
   wd[wdI++] = 0;}
 inline void bufSkipSpaces() {while (zre(buf[bufI]) == ' ') bufI++;}
-inline void bufSkipWord() while (zre(buf[bufI++]) != ' ') {}
+inline void bufSkipWord() {while (zre(buf[bufI++]) != ' ') {}}
 int main() {int w, h, maxArea = 0, wdI;
   char wd[65536], id[65536], bestId[65536], *buf2;
   FILE* p = zre(popen("wmctrl -lG", "r"));
   while (fgets(buf, sizeof buf, p)) {
-    bufI = 0; //printf("buf:%s", buf);
+    bufI = 0;
     bufReadWord(id, wdI);
     bufSkipSpaces(); bufSkipWord();
     bufSkipSpaces(); bufSkipWord();
@@ -25,7 +25,5 @@ int main() {int w, h, maxArea = 0, wdI;
     if (strcmp(" - Google Chrome\n", buf2 + strlen(buf2) - 17)) continue;
     if (w * h <= maxArea) continue;
     maxArea = w * h;
-    strcpy(bestId, id);
-  } //pclose(p);
-  return execl("/bin/wmctrl", "wmctrl", "-ia", bestId, NULL);
-}
+    strcpy(bestId, id);}
+  return execl("/bin/wmctrl", "wmctrl", "-ia", bestId, NULL);}
