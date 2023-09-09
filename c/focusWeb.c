@@ -3,8 +3,8 @@
 #include <unistd.h>
 #include "../../templates/cpp/err.h"
 char buf[65536]; int bufI;
-inline void bufReadWord(char *wd, int &wdI) {wdI = 0; bufReadWord:
-  char c = zre(buf[bufI++]); if (c != ' ') {wd[wdI++] = c; goto bufReadWord;}
+inline void bufReadWord(char *wd, int &wdI) {wdI = 0; char c;
+  while ((c = zre(buf[bufI++])) != ' ') wd[wdI++] = c;
   wd[wdI++] = 0;}
 inline void bufSkipSpaces() {while (zre(buf[bufI]) == ' ') bufI++;}
 inline void bufSkipWord() {while (zre(buf[bufI++]) != ' ') {}}
