@@ -7,7 +7,7 @@ inline void bufReadWord(char *wd, int &wdI) {wdI = 0; char c;
   while ((c = zre(buf[bufI++])) != ' ') wd[wdI++] = c;
   wd[wdI++] = 0;}
 inline void bufSkipSpaces() {while (zre(buf[bufI]) == ' ') bufI++;}
-inline void bufSkipWord() {while (zre(buf[bufI++]) != ' ') {}}
+inline void bufSkipWord() while (zre(buf[bufI++]) != ' ') {}
 int main() {int w, h, maxArea = 0, wdI;
   char wd[65536], id[65536], bestId[65536], *buf2;
   FILE* p = zre(popen("wmctrl -lG", "r"));
