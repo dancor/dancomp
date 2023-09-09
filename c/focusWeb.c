@@ -21,6 +21,7 @@ int main(int argc, char *argv[]) {char mode;
     bufReadWord(wd, wdI); w = atoi(wd); bufSkipSpaces();
     bufReadWord(wd, wdI); h = atoi(wd); bufSkipSpaces(); bufSkipWord();
     bufSkipSpaces(); buf2 = buf + bufI;
+    printf("%d %d %d %d\n", x, y, w, h);
     if (strcmp(" - Google Chrome\n", buf2 + strlen(buf2) - 17)) continue;
     switch (mode) {case 'g': a = w * h; if (a <= val) continue;
         val = a; strcpy(bestId, id); break;
