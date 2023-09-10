@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {char mode;
     bufReadWord(wd, wdI); h = atoi(wd); /*bufSkipSpaces(); bufSkipWord();
     bufSkipSpaces();*/ buf2 = buf + bufI;
     if (strcmp(" - Google Chrome\n", buf2 + strlen(buf2) - 17)) continue;
-    printf("mode:%c x:%d y:%d buf2:%s", mode, x, y, buf2);
+    printf("mode:%c id:%s x:%d y:%d buf2:%s", mode, id, x, y, buf2);
     switch (mode) {case 'g': a = w * h; if (a <= val) continue;
         val = a; strcpy(bestId, id); break;
       case 'f': if (!x && !y) endOn(id);
