@@ -9,8 +9,8 @@ inline void bufReadWord(char *wd, int &wdI) {wdI = 0; char c;
 inline void bufSkipSpaces() {while (zre(buf[bufI]) == ' ') bufI++;}
 inline void bufSkipWord() {while (zre(buf[bufI++]) != ' ') {}}
 inline void endOn(char *id) {
+  printf("id:%s\n", id);}
   //nge(execl("/bin/wmctrl", "wmctrl", "-ia", id, NULL));}
-  }
 int main(int argc, char *argv[]) {char mode;
   if (argc == 2 && !argv[1][1] && (mode = argv[1][0]) >= 'f' && mode <= 'h')
     {} else zre(0);
