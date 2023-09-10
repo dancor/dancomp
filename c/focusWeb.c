@@ -27,5 +27,5 @@ int main(int argc, char *argv[]) {char mode;
     printf("mode:%c id:%s x:%d y:%d buf2:%s", mode, id, x, y, buf2);
     switch (mode) {case 'g': a = w * h; if (a <= val) continue;
         val = a; strcpy(bestId, id); break;
-      case 'f': if (!x && !y) endOn(id);
+      case 'f': if (!x && !y) endOn(id); break;
       default:  if (!x &&  y) endOn(id);}} endOn(bestId);}
