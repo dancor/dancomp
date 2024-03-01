@@ -1,3 +1,6 @@
 exec nvim "$@"
+#if [[ "$1" -eq /etc/hosts ]]; then
+#  exec echo NOOO
+#fi
 # note doesn't work w/ sudo, prob some fix:
 #exec $EDITOR "$@"
